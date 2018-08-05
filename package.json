@@ -1,0 +1,62 @@
+{
+  "name": "mother",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --config ./build/webpack.dev.js --host t.it.mn.sina.com --port 80",
+    "winserver": "webpack-dev-server --config ./build/webpack.dev.js --host 10.205.139.220 --port 80",
+    "server": "webpack-dev-server --config ./build/webpack.dev.js",
+    "build": "webpack --config ./build/webpack.prod.js --progress",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Confinement/mother.git"
+  },
+  "author": "xlh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Confinement/mother/issues"
+  },
+  "homepage": "https://github.com/Confinement/mother#readme",
+  "devDependencies": {
+    "autoprefixer": "^7.1.4",
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^22.4.3",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.16",
+    "copy-webpack-plugin": "^4.5.1",
+    "css-loader": "^0.28.11",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^3.2.0",
+    "html-withimg-loader": "^0.1.16",
+    "postcss-loader": "^2.0.6",
+    "script-ext-html-webpack-plugin": "^2.0.1",
+    "style-loader": "^0.18.2",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.16.4",
+    "webpack-cli": "^2.1.4",
+    "webpack-dev-server": "^3.1.4",
+    "webpack-merge": "^4.1.2",
+    "webpack-strip-blocks": "^1.0.0"
+  },
+  "dependencies": {
+    "antd-mobile": "^2.2.2",
+    "react": "^16.4.2",
+    "react-actor": "^1.0.5",
+    "react-boxer": "^1.0.4",
+    "react-dom": "^16.4.2",
+    "react-keeper": "^2.1.8"
+  },
+  "browserslist": [
+    "iOS >= 8",
+    "Android > 4.4"
+  ]
+}

@@ -1,11 +1,8 @@
-import * as Ajax from "@lib/Ajax"
 import {desiginwidth} from "./config"
-import * as browser from "@lib/browser"
-import ready from "document-ready"
 
 // 清除html缓存
-if(window.location.search.indexOf('clearCaches=')==-1)
-	location.href = location.href + (location.href.indexOf('?')!=-1?'&':'?') + 'clearCaches='+Math.random();
+if(window.location.search.indexOf('clearCache=')==-1)
+	location.href = location.href + (location.href.indexOf('?')!=-1?'&':'?') + 'clearCache='+Math.random();
 
 // REM布局
 var windowResize =function() {
