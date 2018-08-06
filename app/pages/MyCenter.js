@@ -14,7 +14,7 @@ export default function MyCenter() {
 		<div className="name">XXX</div>
 		<btn className="update-btn">XXX</btn>
 	 </div>
-     <div className="home-bnt">
+     <div className="pay-btn">
         <div className="left-btn">找月嫂</div>
         <div className="right-btn">
           <div className="btn bnt1">bnt1</div>

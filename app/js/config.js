@@ -1,6 +1,6 @@
 window.CONFIG || (window.CONFIG={});
 
-const desiginwidth = 640;
+const desiginwidth = 750;
 let nickname = window.CONFIG.nickname || "";
 
 export {
