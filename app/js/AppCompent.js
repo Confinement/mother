@@ -1,6 +1,6 @@
 import "../css/index.css"
 import React from "react";
-import { Radio ,InputNumber} from 'antd';
+import { Radio ,InputNumber} from 'antd-mobile';
 
 const RadioGroup = Radio.Group;
 const RadioButton = Radio.Button;
