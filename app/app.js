@@ -13,6 +13,9 @@ import Detail from './pages/products/Detail'
 import Ads from './pages/products/Ads'
 
 import AboutUs from './pages/AboutUs'
+import AppCompent from './js/AppCompent'
+
+import MyCenter from './pages/MyCenter'
 
 import Host from './pages/host/Host'
 
@@ -24,7 +27,8 @@ class App extends Actor {
   constructor(...args) {
     super(...args)
     this.state = {
-      cacheAboutUs: false
+      cacheAboutUs: false,
+      cacheMyCenter: false
     }
 
     /** supported by 'react-actor', action triggered in './common/Header.js' */
@@ -49,8 +53,11 @@ class App extends Actor {
           </Route>
 
           <Route component={Host} path='/host' enterFilter={[ LoginFilter ]} leaveFilter={ UserLeave }/>
-
-          <Route cache={ this.state.cacheAboutUs } path='aboutus' component={AboutUs}/>
+          
+          <Route component={MyCenter} path='mycenter' />
+          <Route cache={ this.state.cacheAboutUs } path='aboutus' component={AboutUs}>
+            <Route component={AppCompent} path='/requerment'/>
+          </Route>
 
           <Box index='5'/>
         </div>

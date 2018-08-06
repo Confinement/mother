@@ -17,7 +17,7 @@ class Nav extends React.Component{
 	  render() {
 		return (
 		  <div style={this.state.fullScreen ? { position: 'fixed', height: '100%', width: '100%', top: 0 } : { height: 400 }}>
-			<TabBar
+			<TabBar 
 			  unselectedTintColor="#949494"
 			  tintColor="#33A3F4"
 			  barTintColor="white"
@@ -110,6 +110,7 @@ class Nav extends React.Component{
 				  this.setState({
 					selectedTab: 'yellowTab',
 				  });
+				  Control.go('/mycenter', { name: 'React-Keeper' });
 				}}
 			  ></TabBar.Item>
 			</TabBar>

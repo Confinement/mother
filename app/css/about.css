@@ -1,0 +1,36 @@
+.banner{
+	position: relative;
+	width: 100%;
+	height: 3rem;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.home-bnt{
+	position: relative;
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+}
+.home-bnt .left-btn{
+	width: 30%;
+	height: 3rem;
+	position: absolute;
+	top: 0;
+	left: .2rem;
+	background-color: aqua;
+}
+.home-bnt .right-btn{
+	width: 60%;
+	height: 2rem;
+	position: absolute;
+	top: 0;
+	right:0.2rem;
+}
+.home-bnt .right-btn .btn{
+	position: relative;
+	width: 40%;
+	height: 1rem;
+	float: left;
+	margin: 0.1rem ;
+	background-color: aqua;
+}
