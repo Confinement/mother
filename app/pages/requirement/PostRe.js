@@ -77,9 +77,6 @@ class PostRe extends React.Component {
 	}
 
 
-
-
-
 	handleSumbit(event) {
 		event.preventDefault();
 		let data = {}
@@ -98,10 +95,10 @@ class PostRe extends React.Component {
 		data.costMin = this.state.costMin;
 		data.costMax = this.state.costMax;
 
-		data.moonAgeMin = 46;
-		data.moonAgeMax = 100;
-		data.takecareBabyMin = 31;
-		data.takecareBabyMax = 1000;
+		data.moonAgeMin = this.state.ageValue.split("-")[0];
+		data.moonAgeMax = this.state.ageValue.split("-")[1];
+		data.takecareBabyMin = this.state.babyTypeValue.split("-")[0];
+		data.takecareBabyMax = this.state.babyTypeValue.split("-")[0];
 		
 		let formData = new FormData();
 		formData.append('Platform',1);
