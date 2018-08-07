@@ -1,7 +1,57 @@
-import $ from "jquery";
+/* 小玲欢 */
+import {htmlServerHost} from './config'
 
-const api = 'http://common.mn.sina.com.cn/activity/jsonp/'
-let pid = 499;
+//格式化参数
+let formatParams = (data) => {
+	var arr = [];
+	for (var name in data) {
+		arr.push(encodeURIComponent(name) + "=" + encodeURIComponent(data[name]));
+	}
+	arr.push(("v=" + Math.random()).replace(".",""));
+	return arr.join("&");
+}
+
+let ajax = (options) => {
+	options = options || {};
+	options.type = (options.type || "GET").toUpperCase();
+	options.dataType = options.dataType || "json";
+	var params = formatParams(options.data);
+
+	//创建 - 非IE6 - 第一步
+	if (window.XMLHttpRequest) {
+		var xhr = new XMLHttpRequest();
+	} else { //IE6及其以下版本浏览器
+		var xhr = new ActiveXObject('Microsoft.XMLHTTP');
+	}
+
+	//接收 - 第三步
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState == 4) {
+			var status = xhr.status;
+			if (status >= 200 && status < 300) {
+				options.success && options.success(xhr.responseText, xhr.responseXML);
+			} else {
+				options.fail && options.fail(status);
+			}
+		}
+	}
+
+	//连接 和 发送 - 第二步
+	// if (typeof options.xhrFields === 'object' && options.xhrFields.withCredentials || location.host != htmlServerHost) {
+	// 	xhr.withCredentials=true;
+	// }
+	if (options.type == "GET") {
+		xhr.open("GET", options.url + "?" + params, true);
+		xhr.send(null);
+	} else if (options.type == "POST") {
+		xhr.open("POST", options.url, true);
+		//设置表单提交时的内容类型
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		xhr.send(params);
+	}
+}
+
+export {ajax}
 
 export let get = function (...o) {
 	typeof o[1] == 'function' ? (
@@ -9,20 +59,52 @@ export let get = function (...o) {
 		o[2] = o[1],
 		o[1] = {}
 	) : null;
-	$.getJSON(api + pid + '/' + o[0] + '?callback=?', o[1], function(json, textStatus) {
-		if (json.err == 0) {
-			o[2](json, textStatus);
-		} else if(json.err == 0xA0) {
-			// 微信未登录
-			alert('请先授权微信登录！');
-			window.location.replace("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1b43c71a4970c9f9&redirect_uri="+encodeURIComponent('http://common.mn.sina.com.cn/wx/wx_oauth2')+"&response_type=code&scope=snsapi_userinfo&state="+encodeURIComponent(location.href)+"#wechat_redirect");
-		} else if(json.err == 0xB0 || json.err == 0xB1) {
-			// 微博未登录
-			alert('请先登录微博！');
-			window.location.replace("https://api.weibo.com/oauth2/authorize?client_id=2485256049&redirect_uri="+encodeURIComponent('http://common.mn.sina.com.cn/wb/wb_oauth2')+"&response_type=code&state="+encodeURIComponent(location.href)+"&display=");
-		} else {
-			typeof o[3] == 'function' ? o[3](json, textStatus) :
-			alert(json.msg);
+
+	ajax({
+		url: o[0],
+		type: "GET",
+		data: o[1],
+		dataType: "json",
+		success: function (response, xml) {
+			let json = eval('(' + response + ')');
+			o[2] && o[2](json);
+		},
+		fail: function (status) {
+			o[3] && o[3](json);
 		}
-	}); 
+	});
+}
+
+export let post = function (...o) {
+	typeof o[1] == 'function' ? (
+		o[3] = o[2],
+		o[2] = o[1],
+		o[1] = {}
+	) : null;
+
+	ajax({
+		url: o[0],
+		type: "post",
+		data: o[1],
+		dataType: "json",
+		success: function (response, xml) {
+			let json = eval('(' + response + ')');
+			o[2] && o[2](json);
+		},
+		fail: function (status) {
+			o[3] && o[3](json);
+		}
+	});
+}
+
+export let getJSON = function (url, fn) {
+	let fn_name = "AJAX" + Math.floor(Math.random()*10000000);
+	let elem = document.createElement("script");
+	elem.setAttribute("type", "text/javascript");
+	elem.setAttribute("language", "javascript");
+	elem.setAttribute("src", url + (url.indexOf('?')!=-1?'&':'?') + 'callback=' + fn_name);
+	document.head.appendChild(elem);
+	window[fn_name] = function(json) {
+		fn(json);
+	};
 }

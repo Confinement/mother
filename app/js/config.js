@@ -1,11 +1,14 @@
 window.CONFIG || (window.CONFIG={});
 
 const desiginwidth = 750;
-let nickname = window.CONFIG.nickname || "";
+const platform=5;
+const version="2.0";
+// let nickname = window.CONFIG.nickname || "";
 
 export {
 	desiginwidth,
-	nickname
+	platform,
+	version
 }
 
 export let setConfig = (key, value) => {
