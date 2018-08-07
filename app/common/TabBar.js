@@ -48,7 +48,7 @@ class Nav extends React.Component{
 				  this.setState({
 					selectedTab: 'blueTab',
 				  });
-				  Control.go('/aboutus', { name: 'React-Keeper' });
+				  Control.go('/', { name: 'React-Keeper' });
 				}}
 				data-seed="logId"
 			  ></TabBar.Item>

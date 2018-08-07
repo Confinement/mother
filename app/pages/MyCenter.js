@@ -1,5 +1,6 @@
 import "../css/myCenter.css"
 import React from 'react'
+import Nav from '@common/TabBar'
 import { HashRouter, BrowserRouter, MemoryRouter, Route, Control } from 'react-keeper'
 
 
@@ -9,12 +10,12 @@ export default function MyCenter() {
       {/* <div className='container-fluid'>
         <h1>AboutUs</h1>
       </div> */}
-     <div className="infor">
-	 	<div className="attar"></div>
-		<div className="name">XXX</div>
-		<btn className="update-btn">XXX</btn>
-	 </div>
-     <div className="pay-btn">
+      <div className="infor">
+        <div className="attar"></div>
+        <div className="name">XXX</div>
+        <btn className="update-btn">XXX</btn>
+      </div>
+      <div className="pay-btn">
         <div className="left-btn">找月嫂</div>
         <div className="right-btn">
           <div className="btn bnt1">bnt1</div>
@@ -22,7 +23,8 @@ export default function MyCenter() {
           <div className="btn bnt3">bnt1</div>
           <div className="btn bnt4">bnt1</div>
         </div>
-     </div>
+      </div>
+      <Nav />
     </div>
   )
 }

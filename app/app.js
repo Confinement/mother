@@ -13,7 +13,7 @@ import Detail from './pages/products/Detail'
 import Ads from './pages/products/Ads'
 
 import AboutUs from './pages/AboutUs'
-import AppCompent from './js/AppCompent'
+import PostRe from './pages/requirement/PostRe'
 
 import MyCenter from './pages/MyCenter'
 
@@ -55,9 +55,8 @@ class App extends Actor {
           <Route component={Host} path='/host' enterFilter={[ LoginFilter ]} leaveFilter={ UserLeave }/>
           
           <Route component={MyCenter} path='mycenter' />
-          <Route cache={ this.state.cacheAboutUs } path='aboutus' component={AboutUs}>
-            <Route component={AppCompent} path='/requerment'/>
-          </Route>
+          <Route cache={ this.state.cacheAboutUs } path='aboutus' component={AboutUs}/>
+          <Route component={PostRe} path='/requirement'/>
 
           <Box index='5'/>
         </div>
