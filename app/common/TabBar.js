@@ -1,8 +1,7 @@
 import React from "react"
 import 'antd-mobile/dist/antd-mobile.css'
 import {TabBar} from 'antd-mobile'
-import { Control } from 'react-keeper'
-
+import { withRouter } from 'react-router-dom'
 
 class Nav extends React.Component{
 	constructor(props) {
@@ -48,7 +47,7 @@ class Nav extends React.Component{
 				  this.setState({
 					selectedTab: 'blueTab',
 				  });
-				  Control.go('/', { name: 'React-Keeper' });
+				  this.props.history.push("/")
 				}}
 				data-seed="logId"
 			  ></TabBar.Item>
@@ -113,7 +112,7 @@ class Nav extends React.Component{
 				  this.setState({
 					selectedTab: 'yellowTab',
 				  });
-				  Control.go('/mycenter', { name: 'React-Keeper' });
+				  this.props.history.push("/mycenter");
 				}}
 			  ></TabBar.Item>
 			</TabBar>
@@ -122,4 +121,4 @@ class Nav extends React.Component{
 	  }
 }
 
-export default Nav;
+export default withRouter(Nav);
