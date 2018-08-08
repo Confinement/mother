@@ -32,13 +32,13 @@ class Tabbar extends React.Component{
 				icon={<div style={{
 				  width: '22px',
 				  height: '22px',
-				  background: 'url {require(“../images/home/nav_home.png”)} center center /  21px 21px no-repeat' }}
+				  background: 'url('+require('../images/home/nav_home.png') +')center center /  21px 21px no-repeat' }}
 				/>
 				}
 				selectedIcon={<div style={{
 				  width: '22px',
 				  height: '22px',
-				  background: 'url {require(“../images/home/nav_home1.png”)} center center /  21px 21px no-repeat' }}
+				  background: 'url('+require('../images/home/nav_home1.png') +')center center /  21px 21px no-repeat' }}
 				/>
 				}
 				selected={this.state.selectedTab === '/'}
@@ -56,14 +56,14 @@ class Tabbar extends React.Component{
 				  <div style={{
 					width: '22px',
 					height: '22px',
-					background: 'url(https://gw.alipayobjects.com/zos/rmsportal/BTSsmHkPsQSPTktcXyTV.svg) center center /  21px 21px no-repeat' }}
+					background: 'url('+require('../images/home/nav_huandan.png') +')center center /  21px 21px no-repeat' }}
 				  />
 				}
 				selectedIcon={
 				  <div style={{
 					width: '22px',
 					height: '22px',
-					background: 'url(https://gw.alipayobjects.com/zos/rmsportal/ekLecvKBnRazVLXbWOnE.svg) center center /  21px 21px no-repeat' }}
+					background: 'url('+require('../images/home/nav_huandan.png') +')center center /  21px 21px no-repeat' }}
 				  />
 				}
 				title="黄疸"
@@ -83,14 +83,14 @@ class Tabbar extends React.Component{
 				  <div style={{
 					width: '22px',
 					height: '22px',
-					background: 'url(https://zos.alipayobjects.com/rmsportal/psUFoAMjkCcjqtUCNPxB.svg) center center /  21px 21px no-repeat' }}
+					background: 'url('+require('../images/home/nav_circle.png') +')center center /  21px 21px no-repeat' }}
 				  />
 				}
 				selectedIcon={
 				  <div style={{
 					width: '22px',
 					height: '22px',
-					background: 'url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  21px 21px no-repeat' }}
+					background: 'url('+require('../images/home/nav_circle1.png') +')center center /  21px 21px no-repeat' }}
 				  />
 				}
 				title="圈子"
@@ -109,14 +109,14 @@ class Tabbar extends React.Component{
 				  <div style={{
 					width: '22px',
 					height: '22px',
-					background: 'url(https://zos.alipayobjects.com/rmsportal/psUFoAMjkCcjqtUCNPxB.svg) center center /  21px 21px no-repeat' }}
+					background: 'url('+require('../images/home/nav_school.png') +')center center /  21px 21px no-repeat' }}
 				  />
 				}
 				selectedIcon={
 				  <div style={{
 					width: '22px',
 					height: '22px',
-					background: 'url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  21px 21px no-repeat' }}
+					background: 'url('+require('../images/home/nav_school1.png') +')center center /  21px 21px no-repeat' }}
 				  />
 				}
 				title="学堂"
@@ -131,8 +131,16 @@ class Tabbar extends React.Component{
 				}}
 			  ></TabBar.Item>
 			  <TabBar.Item
-				icon={{uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg'}}
-				selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg' }}
+				icon={<div style={{
+					width: '22px',
+					height: '22px',
+					background: 'url('+require('../images/home/nav_me.png') +')center center /  21px 21px no-repeat' }}
+				  />}
+				selectedIcon={<div style={{
+					width: '22px',
+					height: '22px',
+					background: 'url('+require('../images/home/nav_me1.png') +')center center /  21px 21px no-repeat' }}
+				  />}
 
 				title="我"
 				key="my"
