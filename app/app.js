@@ -7,8 +7,9 @@ import MyCenter from './pages/MyCenter'
 const App=() =>(
 	<BrowserRouter>
 		<Switch>
-			<Route path='/' component={Home} />
+			<Route path='/home' component={Home} />
 			<Route exact path='/mycenter' component={MyCenter} />
+			<Route component={Home} />
 		</Switch>
 	</BrowserRouter>
 )

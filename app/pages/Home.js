@@ -1,6 +1,6 @@
 
 import "../css/about.css"
-import Nav from '@common/TabBar'
+import Tabbar from '@common/TabBar'
 import React from 'react'
 import { Link, Switch, Route } from 'react-router-dom'
 import PostRe from './requirement/PostRe'
@@ -9,7 +9,7 @@ const Home = () => (
 	<div className='page'>
 		<div className="banner"><img src={require('../images/home/1.png')} alt="" /></div>
 		<div className="home-bnt">
-			<Link className="left-btn" to='/requirement' >
+			<Link className="left-btn" to='/home/requirement' >
 				<img className="sister" src={require('../images/home/sister_icon.png')} alt="" />
 				<span>找月嫂</span>
 			</Link>
@@ -33,14 +33,15 @@ const Home = () => (
 			</div>
 			<div className="all-btn">全部服务</div>
 		</div>
-		<Nav />
+		<Tabbar />
 	</div>
 )
 
 const HomeRouter = () => (
 	<Switch>
 		<Route exact path='/' component={Home} />
-		<Route path='/requirement' component={PostRe} />
+		<Route exact path='/home' component={Home} />
+		<Route path='/home/requirement' component={PostRe} />
 	</Switch>
 )
 
