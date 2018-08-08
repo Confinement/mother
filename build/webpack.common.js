@@ -8,7 +8,6 @@ const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const srcDir = path.join(process.cwd(), "app");
 const distDir = path.join(process.cwd(), "public");
 
-console.log(111)
 module.exports = {
 	entry: {
 		head: path.join(srcDir, "js/head.js"),
@@ -44,26 +43,6 @@ module.exports = {
                     }
 				},
 				exclude: /node_modules/
-			},
-			{
-				test: /\.css$/,
-				use: ExtractTextPlugin.extract({
-				fallback: "style-loader",
-					use: [{
-						loader: "css-loader",
-						options: {
-							// modules: true,
-							minimize: true	// CSS压缩
-						}
-					}, {
-						loader: "postcss-loader",
-						options: {           // 如果没有options这个选项将会报错 No PostCSS Config found
-							plugins: (loader) => [
-								require('autoprefixer')(), //CSS浏览器兼容
-							]
-						}
-					}],
-				})
 			},
 			{
 				test: /\.(png|jpg|gif|mp3|mp4)$/,
@@ -105,6 +84,8 @@ module.exports = {
 		// 	'window.jQuery': 'jquery',
 		// 	'window.$': 'jquery'
 		// }),
+		// CSS提取
+		new ExtractTextPlugin("[name].[chunkhash].css"),
 		new webpack.optimize.OccurrenceOrderPlugin(),
 		new CopyWebpackPlugin([{
 			from: path.join(srcDir, 'assets'),

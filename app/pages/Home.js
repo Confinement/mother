@@ -1,9 +1,11 @@
 
-import "../css/about.css"
-import Tabbar from '@common/TabBar'
 import React from 'react'
 import { Link, Switch, Route } from 'react-router-dom'
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import Tabbar from '@common/TabBar'
 import PostRe from './requirement/PostRe'
+import "@common/com.css"
+import "../css/about.css"
 
 const Home = () => (
 	<div className='page'>
@@ -37,12 +39,16 @@ const Home = () => (
 	</div>
 )
 
-const HomeRouter = () => (
-	<Switch>
-		<Route exact path='/' component={Home} />
-		<Route exact path='/home' component={Home} />
-		<Route path='/home/requirement' component={PostRe} />
-	</Switch>
+const HomeRouter = ({ location }) => (
+	<TransitionGroup component={null}>
+		<CSSTransition key={location.key} classNames="slide-in" timeout={300}>
+			<Switch location={location}>
+				<Route exact path='/' component={Home} />
+				<Route exact path='/home' component={Home} />
+				<Route path='/home/requirement' component={PostRe} />
+			</Switch>
+		</CSSTransition>
+	</TransitionGroup>
 )
 
 export default HomeRouter
