@@ -3,7 +3,6 @@ import 'antd-mobile/dist/antd-mobile.css'
 import React from "react";
 import { List, Radio, Flex, WhiteSpace } from 'antd-mobile';
 import { platform, version } from '../../js/config';
-import Ajax from '../../js/Ajax';
 import { DatePicker } from 'antd-mobile';
 // import enUs from 'antd-mobile/lib/date-picker/locale/en_US';
 
@@ -81,8 +80,8 @@ class PostRe extends React.Component {
 		event.preventDefault();
 		let data = {}
 		data.Platform = platform;
-		data.Version_code = version;
-		data.Token = '13b130bc142f43deba9408bfa152fdf9';
+		data.Version_Code = version;
+		data.Token = 'ac8b29d16ee54b4eaf636685385b63ae';
 		let dueDate = new Date(this.state.date);
 		data.dueDate = dueDate.getFullYear() + '-' + dueDate.getMonth() + '-' + dueDate.getDay();
 		data.babyType = this.state.babyTypeValue;
@@ -97,8 +96,8 @@ class PostRe extends React.Component {
 
 		data.moonAgeMin = this.state.ageValue.split("-")[0];
 		data.moonAgeMax = this.state.ageValue.split("-")[1];
-		data.takecareBabyMin = this.state.babyTypeValue.split("-")[0];
-		data.takecareBabyMax = this.state.babyTypeValue.split("-")[0];
+		data.takecareBabyMin = this.state.babysValue.split("-")[0];
+		data.takecareBabyMax = this.state.babysValue.split("-")[1];
 		
 		let formData = new FormData();
 		formData.append('Platform',1);
@@ -112,9 +111,9 @@ class PostRe extends React.Component {
 		}).then(response => response.json()).then(function(res) {
 			console.log('返回值[1代表登陆成功，0代表登陆失败]:')
 			console.log(res)
-			if(res===1){
+			if(res.code===0){
 			}else{
-					alert('登陆失败')
+					alert(res.desc)
 			}
 			console.log(res.status);
 	});
