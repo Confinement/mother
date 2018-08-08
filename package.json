@@ -51,9 +51,13 @@
     "antd-mobile": "^2.2.2",
     "react": "^16.4.2",
     "react-actor": "^1.0.5",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-boxer": "^1.0.4",
     "react-dom": "^16.4.2",
-    "react-keeper": "^2.1.8"
+    "react-keeper": "^2.1.8",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-transition-group": "^2.4.0"
   },
   "browserslist": [
     "iOS >= 8",
