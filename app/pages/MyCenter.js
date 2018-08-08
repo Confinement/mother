@@ -1,7 +1,6 @@
 import "../css/myCenter.css"
 import React from 'react'
-import Nav from '@common/TabBar'
-import { HashRouter, BrowserRouter, MemoryRouter, Route, Control } from 'react-keeper'
+import Tabbar from '@common/TabBar'
 
 
 export default function MyCenter() {
@@ -24,7 +23,7 @@ export default function MyCenter() {
           <div className="btn bnt4">bnt1</div>
         </div>
       </div>
-      <Nav />
+      <Tabbar />
     </div>
   )
 }

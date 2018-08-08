@@ -54,7 +54,6 @@
     "react-actor": "^1.0.5",
     "react-boxer": "^1.0.4",
     "react-dom": "^16.4.2",
-    "react-keeper": "^2.1.8",
     "react-router-dom": "^4.3.1"
   },
   "browserslist": [
