@@ -10,6 +10,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = merge(common, {
 	mode: "development",
 	output: {
+		publicPath: '/',
 		filename: "[name].[hash].js"			//打包后输出文件的文件名
 	},
 	devtool: 'inline-source-map',
