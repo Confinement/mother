@@ -47,11 +47,30 @@ module.exports = merge(common, {
 						end: '*/'
 					}
 				}]
+			},
+			{
+				test: /\.css$/,
+				use: ExtractTextPlugin.extract({
+				fallback: "style-loader",
+					use: [{
+						loader: "css-loader",
+						options: {
+							// modules: true,
+							// minimize: true	// CSS压缩
+						}
+					}, {
+						loader: "postcss-loader",
+						options: {           // 如果没有options这个选项将会报错 No PostCSS Config found
+							plugins: (loader) => [
+								require('autoprefixer')(), //CSS浏览器兼容
+							]
+						}
+					}],
+				})
 			}
 		]
 	},
 	plugins: [
-		new ExtractTextPlugin("main.[hash].css"),
 		new webpack.HotModuleReplacementPlugin() //热更新
 		// new webpack.DefinePlugin({
 		// 	'process.env': JSON.stringify({NODE_ENV: "development"})
