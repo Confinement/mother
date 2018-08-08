@@ -42,7 +42,6 @@ class Tabbar extends React.Component{
 				/>
 				}
 				selected={this.state.selectedTab === '/'}
-				badge={1}
 				onPress={() => {
 				  this.setState({
 					selectedTab: '/',
@@ -68,7 +67,6 @@ class Tabbar extends React.Component{
 				}
 				title="黄疸"
 				key="Jaundice"
-				badge={'new'}
 				selected={this.state.selectedTab === '/jaundice'}
 				onPress={() => {
 				  this.setState({
@@ -95,7 +93,6 @@ class Tabbar extends React.Component{
 				}
 				title="圈子"
 				key="BBS"
-				dot
 				selected={this.state.selectedTab === '/bbs'}
 				onPress={() => {
 				  this.setState({
@@ -121,7 +118,6 @@ class Tabbar extends React.Component{
 				}
 				title="学堂"
 				key="Learning"
-				dot
 				selected={this.state.selectedTab === '/learning'}
 				onPress={() => {
 				  this.setState({

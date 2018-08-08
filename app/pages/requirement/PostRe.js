@@ -83,7 +83,9 @@ class PostRe extends React.Component {
 		data.Version_Code = version;
 		data.Token = token;
 		let dueDate = new Date(this.state.date);
-		data.dueDate = dueDate.getFullYear() + '-' + dueDate.getMonth() + '-' + dueDate.getDay();
+		var m = "0"+(dueDate.getMonth()+1);
+		var d = "0"+dueDate.getDate();
+		data.dueDate = dueDate.getFullYear() + '-' + m.substring(m.length-2,m.length) + "-" + d.substring(d.length-2,d.length);
 		data.babyType = this.state.babyTypeValue;
 		data.addr = this.state.addressValue;
 		data.serviceDay = this.state.daysValue;
@@ -108,7 +110,7 @@ class PostRe extends React.Component {
 			body: Object.keys(data).map(key => `${key}=${data[key]}`).join('&')
 		}).then(response => response.json()).then(function(res) {
 			console.log(res)
-			if(res.code===0){
+			if(res.code==="10000"){
 			}else{
 				alert(res.desc)
 			}
