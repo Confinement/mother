@@ -28,10 +28,10 @@ class AddAddress extends React.component{
 		return(
 			<div>
 				<form className="addAddress" onSubmit={this.handleSumbit.bind(this)}>
-					<input type="text" name="name" id="name"/>
-					<input type="text" name="phone" id="phone"/>
+					<input type="text" name="name" id="name" placeholder="请输入您的姓名"/>
+					<input type="text" name="phone" id="phone" placeholder="请输入联系电话"/>
 					<select name="city" id="city"></select>
-					<input type="text" name="phone" id="phone"/>
+					<input type="text" name="phone" id="phone" placeholder="请输入详细地址信息"/>
 					<List.Item
 						extra={<Switch
 						{...getFieldProps('Switch', {
