@@ -2,7 +2,7 @@ import "../../css/index.css"
 import 'antd-mobile/dist/antd-mobile.css'
 import React from "react";
 import { List, Radio, Flex, WhiteSpace } from 'antd-mobile';
-import { platform, version } from '../../js/config';
+import { platform, version,token } from '../../js/config';
 import { DatePicker } from 'antd-mobile';
 // import enUs from 'antd-mobile/lib/date-picker/locale/en_US';
 
@@ -81,7 +81,7 @@ class PostRe extends React.Component {
 		let data = {}
 		data.Platform = platform;
 		data.Version_Code = version;
-		data.Token = 'ac8b29d16ee54b4eaf636685385b63ae';
+		data.Token = token;
 		let dueDate = new Date(this.state.date);
 		data.dueDate = dueDate.getFullYear() + '-' + dueDate.getMonth() + '-' + dueDate.getDay();
 		data.babyType = this.state.babyTypeValue;
@@ -99,8 +99,6 @@ class PostRe extends React.Component {
 		data.takecareBabyMin = this.state.babysValue.split("-")[0];
 		data.takecareBabyMax = this.state.babysValue.split("-")[1];
 		
-		let formData = new FormData();
-		formData.append('Platform',1);
 		let url='http://api.topyuezi.cn/pretty-api/api/tk/demand/saveOrUpdateDemand';
 		fetch(url, {
 			method: 'POST',
@@ -109,14 +107,12 @@ class PostRe extends React.Component {
 			},
 			body: Object.keys(data).map(key => `${key}=${data[key]}`).join('&')
 		}).then(response => response.json()).then(function(res) {
-			console.log('返回值[1代表登陆成功，0代表登陆失败]:')
 			console.log(res)
 			if(res.code===0){
 			}else{
-					alert(res.desc)
+				alert(res.desc)
 			}
-			console.log(res.status);
-	});
+		});
 	}
 	
 
