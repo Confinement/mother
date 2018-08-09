@@ -18,7 +18,6 @@ input{
 }
 
 .login-ph{
-	margin-top:3rem;
 }
 .login-pawd{
 	margin-top:0.3rem;
@@ -75,4 +74,9 @@ input{
 	position: absolute;
 	right: 0.5rem;
 	font-size: 15px;
+}
+
+.login .am-tabs {
+	height: 3rem;
+	margin-top: 3rem;
 }

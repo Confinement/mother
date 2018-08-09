@@ -57,7 +57,6 @@ class HomeRouter extends React.Component {
 		<TransitionGroup component={null}>
 			<CSSTransition key={this.props.location.key} classNames={this.props.history.action=="POP"?"slide-out":"slide-in"} timeout={300}>
 				<Switch location={this.props.location}>
-		
 					<Route exact path='/' component={Home} />
 					<Route exact path='/home' component={Home} />
 					<PrivateRoute path='/home/requirement' component={PostRe} />
