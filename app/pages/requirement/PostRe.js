@@ -2,7 +2,7 @@ import "../../css/index.css"
 import 'antd-mobile/dist/antd-mobile.css'
 import React from "react";
 import { List, Radio, Flex, WhiteSpace } from 'antd-mobile';
-import { platform, version,token } from '../../js/config';
+import { platform, version,token } from '@common/config';
 import { DatePicker } from 'antd-mobile';
 // import enUs from 'antd-mobile/lib/date-picker/locale/en_US';
 

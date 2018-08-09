@@ -10,7 +10,7 @@ const distDir = path.join(process.cwd(), "public");
 
 module.exports = {
 	entry: {
-		head: path.join(srcDir, "js/head.js"),
+		head: path.join(srcDir, "head.js"),
 		main: path.join(srcDir, "app.js")
 	},	//已多次提及的唯一入口文件
 	output: {

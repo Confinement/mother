@@ -1,4 +1,4 @@
-import {desiginwidth} from "./config"
+import {desiginwidth} from "@common/config"
 
 // 清除html缓存
 if(window.location.search.indexOf('clearCache=')==-1)
