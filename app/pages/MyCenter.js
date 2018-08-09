@@ -1,4 +1,4 @@
-import "../css/myCenter.css"
+import "@css/myCenter.css"
 import React from 'react'
 import Tabbar from '@common/TabBar'
 

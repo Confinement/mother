@@ -1,4 +1,4 @@
-import "../css/login.css"
+import "@css/login.css"
 import React from "react";
 import { platform, version,token } from '@common/config';
 

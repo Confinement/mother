@@ -20,8 +20,11 @@ module.exports = {
 	resolve: {
 		alias: {
 			'@': path.resolve(process.cwd()),
-			'@lib': path.resolve(process.cwd(), 'lib'),
-			'@common': path.resolve(process.cwd(), 'app/common')
+			'@common': path.resolve(process.cwd(), 'app/common'),
+			'@pages': path.resolve(process.cwd(), 'app/pages'),
+			'@css': path.resolve(process.cwd(), 'app/css'),
+			'@images': path.resolve(process.cwd(), 'app/css'),
+			'@assets': path.resolve(process.cwd(), 'app/css')
 		}
 	},
 	module: {

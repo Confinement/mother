@@ -6,7 +6,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 	<Route
 	  {...rest}
 	  render={props =>
-			Cookies.get('phone') ? (
+			Cookies.get('token') ? (
 		  <Component {...props} />
 		) : (
 		  <Redirect

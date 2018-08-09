@@ -1,4 +1,4 @@
-import "../../css/index.css"
+import "@css/common.css"
 import 'antd-mobile/dist/antd-mobile.css'
 import React from "react";
 import { List, Radio, Flex, WhiteSpace } from 'antd-mobile';
