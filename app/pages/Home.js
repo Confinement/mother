@@ -6,7 +6,7 @@ import PrivateRoute from '@common/PrivateRoute'
 import Tabbar from '@common/TabBar'
 import PostRe from './requirement/PostRe'
 import "@common/com.css"
-import "../css/about.css"
+import "../css/home.css"
 
 const Home = () => (
 	<div className='page'>
