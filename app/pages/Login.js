@@ -5,10 +5,12 @@ import { platform, version,token } from '@common/config';
 class Login extends React.Component{
 	constructor(props){
 		super(props)
-		this.state({
+		this.state={
 			phValue:'',
-			pawValue:'',
-		})
+      pawValue:'',
+      telError:'',
+      passwordError:'',
+		}
   }
   phChange = (event) => {
 		this.setState({
@@ -68,7 +70,7 @@ passwordCheck(event){
     data.type = typeCode;
     data.phone = this.state.phValue;
 
-    let url = 'http://api.topyuezi.cn/pretty-api/api/sys/sendSms';
+    let url = 'http://47.96.103.86:8080/pretty-api/api/sys/sendSms';
     fetch(url, {
       method: 'POST',
       headers: {
@@ -77,23 +79,22 @@ passwordCheck(event){
       body: Object.keys(data).map(key => `${key}=${data[key]}`).join('&')
     }).then(response => response.json()).then(function (res) {
       console.log(res)
-      if (res.code === "10000") {
+      if (res.code === "100000") {
       } else {
         alert(res.desc)
       }
     });
   }
 
-  handleLogin(event,type) {
+  handleLogin(event) {
     event.preventDefault();
     let data = {}
     data.Platform = platform;
     data.Version_Code = version;
-    data.type = token;
     data.phone = this.state.phValue;
     data.password = this.state.pawValue;
 
-    let url = 'http://api.topyuezi.cn/pretty-api/api/user/login';
+    let url = 'http://47.96.103.86:8080/pretty-api/api/user/login';
     fetch(url, {
       method: 'POST',
       headers: {
@@ -102,7 +103,7 @@ passwordCheck(event){
       body: Object.keys(data).map(key => `${key}=${data[key]}`).join('&')
     }).then(response => response.json()).then(function (res) {
       console.log(res)
-      if (res.code === "10000") {
+      if (res.code === "100000") {
       } else {
         alert(res.desc)
       }
@@ -121,7 +122,7 @@ passwordCheck(event){
     data.phone = this.state.phValue;
     data.password = this.state.pawValue;
 
-    let url = 'http://api.topyuezi.cn/pretty-api/api/user/register';
+    let url = 'http://47.96.103.86:8080/pretty-api/api/user/register';
     fetch(url, {
       method: 'POST',
       headers: {
@@ -130,7 +131,7 @@ passwordCheck(event){
       body: Object.keys(data).map(key => `${key}=${data[key]}`).join('&')
     }).then(response => response.json()).then(function (res) {
       console.log(res)
-      if (res.code === "10000") {
+      if (res.code === "100000") {
       } else {
         alert(res.desc)
       }
@@ -139,10 +140,15 @@ passwordCheck(event){
 	render(){
 		return (
 			<div>
-				<input type="text" className="login-ph" placeholder="请输入手机号码" onChange={this.aw.bind(this)} value={this.state.phValue} onBlur={(event)=>this.telCheck(event)}/>
-				<input type="text" className="login-pawd" onChange={this.pawChange.bind(this)} value={this.state.pawValue}/><button onClick={this.handleSendSms.bind(this)}>获取验证码</button>
-				<p>未注册的手机号验证后自动创建月亮账号</p>
-				<button >登录</button>
+        <div className="logo"></div>
+        <div className="login-item login-ph">
+          <input type="text" className="ph" placeholder="手机号" onChange={this.phChange.bind(this)} value={this.state.phValue} />
+        </div>
+				<div className="login-item login-pawd">
+          <input type="text" className="pawd" placeholder="验证码" onChange={this.pawChange.bind(this)} value={this.state.pawValue}/>
+          <button className="smsbtn" onClick={(event)=>this.handleSendSms(event,1)}>获取验证码</button>
+        </div>
+				<button className="loginbtn" onClick={(event)=>this.handleLogin(event,2)}>登录</button>
 			</div>
 		)
 	}
