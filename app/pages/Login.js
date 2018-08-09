@@ -1,6 +1,6 @@
 import "../css/login.css"
 import React from "react";
-import { platform, version,token } from '../../js/config';
+import { platform, version,token } from '@common/config';
 
 class Login extends React.Component{
 	constructor(props){
