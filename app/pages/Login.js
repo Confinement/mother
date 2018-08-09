@@ -1,6 +1,7 @@
 import "../css/login.css"
 import React from "react";
-import { platform, version,token } from '@common/config';
+import { platform, version } from '@common/config';
+import Cookies from 'js-cookie';
 
 class Login extends React.Component{
 	constructor(props){
@@ -108,6 +109,10 @@ loginpawd(event){
     }).then(response => response.json()).then(function (res) {
       console.log(res)
       if (res.code === "100000") {
+        Cookies.set("phone",res.content.phone);
+        Cookies.set("token",res.content.token);
+        Cookies.set("userId",res.content.userId);
+        
       } else {
         alert(res.desc)
       }
@@ -151,11 +156,11 @@ loginpawd(event){
         </div>
 				<div className="login-item login-pawd">
           <input type="text" className="pawd" placeholder="验证码" onChange={this.pawChange.bind(this)} value={this.state.pawValue}/>
-          <button className="sms-btn" onClick={(event)=>this.handleSendSms(event,1)}>获取验证码</button>
+          <button className="sms-btn" onClick={(event)=>this.handleSendSms(event,2)}>获取验证码</button>
         </div>
 				<button className="login-btn" onClick={(event)=>this.handleLogin(event,1)}>登录</button>
         <div className="other">
-          <input type="radio" className="" />协议
+          <input type="checkBox" className="" />协议
           <span className="other-way" onClick={this.loginpawd.bind(this)}>密码登录</span>
         </div>
 			</div>

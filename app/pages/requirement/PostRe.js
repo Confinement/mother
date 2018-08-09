@@ -2,7 +2,7 @@ import "../../css/index.css"
 import 'antd-mobile/dist/antd-mobile.css'
 import React from "react";
 import { List, Radio, Flex, WhiteSpace } from 'antd-mobile';
-import { platform, version,token } from '@common/config';
+import { platform, version } from '@common/config';
 import { DatePicker } from 'antd-mobile';
 // import enUs from 'antd-mobile/lib/date-picker/locale/en_US';
 
@@ -81,7 +81,7 @@ class PostRe extends React.Component {
 		let data = {}
 		data.Platform = platform;
 		data.Version_Code = version;
-		data.Token = token;
+		data.Token = Cookies.get("token");;
 		let dueDate = new Date(this.state.date);
 		var m = "0"+(dueDate.getMonth()+1);
 		var d = "0"+dueDate.getDate();
