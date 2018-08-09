@@ -58,7 +58,7 @@ class HomeRouter extends React.Component {
 		
 					<Route exact path='/' component={Home} />
 					<Route exact path='/home' component={Home} />
-					<Route path='/home/requirement' component={PostRe} />
+					<PrivateRoute path='/home/requirement' component={PostRe} />
 				</Switch>
 			</CSSTransition>
 		</TransitionGroup>

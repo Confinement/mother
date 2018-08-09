@@ -1,10 +1,12 @@
-import { withCookies } from 'react-cookie'
+import React, { Component } from 'react'
+import { Route, Redirect } from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
 	<Route
 	  {...rest}
 	  render={props =>
-		props.cookie.get('phone') ? (
+			Cookies.get('phone') ? (
 		  <Component {...props} />
 		) : (
 		  <Redirect
@@ -18,4 +20,4 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 	/>
 );
 
-export default withCookies(PrivateRoute);
+export default PrivateRoute;
