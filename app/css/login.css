@@ -64,3 +64,15 @@ input{
 	color: #000;
 	font-size: 11px;
 }
+
+.other{
+	width: 100%;
+	position: relative;
+	margin: 0 auto;
+	margin-top: 0.5rem;
+}
+.other-way{
+	position: absolute;
+	right: 0.5rem;
+	font-size: 15px;
+}
