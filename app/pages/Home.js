@@ -2,6 +2,7 @@
 import React from 'react'
 import { Link, Switch, Route, withRouter } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import PrivateRoute from '@common/PrivateRoute'
 import Tabbar from '@common/TabBar'
 import PostRe from './requirement/PostRe'
 import "@common/com.css"
