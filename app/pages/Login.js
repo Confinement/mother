@@ -142,13 +142,18 @@ passwordCheck(event){
 			<div>
         <div className="logo"></div>
         <div className="login-item login-ph">
-          <input type="text" className="ph" placeholder="手机号" onChange={this.phChange.bind(this)} value={this.state.phValue} />
+          <input type="text" className="ph" placeholder="手机号" onChange={this.phChange.bind(this)} value={this.state.phValue} onBlur={(event)=>this.telCheck(event)} />
+          <span className="ph-tips">{this.state.telError}</span>
         </div>
 				<div className="login-item login-pawd">
           <input type="text" className="pawd" placeholder="验证码" onChange={this.pawChange.bind(this)} value={this.state.pawValue}/>
-          <button className="smsbtn" onClick={(event)=>this.handleSendSms(event,1)}>获取验证码</button>
+          <button className="sms-btn" onClick={(event)=>this.handleSendSms(event,1)}>获取验证码</button>
         </div>
-				<button className="loginbtn" onClick={(event)=>this.handleLogin(event,2)}>登录</button>
+				<button className="login-btn" onClick={(event)=>this.handleRegister(event,1)}>登录</button>
+        <div className="other">
+          <input type="radio" className="" />协议
+          <span className="other-way" >密码登录</span>
+        </div>
 			</div>
 		)
 	}

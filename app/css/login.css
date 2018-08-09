@@ -32,24 +32,35 @@ input{
 	text-align: center; 
 
 }
-.loginbtn{
+.login-btn{
+	display: block;
 	font-size: 18px;
 	position: relative;
  	margin: 0 auto;
- 	width: 5.5rem;
+ 	width: 80%;
 	height: 0.8rem;
 	text-align: center; 
 	background-color:#ffda44; 
-
+	border-radius: 5px;
 }
-.smsbtn{
+.sms-btn{
 	font-size: 12px;
 	position: absolute;
 	right: 0;
 	top: 0;
-	width: 2rem;
-	height: 0.8rem;
+	width: 1.8rem;
+	height: 0.6rem;
 	text-align: center; 
 	border: 1px solid #ffda44;
+	border-radius: 5px;
 
+}
+
+.ph-tips{
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	color: #000;
+	font-size: 11px;
 }
