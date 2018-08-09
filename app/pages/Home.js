@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { Link, Switch, Route } from 'react-router-dom'
+import { Link, Switch, Route, withRouter } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import PrivateRoute from '@common/PrivateRoute'
 import Tabbar from '@common/TabBar'
@@ -40,16 +40,30 @@ const Home = () => (
 	</div>
 )
 
-const HomeRouter = ({ location }) => (
-	<TransitionGroup component={null}>
-		<CSSTransition key={location.key} classNames="slide-in" timeout={300}>
-			<Switch location={location}>
-				<Route exact path='/' component={Home} />
-				<Route exact path='/home' component={Home} />
-				<Route path='/home/requirement' component={PostRe} />
-			</Switch>
-		</CSSTransition>
-	</TransitionGroup>
-)
+let popState = false;
+window.onpopstate=function(event){ 
+	popState = true;
+}
 
-export default HomeRouter
+class HomeRouter extends React.Component {
+	constructor (props) {
+		super(props);
+	}
+
+	render() {
+		return (
+		<TransitionGroup component={null}>
+			<CSSTransition key={this.props.location.key} classNames={this.props.history.action=="POP"?"slide-out":"slide-in"} timeout={300}>
+				<Switch location={this.props.location}>
+		
+					<Route exact path='/' component={Home} />
+					<Route exact path='/home' component={Home} />
+					<PrivateRoute path='/home/requirement' component={PostRe} />
+				</Switch>
+			</CSSTransition>
+		</TransitionGroup>
+		)
+	}
+}
+
+export default withRouter(HomeRouter)
