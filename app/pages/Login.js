@@ -53,8 +53,11 @@ passwordCheck(event){
         }
 
 }
+// 改变dom
+loginpawd(event){
+  
 
-
+}
 
   /**
     发送验证码
@@ -153,7 +156,7 @@ passwordCheck(event){
 				<button className="login-btn" onClick={(event)=>this.handleLogin(event,1)}>登录</button>
         <div className="other">
           <input type="radio" className="" />协议
-          <span className="other-way" onClick={this.loginpaw.bind(this)}>密码登录</span>
+          <span className="other-way" onClick={this.loginpawd.bind(this)}>密码登录</span>
         </div>
 			</div>
 		)
