@@ -1,24 +1,31 @@
 .logo{
 	position: relative;
-	width: 5rem;
-	height: 2rem;
+	width: 1.94rem;
+	height: 0.65rem;
 	margin: 0 auto;
+	margin-top: 2rem;
+}
+.logo>img{
+	width:100%;
 }
 .login-item{
  	position: relative;
  	margin: 0 auto;
  	width: 80%;
  	height: 0.8rem;
-	font-size: 15px;
+	font-size: 12px;
 	/* text-align: center */
 }
 input{
 	background: none;
 	border: none;
+	display: block;
+	position: absolute;
+	bottom: 0;
+	height: 0.5rem;
 }
 
-.login-ph{
-}
+
 .login-pawd{
 	margin-top:0.3rem;
 }
@@ -36,7 +43,7 @@ input{
 	font-size: 18px;
 	position: relative;
  	margin: 0 auto;
- 	width: 80%;
+ 	width: 90%;
 	height: 0.8rem;
 	text-align: center; 
 	background-color:#ffda44; 
@@ -69,14 +76,29 @@ input{
 	position: relative;
 	margin: 0 auto;
 	margin-top: 0.5rem;
+	font-size: 15px;
 }
+.checkdeal{
+	display: block;
+	position: absolute;
+	left: 0.5rem;
+	font-size: 15px;
+	color: #000;
+}
+
 .other-way{
 	position: absolute;
 	right: 0.5rem;
 	font-size: 15px;
 }
-
+.islook{
+	display: block;
+	position: absolute;
+	right: 0.5rem;
+	bottom: 2%;
+	font-size: 15px;
+}
 .login .am-tabs {
 	height: 3rem;
-	margin-top: 3rem;
+	margin-top: 1rem;
 }

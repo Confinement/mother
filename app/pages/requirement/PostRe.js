@@ -2,7 +2,7 @@ import "@css/common.css"
 import 'antd-mobile/dist/antd-mobile.css'
 import React from "react";
 import { List, Radio, Flex, WhiteSpace } from 'antd-mobile';
-import { platform, version } from '@common/config';
+import { platform, version ,preUrl} from '@common/config';
 import { DatePicker } from 'antd-mobile';
 // import enUs from 'antd-mobile/lib/date-picker/locale/en_US';
 
@@ -101,7 +101,7 @@ class PostRe extends React.Component {
 		data.takecareBabyMin = this.state.babysValue.split("-")[0];
 		data.takecareBabyMax = this.state.babysValue.split("-")[1];
 		
-		let url='http://api.topyuezi.cn/pretty-api/api/tk/demand/saveOrUpdateDemand';
+		let url=preUrl+'/api/tk/demand/saveOrUpdateDemand';
 		fetch(url, {
 			method: 'POST',
 			headers: {
