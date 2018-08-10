@@ -1,19 +1,24 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import{ BrowserRouter, Switch, Route} from 'react-router-dom'
-import Home from './pages/Home'
-import MyCenter from './pages/MyCenter'
-import Login from './pages/Login'
-
-const NoMatch = Home;
+import Home from '@pages/Home'
+import Jaundice from '@pages/Jaundice'
+import BBS from '@pages/BBS'
+import Learning from '@pages/Learning'
+import MyCenter from '@pages/MyCenter'
+import Login from '@pages/Login'
+import NoMatch from '@pages/NoMatch'
 
 const App=() =>(
 	<BrowserRouter>
 		<Switch>
 			<Route path='/home' component={Home} />
+			<Route path='/jaundice' component={Jaundice} />
+			<Route path='/bbs' component={BBS} />
+			<Route path='/learning' component={Learning} />
 			<Route path='/mycenter' component={MyCenter} />
 			<Route exact path='/login' component={Login} />
-			<Route path='/' component={Home} />
+			<Route exact path='/' component={Home} />
 			<Route component={NoMatch} />
 		</Switch>
 	</BrowserRouter>

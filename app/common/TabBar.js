@@ -41,7 +41,7 @@ class Tabbar extends React.Component{
 				  background: 'url('+require('../images/home/nav_home1.png') +')center center /  21px 21px no-repeat' }}
 				/>
 				}
-				selected={this.state.selectedTab === '/'}
+				selected={this.state.selectedTab === '/' || this.state.selectedTab === '/home'}
 				onPress={() => {
 				  this.setState({
 					selectedTab: '/',

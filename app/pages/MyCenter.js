@@ -10,7 +10,7 @@ export default function MyCenter() {
       <div className="infor">
         <div className="attar"></div>
         <div className="name">XXX</div>
-        <btn className="update-btn">XXX</btn>
+        <button className="update-btn">XXX</button>
       </div>
       <div className="pay-btn">
 
