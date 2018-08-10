@@ -12,11 +12,13 @@ class Login extends React.Component {
     this.state = {
       phValue: '',
       pawValue: '',
+      smsValue:'',
       telError: '',
       passwordError: '',
       method: 0,
       dealCkeck:true,
       isLook:true,
+      isGoing:false,
     }
   }
   phChange = (event) => {
@@ -29,9 +31,17 @@ class Login extends React.Component {
       pawValue: event.target.value,
     });
   }
+  smsChange = (event) => {
+    this.setState({
+      smsValue: event.target.value,
+    });
+  }
   //手机号判断
   telCheck(event) {
     this.tel = event.target.value
+    if(this.tel==""){
+      return false;
+    }
     console.log(this.tel)
     var reg = /^1[34578]\d{9}$/;
     if (reg.test(this.tel) == false) {
@@ -48,6 +58,9 @@ class Login extends React.Component {
   //密码判断
   passwordCheck(event) {
     this.password = event.target.value
+    if(this.password==""){
+      return false;
+    }
     var reg = /^\w{6,20}$/;
     if (reg.test(this.password) == false) {
       this.setState({
@@ -64,8 +77,18 @@ class Login extends React.Component {
   loginpawd(page) {
     this.setState({ method: page })
   }
+  // 明密文转换
   isLookpwd(){
-    this.setState({ pawValue: 111 })
+    // this.state.isLook ? this.setState({ pawValue: this.state.pawValue}) :this.setState({ pawValue: this.state.pawValue });
+    this.setState({ isLook: !this.state.isLook })
+  }
+
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    this.setState({
+      isGoing: value
+    });
   }
 	/**
 		发送验证码
@@ -91,6 +114,10 @@ class Login extends React.Component {
     }).then(response => response.json()).then(function (res) {
       console.log(res)
       if (res.code === "100000") {
+        document.querySelector(".sms-btn").innerHTML="已发送";
+        setTimeout(()=>{
+          document.querySelector(".sms-btn").innerHTML="获取验证码";
+        },30000)
       } else {
         alert(res.desc)
       }
@@ -103,8 +130,11 @@ class Login extends React.Component {
     data.Platform = platform;
     data.Version_Code = version;
     data.phone = this.state.phValue;
-    this.state.method ? data.code = this.state.pawValue : data.password = this.state.pawValue;
-
+    this.state.method ? data.code = this.state.smsValue : data.password = this.state.pawValue;
+    if(!this.state.isGoing ){
+      alert("请同意用户协议及隐私政策！");
+      return false;
+    }
     let url = preUrl+'/api/user/login';
     fetch(url, {
       method: 'POST',
@@ -189,7 +219,7 @@ class Login extends React.Component {
             </div>
             <hr style={{width:'90%'}}/>
             <div className="login-item login-pawd">
-              <input type="text" className="pawd" placeholder="验证码" onChange={this.pawChange.bind(this)} value={this.state.pawValue} />
+              <input type="text" className="pawd" placeholder="验证码" onChange={this.smsChange.bind(this)} value={this.state.smsValue} />
               <button className="sms-btn" onClick={(event) => this.handleSendSms(event, 2)}>获取验证码</button>
             </div>
             <hr style={{width:'90%'}}/>
@@ -197,7 +227,7 @@ class Login extends React.Component {
         </Tabs>
         <button className="login-btn" onClick={(event) => this.handleLogin(event, 1)}>登录</button>
         <div className="other">
-          <input type="checkBox" className="checkdeal"/>用户协议及隐私政策
+          <div className="deal"><input name="isGoing" type="checkbox" checked={this.state.isGoing}  onChange={this.handleInputChange.bind(this)}/>用户协议及隐私政策</div>
 					{this.state.method === 0 ?
             <span className="other-way" onClick={() => this.loginpawd(1)}>短信登录</span>
             :
