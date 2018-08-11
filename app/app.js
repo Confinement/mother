@@ -9,6 +9,7 @@ import MyCenter from '@pages/MyCenter'
 import Login from '@pages/Login'
 import NoMatch from '@pages/NoMatch'
 
+
 const App=() =>(
 	<BrowserRouter>
 		<Switch>
@@ -23,6 +24,5 @@ const App=() =>(
 		</Switch>
 	</BrowserRouter>
 )
-
 
 ReactDOM.render(<App/>, document.getElementById('root'))
