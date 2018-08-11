@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import{ Router, Switch, Route} from 'react-router-dom'
+import createBrowserHistory from "history/createBrowserHistory"
 import Home from '@pages/Home'
 import Jaundice from '@pages/Jaundice'
 import BBS from '@pages/BBS'
@@ -8,10 +9,9 @@ import Learning from '@pages/Learning'
 import MyCenter from '@pages/MyCenter'
 import Login from '@pages/Login'
 import NoMatch from '@pages/NoMatch'
-import createBrowserHistory from "history/createBrowserHistory"
+import overscroll from '@common/overscroll'
 
 const history = createBrowserHistory()
-
 const App=() =>(
 	<Router history={history}>
 		<Switch>
@@ -28,3 +28,5 @@ const App=() =>(
 )
 
 ReactDOM.render(<App/>, document.getElementById('root'))
+
+overscroll(document.getElementById('root'))

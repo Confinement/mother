@@ -116,7 +116,7 @@ class PostRe extends React.Component {
 		
 		return (
 			<section className="page postre" >
-				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{position:"absolute", width:"100%", zIndex:100, boxShadow: "0 1px 5px #999"}}>发布需求</NavBar>
+				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{position:"fixed", width:"100%", zIndex:100, boxShadow: "0 1px 5px #999"}}>发布需求</NavBar>
 				<div className="page-container with-navbar">
 					<form className="mom-requirement" onSubmit={this.handleSumbit.bind(this)}>
 					<WingBlank size="md">
