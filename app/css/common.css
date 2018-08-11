@@ -14,7 +14,7 @@ a:hover{color:#ffa10d;}
 .abs{position:absolute;}
 .hide{ display:none !important;}
 .show{ display:block !important;}
-body{ font-family:"微软雅黑";}
+body{ font-family:"微软雅黑", sans-serif;}
 a,button,input{ -webkit-tap-highlight-color:rgba(255,0,0,0); tap-highlight-color:rgba(255,0,0,0); outline:none;}
 
 
