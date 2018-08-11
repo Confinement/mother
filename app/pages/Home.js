@@ -36,7 +36,7 @@ const Home = () => (
 						<span>产后康复</span>
 					</Link>
 				</div>
-				<div className="all-btn">全部服务</div>
+				<Link className="btn bnt4" to='/home/services'><div className="all-btn">全部服务</div></Link>
 			</div>
 		</div>
 		<Tabbar />

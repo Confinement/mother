@@ -38,3 +38,27 @@
 	display: none;
 }
 .labelchangecolor{background-color: #ffda44;}
+
+/* flex item */
+.flex-item {
+	background-color: #fff;
+	color: #333;
+	text-align: center;
+	height: 30px;
+	line-height: 30px;
+	width: 100%;
+	font-size: 16px;
+	border-radius: 3px;
+}
+.flex-item.selected {background-color: #ffda44;}
+.flex-item input {
+	width: 100%;
+	font-size: 16px;
+	text-align: center;
+	border: 0;
+	background-color: transparent;
+}
+.flex-item input::placeholder {
+	font-size: 14px;
+	color:#aaa;
+}
