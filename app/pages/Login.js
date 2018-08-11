@@ -5,7 +5,7 @@ import { fetchPost } from "@common/Fetch";
 import { withRouter } from 'react-router-dom'
 import { platform, version ,preUrl} from '@common/config';
 import Cookies from 'js-cookie';
-import { Tabs, NavBar, Icon } from 'antd-mobile'
+import { Tabs, NavBar, Icon } from 'antd-mobile';
 
 class Login extends React.Component {
   constructor(props) {

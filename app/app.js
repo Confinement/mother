@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import{ BrowserRouter, Switch, Route} from 'react-router-dom'
+import{ Router, Switch, Route} from 'react-router-dom'
 import Home from '@pages/Home'
 import Jaundice from '@pages/Jaundice'
 import BBS from '@pages/BBS'
@@ -8,10 +8,12 @@ import Learning from '@pages/Learning'
 import MyCenter from '@pages/MyCenter'
 import Login from '@pages/Login'
 import NoMatch from '@pages/NoMatch'
+import createBrowserHistory from "history/createBrowserHistory"
 
+const history = createBrowserHistory()
 
 const App=() =>(
-	<BrowserRouter>
+	<Router history={history}>
 		<Switch>
 			<Route path='/home' component={Home} />
 			<Route path='/jaundice' component={Jaundice} />
@@ -22,7 +24,7 @@ const App=() =>(
 			<Route exact path='/' component={Home} />
 			<Route component={NoMatch} />
 		</Switch>
-	</BrowserRouter>
+	</Router>
 )
 
 ReactDOM.render(<App/>, document.getElementById('root'))
