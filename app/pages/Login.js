@@ -1,6 +1,7 @@
 import 'antd-mobile/dist/antd-mobile.css'
 import "@css/login.css"
 import React from "react";
+import { fetchPost } from "@common/Fetch";
 import { withRouter } from 'react-router-dom'
 import { platform, version ,preUrl} from '@common/config';
 import Cookies from 'js-cookie';
@@ -18,7 +19,7 @@ class Login extends React.Component {
       method: 0,
       dealCkeck:true,
       isLook:true,
-      isGoing:false,
+      isGoing:true,
     }
   }
   phChange = (event) => {
@@ -105,23 +106,12 @@ class Login extends React.Component {
     data.phone = this.state.phValue;
 
     let url = preUrl+'/api/sys/sendSms';
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      body: Object.keys(data).map(key => `${key}=${data[key]}`).join('&')
-    }).then(response => response.json()).then(function (res) {
-      console.log(res)
-      if (res.code === "100000") {
-        document.querySelector(".sms-btn").innerHTML="已发送";
-        setTimeout(()=>{
-          document.querySelector(".sms-btn").innerHTML="获取验证码";
-        },30000)
-      } else {
-        alert(res.desc)
-      }
-    });
+    fetchPost(url, data).then(({content}) => {
+      document.querySelector(".sms-btn").innerHTML="已发送";
+      setTimeout(()=>{
+        document.querySelector(".sms-btn").innerHTML="获取验证码";
+      },30000)
+    })
   }
 
   handleLogin(event) {
@@ -136,53 +126,43 @@ class Login extends React.Component {
       return false;
     }
     let url = preUrl+'/api/user/login';
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      body: Object.keys(data).map(key => `${key}=${data[key]}`).join('&')
-    }).then(response => response.json()).then((res) => {
-      console.log(res)
-      if (res.code === "100000") {
-        Cookies.set("phone", res.content.phone);
-        Cookies.set("token", res.content.token);
-        Cookies.set("userId", res.content.userId);
-        let jumpURL = this.props.location.state && this.props.location.state.from ? this.props.location.state.from.pathname : "/";
-        this.props.history.push(jumpURL);
-      } else {
-        alert(res.desc)
-      }
-    });
+    fetchPost(url, data).then((content) => {
+      let expires = (content.expiresTime - new Date().getTime()) / 1000 / 3600 / 24;
+      Cookies.set("phone", content.phone, {expires});
+      Cookies.set("token", content.token, {expires});
+      Cookies.set("userId", content.userId, {expires});
+      let jumpURL = this.props.location.state && this.props.location.state.from ? this.props.location.state.from.pathname : "/";
+      this.props.history.replace(jumpURL);
+    })
   }
   /**
      注册
      type：1.月嫂;2.妈妈)
    **/
-  handleRegister(event, typeCode) {
-    event.preventDefault();
-    let data = {}
-    data.Platform = platform;
-    data.Version_Code = version;
-    data.type = typeCode;
-    data.phone = this.state.phValue;
-    data.password = this.state.pawValue;
+  // handleRegister(event, typeCode) {
+  //   event.preventDefault();
+  //   let data = {}
+  //   data.Platform = platform;
+  //   data.Version_Code = version;
+  //   data.type = typeCode;
+  //   data.phone = this.state.phValue;
+  //   data.password = this.state.pawValue;
 
-    let url = preUrl+'/api/user/register';
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      body: Object.keys(data).map(key => `${key}=${data[key]}`).join('&')
-    }).then(response => response.json()).then(function (res) {
-      console.log(res)
-      if (res.code === "100000") {
-      } else {
-        alert(res.desc)
-      }
-    });
-  }
+  //   let url = preUrl+'/api/user/register';
+  //   fetch(url, {
+  //     method: 'POST',
+  //     headers: {
+  //       "Content-Type": "application/x-www-form-urlencoded"
+  //     },
+  //     body: Object.keys(data).map(key => `${key}=${data[key]}`).join('&')
+  //   }).then(response => response.json()).then(function (res) {
+  //     console.log(res)
+  //     if (res.code === "100000") {
+  //     } else {
+  //       alert(res.desc)
+  //     }
+  //   });
+  // }
   render() {
     return (
       <section className="page login">
@@ -207,7 +187,7 @@ class Login extends React.Component {
             </div>
             <hr style={{width:'90%'}}/>
             <div className="login-item login-pawd">
-              <input type="text" className="pawd" placeholder="密码" onChange={this.pawChange.bind(this)} value={this.state.pawValue} />
+              <input type="password" className="pawd" placeholder="密码" onChange={this.pawChange.bind(this)} value={this.state.pawValue} />
               <button className="islook" onClick={this.isLookpwd.bind(this)}>kk</button>
             </div>
             <hr style={{width:'90%'}}/>
