@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "antd-mobile": "^2.2.2",
+    "history": "^4.7.2",
     "js-cookie": "^2.2.0",
     "moment": "^2.22.2",
     "react": "^16.4.2",

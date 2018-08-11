@@ -5,6 +5,7 @@ import React from "react";
 import { List, Radio, Flex, WhiteSpace, WingBlank, DatePicker, NavBar, Icon } from 'antd-mobile';
 import { platform, version, preUrl } from '@common/config';
 import Cookies from 'js-cookie';
+import {fetchPost} from '@common/Fetch'
 // import enUs from 'antd-mobile/lib/date-picker/locale/en_US';
 
 
@@ -104,19 +105,10 @@ class PostRe extends React.Component {
 		data.takecareBabyMax = this.state.babysValue.split("-")[1];
 
 		let url = preUrl + '/api/tk/demand/saveOrUpdateDemand';
-		fetch(url, {
-			method: 'POST',
-			headers: {
-				"Content-Type": "application/x-www-form-urlencoded"
-			},
-			body: Object.keys(data).map(key => `${key}=${data[key]}`).join('&')
-		}).then(response => response.json()).then(function (res) {
+		fetchPost(url, data).then(res => {
 			console.log(res)
-			if (res.code === "10000") {
-			} else {
-				alert(res.desc)
-			}
-		});
+			// jump to requirements management page
+		})
 	}
 
 
@@ -124,7 +116,7 @@ class PostRe extends React.Component {
 		
 		return (
 			<section className="page postre" >
-				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{position:"absolute", width:"100%", zIndex:100, boxShadow: "0 1px 5px #999"}}>发布需求</NavBar>
+				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{position:"fixed", width:"100%", zIndex:100, boxShadow: "0 1px 5px #999"}}>发布需求</NavBar>
 				<div className="page-container with-navbar">
 					<form className="mom-requirement" onSubmit={this.handleSumbit.bind(this)}>
 					<WingBlank size="md">

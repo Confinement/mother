@@ -17,7 +17,7 @@ class Tabbar extends React.Component{
 	  render() {
 		return (
 			<nav style={this.state.fullScreen ? (
-				this.state.noContainer ? { position: 'absolute', width: '100%', bottom: 0 ,backgroundColor:'#ffda44'} : { position: 'fixed', height: '100%', width: '100%', top: 0 } )
+				this.state.noContainer ? { position: 'fixed', width: '100%', bottom: 0 ,backgroundColor:'#ffda44'} : { position: 'fixed', height: '100%', width: '100%', top: 0 } )
 				: { height: 400 }}>
 			<TabBar 
 			  unselectedTintColor="#000"

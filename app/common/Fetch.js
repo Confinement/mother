@@ -1,3 +1,5 @@
+import createBrowserHistory from "history/createBrowserHistory"
+const history = createBrowserHistory()
 
 let _fetch = (url,data,type) => {
 	return	fetch(url,{
@@ -9,8 +11,8 @@ let _fetch = (url,data,type) => {
 	}).then((response) => (response.json())).then(((res) =>{
 		if(res.code=="100000"){
 			return res.content;
-		}else if(res.code=="100001"){
-			// this.props.history.replace("/login");
+		}else if(res.code == "100001"){
+			history.push('/login')
 		}else{
 			alert(res.desc);
 		}
