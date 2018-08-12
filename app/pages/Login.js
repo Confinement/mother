@@ -2,7 +2,6 @@ import "@css/login.css"
 import React from "react";
 import { fetchPost } from "@common/Fetch";
 import { withRouter } from 'react-router-dom'
-import { platform, version ,preUrl} from '@common/config';
 import Cookies from 'js-cookie';
 import { Tabs, NavBar, Icon } from 'antd-mobile';
 
@@ -99,13 +98,10 @@ class Login extends React.Component {
   handleSendSms(event, typeCode) {
     event.preventDefault();
     let data = {}
-    data.Platform = platform;
-    data.Version_Code = version;
     data.type = typeCode;
     data.phone = this.state.phValue;
-
-    let url = preUrl+'/api/sys/sendSms';
-    fetchPost(url, data).then(({content}) => {
+    
+    fetchPost("api/sys/sendSms", data, false).then(({content}) => {
       document.querySelector(".sms-btn").innerHTML="已发送";
       setTimeout(()=>{
         document.querySelector(".sms-btn").innerHTML="获取验证码";
@@ -116,16 +112,14 @@ class Login extends React.Component {
   handleLogin(event) {
     event.preventDefault();
     let data = {}
-    data.Platform = platform;
-    data.Version_Code = version;
     data.phone = this.state.phValue;
     this.state.method ? data.code = this.state.smsValue : data.password = this.state.pawValue;
     if(!this.state.isGoing ){
       alert("请同意用户协议及隐私政策！");
       return false;
     }
-    let url = preUrl+'/api/user/login';
-    fetchPost(url, data).then((content) => {
+    
+    fetchPost("api/user/login", data, false).then((content) => {
       let expires = (content.expiresTime - new Date().getTime()) / 1000 / 3600 / 24;
       Cookies.set("phone", content.phone, {expires});
       Cookies.set("token", content.token, {expires});
