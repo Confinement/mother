@@ -18,9 +18,16 @@ class MyCenter extends React.Component {
 			<div className='page with-tabbar'>
 
 				<div className="infor">
-					<div className="attar"></div>
-					<div className="name">XXX</div>
-					<button className="update-btn">XXX</button>
+						<div className="logined" style={{ display: '-webkit-box', display: 'flex', padding: '15px 0' }}>
+							<img className="avatar" style={{ width: '64px', height: '64px', borderRadius: "50%", margin: '0 15px' }} src="http://pic97.huitu.com/res/20170629/799232_20170629034947597040_1.jpg" alt="" />
+							<div style={{ lineHeight: 1, padding: "15px 0" }}>
+								<div className="name" style={{  fontSize: 18 }}>昵称</div>
+								<div className="info" style={{ color: '#888', fontSize: 14, marginTop: 5 }}>...</div>
+							</div>
+							<Button onClick={() => this.props.history.push("/mycenter/re")} type="primary" size="small" style={{position: "absolute", right: 15, top: 35, backgroundColor: "#fff"}}>个人信息</Button>
+						</div>
+						<div className="nologin">
+						</div>
 				</div>
 				<Grid data={[{
 						icon: "https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png",
