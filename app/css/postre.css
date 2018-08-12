@@ -62,3 +62,8 @@
 	font-size: 14px;
 	color:#aaa;
 }
+
+.am-input-extra .am-button-small{
+	height: 20px;
+	line-height: 20px;
+}

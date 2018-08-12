@@ -1,9 +1,9 @@
 import "@css/myCenter.css"
 import React from 'react'
-import { Linkm, Redirect, Switch, Route, withRouter } from 'react-router-dom'
+import { Switch, Route, withRouter } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import PrivateRoute from '@common/PrivateRoute'
-import { List, Button, Flex, WhiteSpace, WingBlank, DatePicker, NavBar, Icon } from 'antd-mobile';
+import { List, Button, WhiteSpace, WingBlank, Icon, Grid } from 'antd-mobile';
 import NoMatch from '@pages/NoMatch'
 import Tabbar from '@common/TabBar'
 
@@ -15,16 +15,54 @@ class MyCenter extends React.Component {
 
 	render() {
 		return (
-			<div className='page'>
+			<div className='page with-tabbar'>
 
 				<div className="infor">
 					<div className="attar"></div>
 					<div className="name">XXX</div>
 					<button className="update-btn">XXX</button>
 				</div>
-				<div className="pay-btn">
-
-				</div>
+				<Grid data={[{
+						icon: "https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png",
+						text: "待付款"
+					}, {
+						icon: "https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png",
+						text: "待发货"
+					}, {
+						icon: "https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png",
+						text: "待收货"
+					}, {
+						icon: "https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png",
+						text: "已完成"
+					}, {
+						icon: "https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png",
+						text: "全部订单"
+					}]}
+					square={false}
+					className="not-square-grid"
+					columnNum={5}
+					hasLine={false}
+					onClick={(_el, index) => {
+						switch (index) {
+							case 0:
+							this.props.history.push("/mycenter/re")
+								break;
+							case 1:
+							this.props.history.push("/mycenter/re")
+								break;
+							case 2:
+							this.props.history.push("/mycenter/re")
+								break;
+							case 3:
+							this.props.history.push("/mycenter/re")
+								break;
+							case 4:
+							this.props.history.push("/mycenter/re")
+								break;
+						}
+					}}
+				/>
+				<WhiteSpace />
 				<List className="my-list">
 					<List.Item
 						arrow="horizontal"
@@ -50,8 +88,8 @@ class MyCenter extends React.Component {
 								textAlign: 'right'
 							}}
 						>
-							<Button type="ghost" size="small" inline style={{ marginLeft: '10px' }}>取消订单</Button>
-							<Button type="primary" size="small" inline style={{ marginLeft: '10px' }}>立即支付</Button>
+							<Button onClick={() => this.props.history.push("/mycenter/re")} type="ghost" size="small" inline style={{ marginLeft: '10px' }}>取消订单</Button>
+							<Button onClick={() => this.props.history.push("/mycenter/re")} type="primary" size="small" inline style={{ marginLeft: '10px' }}>立即支付</Button>
 						</div>
 					</div>
 				</List>

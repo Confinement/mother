@@ -10,7 +10,7 @@ import "@css/home.css"
 
 const Home = () => (
 	<section className='page'>
-		<div className="page-container">
+		<div className="page-container with-tabbar">
 			<div className="banner"><img src={require('../images/home/1.png')} alt="" /></div>
 			<div className="home-bnt">
 				<Link className="left-btn" to='/home/requirement'>

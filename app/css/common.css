@@ -44,8 +44,8 @@ a,button,input{ -webkit-tap-highlight-color:rgba(255,0,0,0); tap-highlight-color
 	box-sizing: border-box;
 	/* -webkit-overflow-scrolling: touch; */
 }
-.page-container.with-tabbar {padding-bottom: 50px;}
-.page-container.with-navbar {padding-top: 45px;}
+.page.with-tabbar, .page-container.with-tabbar {padding-bottom: 50px;}
+.page.with-navbar, .page-container.with-navbar {padding-top: 45px;}
 
 .slide-in-appear {
 	transform: translate3D(100%, 0, 0);

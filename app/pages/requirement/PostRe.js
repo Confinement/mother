@@ -1,7 +1,8 @@
 import "@css/common.css"
 import "@css/postre.css"
 import React from "react";
-import { List, Radio, Flex, WhiteSpace, WingBlank, DatePicker, NavBar, Icon } from 'antd-mobile';
+import { List, Radio, Flex, WhiteSpace, WingBlank, DatePicker, NavBar, Icon, InputItem, Button } from 'antd-mobile';
+import { createForm } from 'rc-form';
 import { platform, version, preUrl } from '@common/config';
 import Cookies from 'js-cookie';
 import {fetchPost} from '@common/Fetch'
@@ -78,8 +79,7 @@ class PostRe extends React.Component {
 	}
 
 
-	handleSumbit(event) {
-		event.preventDefault();
+	handleSumbit() {
 		let data = {}
 		data.Platform = platform;
 		data.Version_Code = version;
@@ -112,12 +112,12 @@ class PostRe extends React.Component {
 
 
 	render() {
-		
+		const { getFieldProps } = this.props.form;
 		return (
 			<section className="page postre" >
 				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{position:"fixed", width:"100%", zIndex:100, boxShadow: "0 1px 5px #999"}}>发布需求</NavBar>
 				<div className="page-container with-navbar">
-					<form className="mom-requirement" onSubmit={this.handleSumbit.bind(this)}>
+					<form className="mom-requirement">
 					<WingBlank size="md">
 						<DatePicker
 							mode="date"
@@ -168,9 +168,13 @@ class PostRe extends React.Component {
 						<WhiteSpace />
 						<section className='arear'>
 							<span>服务地址</span>
-							<WingBlank>
-								<input type="text" className="address" name='address' value={this.state.addressValue} placeholder="思明南路XXX" onChange={this.onChange} />
-							</WingBlank>
+							<WhiteSpace />
+							<InputItem
+								{...getFieldProps('input3')}
+								placeholder="请输入地址"
+								extra={<Button type="ghost" size="small" inline>+</Button>}
+								onChange={(e)=>this.setState({addressValue:e.target.value})}
+							/>
 						</section>
 						<WhiteSpace />
 						<section className='sister-requirements'>
@@ -225,13 +229,15 @@ class PostRe extends React.Component {
 								</Flex>
 							</div>
 						</section>
-						<input type="submit" value="发布" className="post-btn" />
+						<WhiteSpace />
+						<Button type="primary" onClick={this.handleSumbit.bind(this)}>发布</Button>
 					</WingBlank>
 					</form>
+					<WhiteSpace />
 				</div>
 			</section>
 		)
 	}
 
 }
-export default PostRe;
+export default createForm()(PostRe);
