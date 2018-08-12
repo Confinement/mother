@@ -7,8 +7,9 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const srcDir = path.join(process.cwd(), "app");
 const distDir = path.join(process.cwd(), "public");
+const theme = require('../package.json').theme;
 
-module.exports = {
+const webpackCommon = {
 	entry: {
 		head: path.join(srcDir, "head.js"),
 		main: path.join(srcDir, "app.js")
@@ -97,3 +98,54 @@ module.exports = {
 		new webpack.BannerPlugin('@小玲欢 版权所有，二次开发请保留原作者信息！')
 	]
 }
+
+const cssLoader = (minimize = false) => [{
+	test: /\.css$/,
+	use: ExtractTextPlugin.extract({
+	fallback: "style-loader",
+		use: [{
+			loader: "css-loader",
+			options: {
+				// modules: true,
+				minimize: minimize	// CSS压缩
+			}
+		}, {
+			loader: "postcss-loader",
+			options: {           // 如果没有options这个选项将会报错 No PostCSS Config found
+				plugins: (loader) => [
+					require('autoprefixer')(), //CSS浏览器兼容
+				]
+			}
+		}],
+	})
+}, {
+	test: /\.less$/,
+	use: ExtractTextPlugin.extract({
+	fallback: "style-loader",
+		use: [{
+			loader: "css-loader",
+			options: {
+				// modules: true,
+				minimize: minimize	// CSS压缩
+			}
+		}, {
+			loader: "postcss-loader",
+			options: {           // 如果没有options这个选项将会报错 No PostCSS Config found
+				plugins: (loader) => [
+					require('autoprefixer')(), //CSS浏览器兼容
+				]
+			}
+		}, {
+			loader: 'less-loader',
+			options: {
+				// modifyVars: {
+				// 	"brand-primary": "red"
+				// },
+				javascriptEnabled: true
+			}
+		}],
+	})
+	// include: /node_modules/
+}]
+
+module.exports = {webpackCommon, cssLoader}

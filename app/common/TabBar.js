@@ -1,5 +1,4 @@
 import React from "react"
-import 'antd-mobile/dist/antd-mobile.css'
 import {TabBar} from 'antd-mobile'
 import { withRouter } from 'react-router-dom'
 

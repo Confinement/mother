@@ -1,4 +1,3 @@
-import 'antd-mobile/dist/antd-mobile.css'
 import "@css/login.css"
 import React from "react";
 import { fetchPost } from "@common/Fetch";

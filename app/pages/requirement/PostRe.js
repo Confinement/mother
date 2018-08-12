@@ -1,6 +1,5 @@
 import "@css/common.css"
 import "@css/postre.css"
-import 'antd-mobile/dist/antd-mobile.css'
 import React from "react";
 import { List, Radio, Flex, WhiteSpace, WingBlank, DatePicker, NavBar, Icon } from 'antd-mobile';
 import { platform, version, preUrl } from '@common/config';
