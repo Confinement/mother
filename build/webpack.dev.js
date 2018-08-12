@@ -7,7 +7,7 @@ const ip = require('ip');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // const HotModuleReplacementPlugin = require('Hot Module Replacement');
 
-module.exports = merge(common, {
+module.exports = merge(common.webpackCommon, {
 	mode: "development",
 	output: {
 		publicPath: '/',
@@ -49,26 +49,7 @@ module.exports = merge(common, {
 					}
 				}]
 			},
-			{
-				test: /\.css$/,
-				use: ExtractTextPlugin.extract({
-				fallback: "style-loader",
-					use: [{
-						loader: "css-loader",
-						options: {
-							// modules: true,
-							// minimize: true	// CSS压缩
-						}
-					}, {
-						loader: "postcss-loader",
-						options: {           // 如果没有options这个选项将会报错 No PostCSS Config found
-							plugins: (loader) => [
-								require('autoprefixer')(), //CSS浏览器兼容
-							]
-						}
-					}],
-				})
-			}
+			...common.cssLoader(false)
 		]
 	},
 	plugins: [

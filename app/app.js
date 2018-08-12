@@ -10,6 +10,7 @@ import MyCenter from '@pages/MyCenter'
 import Login from '@pages/Login'
 import NoMatch from '@pages/NoMatch'
 import overscroll from '@common/overscroll'
+import "@css/antd-theme.less"
 
 const history = createBrowserHistory()
 const App=() =>(

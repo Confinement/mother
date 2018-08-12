@@ -9,7 +9,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const srcDir = path.join(process.cwd(), "app");
 const distDir = path.join(process.cwd(), "public");
 
-module.exports = merge(common, {
+module.exports = merge(common.webpackCommon, {
 	mode: "production",
 	// entry: {
 	// 	common:["react", "react-dom"]
@@ -41,26 +41,7 @@ module.exports = merge(common, {
 					}
 				}]
 			},
-			{
-				test: /\.css$/,
-				use: ExtractTextPlugin.extract({
-				fallback: "style-loader",
-					use: [{
-						loader: "css-loader",
-						options: {
-							// modules: true,
-							minimize: true	// CSS压缩
-						}
-					}, {
-						loader: "postcss-loader",
-						options: {           // 如果没有options这个选项将会报错 No PostCSS Config found
-							plugins: (loader) => [
-								require('autoprefixer')(), //CSS浏览器兼容
-							]
-						}
-					}],
-				})
-			}
+			...common.cssLoader(false)
 		]
 	},
 	plugins: [
