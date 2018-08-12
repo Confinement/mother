@@ -3,7 +3,6 @@ import "@css/postre.css"
 import React from "react";
 import { List, Radio, Flex, WhiteSpace, WingBlank, DatePicker, NavBar, Icon, InputItem, Button } from 'antd-mobile';
 import { createForm } from 'rc-form';
-import { platform, version, preUrl } from '@common/config';
 import Cookies from 'js-cookie';
 import {fetchPost} from '@common/Fetch'
 // import enUs from 'antd-mobile/lib/date-picker/locale/en_US';
@@ -80,9 +79,7 @@ class PostRe extends React.Component {
 
 
 	handleSumbit() {
-		let data = {}
-		data.Platform = platform;
-		data.Version_Code = version;
+		let data = {} ;
 		data.Token = Cookies.get("token");;
 		let dueDate = new Date(this.state.date);
 		var m = "0" + (dueDate.getMonth() + 1);
@@ -93,9 +90,9 @@ class PostRe extends React.Component {
 		data.serviceDay = this.state.daysValue;
 
 		data.moonAddr = this.state.arearValue,
-			data.moonExp = "112",
+		data.moonExp = "112",
 
-			data.costMin = this.state.costMin;
+		data.costMin = this.state.costMin;
 		data.costMax = this.state.costMax;
 
 		data.moonAgeMin = this.state.ageValue.split("-")[0];
@@ -103,8 +100,7 @@ class PostRe extends React.Component {
 		data.takecareBabyMin = this.state.babysValue.split("-")[0];
 		data.takecareBabyMax = this.state.babysValue.split("-")[1];
 
-		let url = preUrl + '/api/tk/demand/saveOrUpdateDemand';
-		fetchPost(url, data).then(res => {
+		fetchPost("api/tk/demand/saveOrUpdateDemand", data, true).then(res => {
 			console.log(res)
 			// jump to requirements management page
 		})

@@ -6,11 +6,15 @@ import PrivateRoute from '@common/PrivateRoute'
 import { List, Button, WhiteSpace, WingBlank, Icon, Grid } from 'antd-mobile';
 import NoMatch from '@pages/NoMatch'
 import Tabbar from '@common/TabBar'
-
+import {fetchGet} from "@common/Fetch";
+import Cookies from 'js-cookie';
 
 class MyCenter extends React.Component {
 	constructor(props) {
 		super(props);
+		fetchGet("api/user/getUserData", {Token: Cookies.get('token')}, true).then((data) => {
+			console.log(data)
+		})
 	}
 
 	render() {
