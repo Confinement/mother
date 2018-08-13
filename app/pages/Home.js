@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, Switch, Route, withRouter } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import PrivateRoute from '@common/PrivateRoute'
+import overscroll from '@common/overscroll'
 import NoMatch from '@pages/NoMatch'
 import Tabbar from '@common/TabBar'
 import PostRe from '@pages/requirement/PostRe'
@@ -9,8 +10,8 @@ import "@css/common.css"
 import "@css/home.css"
 
 const Home = () => (
-	<section className='page'>
-		<div className="page-container with-tabbar">
+	<section className='page with-tabbar'>
+		<div className="page-container">
 			<div className="banner"><img src={require('../images/home/1.png')} alt="" /></div>
 			<div className="home-bnt">
 				<Link className="left-btn" to='/home/requirement'>

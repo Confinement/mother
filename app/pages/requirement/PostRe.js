@@ -5,11 +5,10 @@ import { List, Radio, Flex, WhiteSpace, WingBlank, DatePicker, NavBar, Icon, Inp
 import { createForm } from 'rc-form';
 import Cookies from 'js-cookie';
 import {fetchPost} from '@common/Fetch'
-// import enUs from 'antd-mobile/lib/date-picker/locale/en_US';
+import overscroll from '@common/overscroll'
 
 
 const RadioItem = Radio.RadioItem;
-
 
 class PostRe extends React.Component {
 	constructor(porps) {
@@ -35,6 +34,11 @@ class PostRe extends React.Component {
 		this.costMinOnChange = this.costMinOnChange.bind(this);
 		this.costMaxOnChange = this.costMaxOnChange.bind(this);
 	}
+
+	componentDidMount() {
+		overscroll(document.querySelector('.page-container'));
+	}
+
 	babyTypeonChange = (event) => {
 		this.setState({
 			babyTypeValue: event.target.value,
@@ -110,9 +114,9 @@ class PostRe extends React.Component {
 	render() {
 		const { getFieldProps } = this.props.form;
 		return (
-			<section className="page postre" >
-				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{position:"fixed", width:"100%", zIndex:100, boxShadow: "0 1px 5px #999"}}>发布需求</NavBar>
-				<div className="page-container with-navbar">
+			<section className="page with-navbar postre" >
+				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{position:"absolute", width:"100%", zIndex:100, boxShadow: "0 1px 5px #999"}}>发布需求</NavBar>
+				<div className="page-container">
 					<form className="mom-requirement">
 					<WingBlank size="md">
 						<DatePicker

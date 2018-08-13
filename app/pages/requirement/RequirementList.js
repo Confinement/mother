@@ -8,6 +8,7 @@ import Cookies from 'js-cookie';
 import {fetchPost} from "@common/Fetch";
 import RequItem from '@pages/requirement/RequItem'
 import AddAddress from '@pages/requirement/AddAddress'
+import overscroll from '@common/overscroll'
 
 class RequirementList extends React.Component{
 	constructor(props){
@@ -33,6 +34,7 @@ class RequirementList extends React.Component{
 	}
 	componentDidMount() {
 		this.getData();
+		overscroll(document.querySelector('.page-container'));
 	}
 
 	onLoadMore() {//加载更多函数
@@ -62,10 +64,10 @@ class RequirementList extends React.Component{
 		  };
 
 		  return (
-			<section className="page" >
-				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{position:"fixed", width:"100%", zIndex:100, boxShadow: "0 1px 5px #999"}}>护理需求</NavBar>
+			<section className="page with-navbar" >
+				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{position:"absolute", width:"100%", zIndex:100, boxShadow: "0 1px 5px #999"}}>护理需求</NavBar>
 				<WhiteSpace size="lg" />
-				<div className="page-container with-navbar">
+				<div className="page-container">
 				<ListView 
 					ref={el => this.lv = el}
 					dataSource={this.state.dataSource}

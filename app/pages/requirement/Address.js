@@ -1,4 +1,5 @@
 import React from "react"
+import overscroll from '@common/overscroll'
 
 
 class Address extends React.Component{
@@ -7,6 +8,10 @@ class Address extends React.Component{
 		this.state({
 			addressList:[],
 		})
+	}
+
+	componentDidMount() {
+		overscroll(document.querySelector('.page-container'));
 	}
 
 	render(){

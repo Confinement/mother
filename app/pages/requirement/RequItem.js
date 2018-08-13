@@ -2,6 +2,7 @@ import React from "react"
 import { ListView, Card, WhiteSpace, SwipeAction, List, Button, NavBar, Icon} from 'antd-mobile';
 import Cookies from 'js-cookie';
 import {fetchPost} from "@common/Fetch";
+import overscroll from '@common/overscroll'
 
 class RequItem extends React.Component{
 	constructor(props){
@@ -29,6 +30,7 @@ class RequItem extends React.Component{
 	}
 	componentDidMount() {
 		this.getData();
+		overscroll(document.querySelector('.page-container'));
 	}
 
 	onLoadMore() {//加载更多函数
@@ -49,9 +51,9 @@ class RequItem extends React.Component{
 		  };
 
 		  return (
-			<section className="page" >
-				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{position:"fixed", width:"100%", zIndex:100, boxShadow: "0 1px 5px #999"}}>护理详情</NavBar>
-				<div className="page-container with-navbar">
+			<section className="page with-navbar" >
+				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{position:"absolute", width:"100%", zIndex:100, boxShadow: "0 1px 5px #999"}}>护理详情</NavBar>
+				<div className="page-container">
 				<Card full = {true}>
 					<Card.Body>
 						<div>预产期:{this.state.monData.dueDate} | {this.state.monData.serviceDay}天</div>
