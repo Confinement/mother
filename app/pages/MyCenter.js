@@ -34,7 +34,7 @@ class MyCenter extends React.Component {
 
 	render() {
 		return (
-			<div className='page with-tabbar'>
+			<section className='page with-tabbar'>
 				<div className="page-container">
 					<div className="infor">
 						{Cookies.get('token') ?
@@ -180,7 +180,7 @@ class MyCenter extends React.Component {
 					</List>
 				</div>
 				<Tabbar />
-			</div>
+			</section>
 		)
 	}
 }

@@ -66,24 +66,24 @@ class RequirementList extends React.Component{
 		  return (
 			<section className="page with-navbar" >
 				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{position:"absolute", width:"100%", zIndex:100, boxShadow: "0 1px 5px #999"}}>护理需求</NavBar>
-				<WhiteSpace size="lg" />
 				<div className="page-container">
-				<ListView 
-					ref={el => this.lv = el}
-					dataSource={this.state.dataSource}
-					renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
-					{this.state.isLoading ? 'Loading...' : 'Loaded'}
-					</div>)}
-					renderRow={row}
-					// renderSeparator={separator}
-					className="am-list"
-					pageSize={this.state.pageSize}
-					useBodyScroll
-					onScroll={() => { console.log('scroll'); }}
-					scrollRenderAheadDistance={500}
-					// onEndReached={this.onEndReached}
-					onEndReachedThreshold={10}
-				/>
+					<WhiteSpace size="lg" />
+					<ListView 
+						ref={el => this.lv = el}
+						dataSource={this.state.dataSource}
+						renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
+						{this.state.isLoading ? 'Loading...' : 'Loaded'}
+						</div>)}
+						renderRow={row}
+						// renderSeparator={separator}
+						className="am-list"
+						pageSize={this.state.pageSize}
+						useBodyScroll
+						onScroll={() => { console.log('scroll'); }}
+						scrollRenderAheadDistance={500}
+						// onEndReached={this.onEndReached}
+						onEndReachedThreshold={10}
+					/>
 				</div>
 			</section>
 		  )}
@@ -93,7 +93,7 @@ class RequirementList extends React.Component{
 
 // export default RequirementList;
 
-class MyRouter extends React.Component {
+class RequirementRouter extends React.Component {
 	constructor (props) {
 		super(props);
 	}
@@ -113,7 +113,7 @@ class MyRouter extends React.Component {
 				exitDone: 'page-exit-done',
 			}} timeout={300}>
 				<Switch location={this.props.location}>
-					<Route exact path='/mycenter/requirementlist' component={withRouter(RequirementList)} />
+					<Route exact path='/mycenter/requirementlist' component={RequirementList} />
 					<PrivateRoute path='/mycenter/requirementlist/requitem' component={RequItem} />
 					<PrivateRoute path='/mycenter/requirementlist/addAddress' component={AddAddress} />
 					<Route component={NoMatch} />
@@ -124,4 +124,4 @@ class MyRouter extends React.Component {
 	}
 }
 
-export default withRouter(MyRouter)
+export default withRouter(RequirementRouter)
