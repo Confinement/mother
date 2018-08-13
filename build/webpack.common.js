@@ -24,8 +24,8 @@ const webpackCommon = {
 			'@common': path.resolve(process.cwd(), 'app/common'),
 			'@pages': path.resolve(process.cwd(), 'app/pages'),
 			'@css': path.resolve(process.cwd(), 'app/css'),
-			'@images': path.resolve(process.cwd(), 'app/css'),
-			'@assets': path.resolve(process.cwd(), 'app/css')
+			'@images': path.resolve(process.cwd(), 'app/images'),
+			'@assets': path.resolve(process.cwd(), 'app/assets')
 		}
 	},
 	module: {
@@ -49,7 +49,7 @@ const webpackCommon = {
 				exclude: /node_modules/
 			},
 			{
-				test: /\.(png|jpg|gif|mp3|mp4)$/,
+				test: /\.(png|jpg|jpeg|gif)$/,
 				use: {
 					loader: "url-loader?limit=2048&name=img/[name].[hash].[ext]"
 				}

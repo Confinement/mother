@@ -14,26 +14,37 @@ import RequirementList from '@pages/requirement/RequirementList'
 class MyCenter extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			nickName: "",
+			username: "昵称加载中...",
+			stage: "...",
+		}
 		fetchGet("api/user/getUserData", {Token: Cookies.get('token')}, true).then((data) => {
-			console.log(data)
+			this.setState({
+				...data
+			})
+			console.log(this.state)
 		})
 	}
 
 	render() {
 		return (
 			<div className='page with-tabbar'>
-
 				<div className="infor">
-						<div className="logined" style={{ display: '-webkit-box', display: 'flex', padding: '15px 0' }}>
-							<img className="avatar" style={{ width: '64px', height: '64px', borderRadius: "50%", margin: '0 15px' }} src="http://pic97.huitu.com/res/20170629/799232_20170629034947597040_1.jpg" alt="" />
-							<div style={{ lineHeight: 1, padding: "15px 0" }}>
-								<div className="name" style={{  fontSize: 18 }}>昵称</div>
-								<div className="info" style={{ color: '#888', fontSize: 14, marginTop: 5 }}>...</div>
+					{Cookies.get('token') ?
+						<div className="logined" style={{ display: '-webkit-box', display: 'flex', padding: '.5rem 0' }}>
+							<img className="avatar" style={{ width: '1.28rem', height: '1.28rem', borderRadius: "50%", margin: '0 .3rem' }} src={require('@images/mycenter/no_avatar.jpeg')} alt="" />
+							<div style={{ lineHeight: 1, padding: ".3rem 0" }}>
+								<div className="name" style={{  fontSize: 18 }}>{this.state.nickName || this.state.username}</div>
+								<div className="info" style={{ color: '#888', fontSize: 14, marginTop: ".1rem" }}>人生阶段：{this.state.stage}</div>
 							</div>
-							<Button onClick={() => this.props.history.push("/mycenter/re")} type="primary" size="small" style={{position: "absolute", right: 15, top: 35, backgroundColor: "#fff"}}>个人信息</Button>
+							<Button onClick={() => this.props.history.push("/mycenter/re")} type="primary" size="small" style={{position: "absolute", right: ".3rem", top: ".9rem", backgroundColor: "#fff"}}>个人信息</Button>
 						</div>
-						<div className="nologin">
+					:
+						<div className="nologin" style={{width: "2rem", margin: "0 auto", paddingTop: ".8rem"}}>
+							<Button onClick={() => this.props.history.push("/login")} type="primary" style={{backgroundColor: "#fff"}}>登录</Button>
 						</div>
+					}
 				</div>
 				<Grid data={[{
 						icon: "https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png",
@@ -84,27 +95,29 @@ class MyCenter extends React.Component {
 						onClick={() => this.props.history.push("/mycenter/re")}
 					>服务订单
 					</List.Item>
-					<div style={{ padding: '0 15px' }}>
-						<div style={{ display: '-webkit-box', display: 'flex', padding: '15px 0' }}>
-							<img style={{ height: '64px', marginRight: '15px' }} src="http://pic97.huitu.com/res/20170629/799232_20170629034947597040_1.jpg" alt="" />
-							<div style={{ lineHeight: 1 }}>
-								<div style={{  fontSize: 18 }}>月嫂大礼包</div>
-								<div style={{ color: '#888', fontSize: 14, marginTop: 5 }}>优质月嫂服务</div>
+					{Cookies.get('token') &&
+						<div style={{ padding: '0 15px' }}>
+							<div style={{ display: '-webkit-box', display: 'flex', padding: '15px 0' }}>
+								<img style={{ height: '64px', marginRight: '15px' }} src="http://pic97.huitu.com/res/20170629/799232_20170629034947597040_1.jpg" alt="" />
+								<div style={{ lineHeight: 1 }}>
+									<div style={{  fontSize: 18 }}>月嫂大礼包</div>
+									<div style={{ color: '#888', fontSize: 14, marginTop: 5 }}>优质月嫂服务</div>
+								</div>
+							</div>
+							<div
+								style={{
+									lineHeight: '50px',
+									color: '#888',
+									fontSize: 18,
+									borderBottom: '1px solid #F6F6F6',
+									textAlign: 'right'
+								}}
+							>
+								<Button onClick={() => this.props.history.push("/mycenter/re")} type="ghost" size="small" inline style={{ marginLeft: '10px' }}>取消订单</Button>
+								<Button onClick={() => this.props.history.push("/mycenter/re")} type="primary" size="small" inline style={{ marginLeft: '10px' }}>立即支付</Button>
 							</div>
 						</div>
-						<div
-							style={{
-								lineHeight: '50px',
-								color: '#888',
-								fontSize: 18,
-								borderBottom: '1px solid #F6F6F6',
-								textAlign: 'right'
-							}}
-						>
-							<Button onClick={() => this.props.history.push("/mycenter/re")} type="ghost" size="small" inline style={{ marginLeft: '10px' }}>取消订单</Button>
-							<Button onClick={() => this.props.history.push("/mycenter/re")} type="primary" size="small" inline style={{ marginLeft: '10px' }}>立即支付</Button>
-						</div>
-					</div>
+					}
 				</List>
 				<WhiteSpace />
 				<List className="my-list">
@@ -126,7 +139,7 @@ class MyCenter extends React.Component {
 						arrow="horizontal"
 						thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
 						multipleLine
-						extra={<span>今日 <i>0</i> | 明日 <i>1</i></span>}
+						extra={Cookies.get('token') && <span>今日 <i>0</i> | 明日 <i>1</i></span>}
 						onClick={() => this.props.history.push("/mycenter/re")}
 					>我的面试<List.Item.Brief>月嫂面试管理</List.Item.Brief>
 					</List.Item>
