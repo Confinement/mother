@@ -155,21 +155,16 @@ class PostRe extends React.Component {
 								<Flex.Item></Flex.Item>
 							</Flex>
 						</div>
-						{/* <section className='baby-num'>
-							<span>胎儿数量</span>
-							<input type="radio" value={1} name="babynum" className="babyinput" defaultChecked={this.state.babyN==1} onChange={this.babyTypeonChange} id="babylabel1"/><label className="babylabel" htmlFor="babylabel1">单胞胎</label>
-							<input type="radio" value={2} name="babynum" className="babyinput" defaultChecked={this.state.babyTwo} onChange={this.babyTypeonChange} id="babylabel2"/><label className="babylabel" htmlFor="babylabel2">双胞胎</label>
-							<input type="radio" value={3} name="babynum" className="babyinput" defaultChecked={this.state.babythree} onChange={this.babyTypeonChange} id="babylabel3"/><label className="babylabel" htmlFor="babylabel3">多胞胎</label>
-							</section> */}
 						<WhiteSpace />
 						<section className='arear'>
 							<span>服务地址</span>
 							<WhiteSpace />
 							<InputItem
-								{...getFieldProps('input3')}
-								placeholder="请输入地址"
-								extra={<Button type="ghost" size="small" inline>+</Button>}
-								onChange={(e)=>this.setState({addressValue:e.target.value})}
+								// onClick={() => this.props.history.push("/mycenter/RequirementList/requitem")}
+								// {...getFieldProps('input3')}
+								// placeholder="请输入地址"
+								// extra={<Button type="ghost" size="small" inline>+</Button>}
+								// onChange={(e)=>this.setState({addressValue:e.target.value})}
 							/>
 						</section>
 						<WhiteSpace />
@@ -207,7 +202,7 @@ class PostRe extends React.Component {
 								<span>服务宝宝数</span>
 								<WhiteSpace />
 								<Flex>
-									<Flex.Item><div className={this.state.babysValue=="0-1000"?'flex-item selected':'flex-item'}  onClick={()=>this.setState({babysValue:"0-1000"})}>不限</div></Flex.Item>
+									<Flex.Item><div className={this.state.babysValue=="-"?'flex-item selected':'flex-item'}  onClick={()=>this.setState({babysValue:"0-1000"})}>不限</div></Flex.Item>
 									<Flex.Item><div className={this.state.babysValue=="0-10"?'flex-item selected':'flex-item'} onClick={()=>this.setState({babysValue:"0-10"})}>10个以下</div></Flex.Item>
 									<Flex.Item><div className={this.state.babysValue=="11-30"?'flex-item selected':'flex-item'} onClick={()=>this.setState({babysValue:"11-30"})}>11-30个</div></Flex.Item>
 									<Flex.Item><div className={this.state.babysValue=="31-1000"?'flex-item selected':'flex-item'} onClick={()=>this.setState({babysValue:"31-1000"})}>31个以上</div></Flex.Item>

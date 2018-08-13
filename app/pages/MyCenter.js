@@ -8,6 +8,8 @@ import NoMatch from '@pages/NoMatch'
 import Tabbar from '@common/TabBar'
 import {fetchGet} from "@common/Fetch";
 import Cookies from 'js-cookie';
+import RequirementList from '@pages/requirement/RequirementList'
+
 
 class MyCenter extends React.Component {
 	constructor(props) {
@@ -117,8 +119,8 @@ class MyCenter extends React.Component {
 						arrow="horizontal"
 						thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
 						multipleLine
-						onClick={() => this.props.history.push("/mycenter/re")}
-					>护理需求<List.Item.Brief>月嫂面试管理</List.Item.Brief>
+						onClick={() => this.props.history.push("/mycenter/requirementlist")}
+					>护理需求<List.Item.Brief>我发起的护理需求</List.Item.Brief>
 					</List.Item>
 					<List.Item
 						arrow="horizontal"
@@ -185,7 +187,7 @@ class MyRouter extends React.Component {
 			}} timeout={300}>
 				<Switch location={this.props.location}>
 					<Route exact path='/mycenter' component={withRouter(MyCenter)} />
-					<PrivateRoute path='/mycenter/requirements' component={MyCenter} />
+					<PrivateRoute path='/mycenter/requirementlist' component={RequirementList} />
 					<Route component={NoMatch} />
 				</Switch>
 			</CSSTransition>
