@@ -55,7 +55,7 @@ class RequItem extends React.Component{
 		var MoonList=[];
 		for (var i = 0, j = this.state.applies.length; i < j; i++) {
 			let moon=this.state.applies[i].moon;
-			MoonList.push(<MoonItem key={i} headur={moon.headUrl} name={moon.name} cityName={moon.cityName} takecareBabies={moon.takecareBabies} phone={moon.phone}></MoonItem>);
+			MoonList.push(<MoonItem key={i} headurl={moon.headUrl} name={moon.name} cityName={moon.cityName} takecareBabies={moon.takecareBabies} phone={moon.phone}></MoonItem>);
 		};
 		  return (
 			<section className="page with-navbar" >
@@ -105,14 +105,14 @@ class MoonItem extends React.Component{
 	}
 	render(){
 		return (
-			<div>
+			<div style={{display: "flex",position: "relative", backgroundColor: "#fff", with:" 100%", height: "1.5rem", padding: "0.2rem 0px"}}>
 				<img className="avatar" style={{ width: '1.28rem', height: '1.28rem', borderRadius: "50%", margin: '0 .3rem' }} src={this.props.headurl} alt="" />
 				<div style={{ lineHeight: 1, padding: ".3rem 0" }}>
-					<div className="name" style={{  fontSize: 18 }}>{this.props.name}</div>
+					<div className="name" style={{ fontSize: 18 }}>{this.props.name}</div>
 					<div className="info" style={{ color: '#888', fontSize: 14, marginTop: ".1rem" }}>{this.props.takecareBabies} {this.props.cityName}</div>
 				</div>
-				<Button  type="primary" size="small" style={{position: "absolute", right: ".3rem", top: ".9rem", backgroundColor: "#fff"}}>邀请面试</Button>
-				<Button  type="primary" size="small" style={{position: "absolute", right: ".3rem", top: ".9rem", backgroundColor: "#fff"}}>马上联系</Button>
+				<Button  type="primary" size="small" style={{position: "absolute", right: ".3rem", top: ".2rem", backgroundColor: "#ffda44",borderRadius: "20px"}}>邀请面试</Button>
+				<a href={`tel:${this.props.telphone}`}  style={{display: "block", position: "absolute", right: ".3rem", top: "1rem", backgroundColor: "#ffda44",borderRadius: "20px", fontSize: "13px", height: "30px",lineHeight: "30px",padding: "0 15px"}}>马上联系</a>
 			</div>
 		)
 	}
