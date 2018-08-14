@@ -12,7 +12,7 @@ class RequItem extends React.Component{
 		this.state={
 			applies:'',//月嫂应聘信息
 			monData:[],//妈妈信息
-			reqId:0,//妈妈发布需求信息id
+			reqId:this.props.match.params.id,//妈妈发布需求信息id
 			demandStatus:1,//3结束 2暂停 1应聘中
 		}
 	}
@@ -20,10 +20,7 @@ class RequItem extends React.Component{
 	componentDidMount() {
 		var redata={}
 		redata.Token=Cookies.get("token");
-		let data = this.props.location.state;
-		let {id} = data;
-		this.setState({reqId:id});
-		redata.demandId=id;
+		redata.demandId=this.state.reqId;
 		fetchPost("/api/tk/demand/queryDemandApplyByMother", redata, false).then((content) => {
 			this.setState({
 				applies: content.applies,
@@ -73,22 +70,22 @@ class RequItem extends React.Component{
 					</Card.Body>
 					<Card.Footer  extra={<span>{this.state.monData.joinCount}人投递 {this.state.monData.viewCount}人浏览</span>} />
 				</Card>
-				{
-					this.state.demandStatus==="3" ? 
+				{this.state.demandStatus==="3" &&
 					<div className="status-mana">
-						<Button size="small" className="status-btn over">已结束</Button>
-					</div> : 
-						(this.state.demandStatus==="1" ? 
-						<div className="status-mana">
-							<Button size="small" className="status-btn start" onClick={()=>this.stopReq("2")}>暂停</Button>
-							<Button size="small" className="status-btn over" onClick={()=>this.stopReq("3")} >结束</Button> 
-						</div>	:
-						<div className="status-mana">
-							<Button size="small" className="status-btn start" onClick={()=>this.stopReq("1")}>恢复</Button>
-							<Button size="small" className="status-btn over" onClick={()=>this.stopReq("3")}>结束</Button> 
-						</div>)
+						<span className="status-btn"></span>
+						<Button size="small" type="primary" disabled className="status-btn over">已结束</Button>
+					</div>}
+				{this.state.demandStatus==="1" &&
+					<div className="status-mana">
+						<Button size="small" type="primary" className="status-btn start" onClick={()=>this.stopReq("2")}>暂停</Button>
+						<Button size="small" type="primary" className="status-btn over" onClick={()=>this.stopReq("3")} >结束</Button> 
+					</div>}
+				{this.state.demandStatus==="2" &&
+					<div className="status-mana">
+						<Button size="small" type="primary" className="status-btn start" onClick={()=>this.stopReq("1")}>恢复</Button>
+						<Button size="small" type="primary" className="status-btn over" onClick={()=>this.stopReq("3")}>结束</Button> 
+					</div>}
 
-				}
 				<div className="apply-bar">全部应聘</div>
 					{MoonList}
 				</div>

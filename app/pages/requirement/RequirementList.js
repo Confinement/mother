@@ -68,13 +68,8 @@ class RequirementList extends React.Component{
 	render() {
 
 		  const row = (rowData, sectionID, rowID) => {
-			let data = {id:rowData.id};
-			let path = {
-			pathname:'/mycenter/RequirementList/requitem',
-			state:data,
-			}
 			return (
-			<div key={rowID} onClick={() => this.props.history.push(path)}>{/*addressList*/}
+			<div key={rowID} onClick={() => this.props.history.push('/mycenter/RequirementList/requitem/' + rowData.id)}>{/*addressList*/}
 			
 				<Card full = {true}>
 					<Card.Body>
@@ -138,7 +133,8 @@ class RequirementRouter extends React.Component {
 			}} timeout={300}>
 				<Switch location={this.props.location}>
 					<Route exact path='/mycenter/requirementlist' component={RequirementList} />
-					<PrivateRoute path='/mycenter/requirementlist/requitem' component={RequItem} />
+					<PrivateRoute exact path='/mycenter/requirementlist/requitem' component={RequItem} />
+					<PrivateRoute path='/mycenter/requirementlist/requitem/:id' component={RequItem} />
 					{/* <PrivateRoute path='/mycenter/requirementlist/addAddress' component={AddAddress} /> */}
 					<Route component={NoMatch} />
 				</Switch>
