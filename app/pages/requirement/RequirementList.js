@@ -1,9 +1,10 @@
 import React from "react"
+import ReactDOM from "react-dom"
 import { Switch, Route, withRouter } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import PrivateRoute from '@common/PrivateRoute'
 import NoMatch from '@pages/NoMatch'
-import { ListView, Card, WhiteSpace, SwipeAction, List, Button, NavBar, Icon} from 'antd-mobile';
+import { ListView, Card, WhiteSpace, SwipeAction, List, Button, NavBar, Icon, PullToRefresh} from 'antd-mobile';
 import Cookies from 'js-cookie';
 import {fetchPost} from "@common/Fetch";
 import RequItem from '@pages/requirement/RequItem'
@@ -19,31 +20,59 @@ class RequirementList extends React.Component{
 			pageSize:5,
 			dataSource:ds,
 			isLoading: true,
+			refreshing: true,
+			height: document.documentElement.clientHeight,
+			useBodyScroll: false,
+			hasMore: true,
 		}
 	}
-	getData(){
+	getData(page,hei){
 		var data={}
 		data.Token=Cookies.get("token");
-		data.pageNo=this.state.pageNo;
+		data.pageNo=page;
 		data.pageSize=this.state.pageSize;
 		fetchPost("api/tk/demand/queryDemandByMother", data, false).then((content) => {
+			if(content.total<=(page+1)*this.state.pageSize){
+				this.setState({
+					hasMore: false,
+					refreshing: false,
+					isLoading: false,})
+			}
 			this.setState({
 				dataSource:this.state.dataSource.cloneWithRows(content.list),
+				height: hei,
 			})
 		})
 	}
+	componentDidUpdate() {
+		if (this.state.useBodyScroll) {
+		  document.body.style.overflow = 'auto';
+		} else {
+		  document.body.style.overflow = 'hidden';
+		}
+	  }
+
 	componentDidMount() {
-		this.getData();
+		const hei = this.state.height - ReactDOM.findDOMNode(this.lv).offsetTop;
+		this.getData(0,hei);
 		overscroll(document.querySelector('.page-container'));
 	}
 
-	onLoadMore() {//加载更多函数
-        var page = this.state.page + 1;
-        console.log(page)
+	onRefresh = () => {
+		const hei1 = this.state.height - ReactDOM.findDOMNode(this.lv).offsetTop;
+		var page = this.state.pageNo + 1;
 		this.setState({page: page});
-		//var isTotal=this.state.total/5===page;
-        this.getData(page,this.state.searchkeyword);
-    }
+		this.getData(page,hei1);
+	  };
+
+	  onEndReached = (event) => {
+		if (this.state.hasMore) {
+		  return;
+		}
+		console.log('reach end', event);
+		this.setState({ isLoading: false,pageNo: 0,});
+		
+	  };
 	render(){
 		  const row = (rowData, sectionID, rowID) => {
 			return (
@@ -69,6 +98,7 @@ class RequirementList extends React.Component{
 				<div className="page-container">
 					<WhiteSpace size="lg" />
 					<ListView 
+						key={this.state.useBodyScroll ? '0' : '1'}
 						ref={el => this.lv = el}
 						dataSource={this.state.dataSource}
 						renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
@@ -77,12 +107,18 @@ class RequirementList extends React.Component{
 						renderRow={row}
 						// renderSeparator={separator}
 						className="am-list"
+						useBodyScroll={this.state.useBodyScroll}
+						style={this.state.useBodyScroll ? {} : {
+						  height: this.state.height,
+						  border: '1px solid #ddd',
+						  margin: '5px 0',
+						}}
+						pullToRefresh={<PullToRefresh
+						  refreshing={this.state.refreshing}
+						  onRefresh={this.onRefresh}
+						/>}
+						onEndReached={this.onEndReached}
 						pageSize={this.state.pageSize}
-						useBodyScroll
-						onScroll={() => { console.log('scroll'); }}
-						scrollRenderAheadDistance={500}
-						// onEndReached={this.onEndReached}
-						onEndReachedThreshold={10}
 					/>
 				</div>
 			</section>
