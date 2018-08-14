@@ -141,7 +141,7 @@ class MyCenter extends React.Component {
 							thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
 							multipleLine
 							onClick={() => this.props.history.push("/mycenter/requirementlist")}
-						>护理需求<List.Item.Brief>我发起的护理需求</List.Item.Brief>
+						>找月嫂<List.Item.Brief>我发布的护理需求</List.Item.Brief>
 						</List.Item>
 						<List.Item
 							arrow="horizontal"
