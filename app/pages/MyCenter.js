@@ -5,6 +5,7 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import PrivateRoute from '@common/PrivateRoute'
 import { List, Button, WhiteSpace, WingBlank, Icon, Grid } from 'antd-mobile';
 import overscroll from '@common/overscroll'
+import Setting from '@pages/mycenter/Setting'
 import NoMatch from '@pages/NoMatch'
 import Tabbar from '@common/TabBar'
 import {fetchGet} from "@common/Fetch";
@@ -20,6 +21,7 @@ class MyCenter extends React.Component {
 			username: "昵称加载中...",
 			stage: "...",
 		}
+		Cookies.get('token') &&
 		fetchGet("api/user/getUserData", {Token: Cookies.get('token')}, true).then((data) => {
 			this.setState({
 				...data
@@ -174,7 +176,7 @@ class MyCenter extends React.Component {
 							arrow="horizontal"
 							thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
 							multipleLine
-							onClick={() => this.props.history.push("/mycenter/re")}
+							onClick={() => this.props.history.push("/mycenter/setting")}
 						>设置<List.Item.Brief>提供登录密码设置、支付密码设置等功能</List.Item.Brief>
 						</List.Item>
 					</List>
@@ -205,8 +207,9 @@ class MyRouter extends React.Component {
 				exitDone: 'page-exit-done',
 			}} timeout={300}>
 				<Switch location={this.props.location}>
-					<Route exact path='/mycenter' component={withRouter(MyCenter)} />
+					<Route exact path='/mycenter' component={MyCenter} />
 					<PrivateRoute path='/mycenter/requirementlist' component={RequirementList} />
+					<Route path='/mycenter/setting' component={Setting} />
 					<Route component={NoMatch} />
 				</Switch>
 			</CSSTransition>
