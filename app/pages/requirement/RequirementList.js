@@ -8,7 +8,7 @@ import { ListView, Card, WhiteSpace, SwipeAction, List, Button, NavBar, Icon, Pu
 import Cookies from 'js-cookie';
 import {fetchPost} from "@common/Fetch";
 import RequItem from '@pages/requirement/RequItem'
-import AddAddress from '@pages/requirement/AddAddress'
+// import AddAddress from '@pages/requirement/AddAddress'
 import overscroll from '@common/overscroll'
 
 class RequirementList extends React.Component{
@@ -55,13 +55,13 @@ class RequirementList extends React.Component{
 	componentDidMount() {
 		const hei = this.state.height - ReactDOM.findDOMNode(this.lv).offsetTop;
 		this.getData(0,hei);
-		overscroll(document.querySelector('.page-container'));
+		// overscroll(document.querySelector('.page-container'));
 	}
 
 	onRefresh = () => {
 		const hei1 = this.state.height - ReactDOM.findDOMNode(this.lv).offsetTop;
 		var page = this.state.pageNo + 1;
-		this.setState({page: page});
+		this.setState({pageNo: page});
 		this.getData(page,hei1);
 	  };
 
@@ -74,9 +74,15 @@ class RequirementList extends React.Component{
 		
 	  };
 	render(){
+
 		  const row = (rowData, sectionID, rowID) => {
+			let data = {id:rowData.id};
+			let path = {
+			  pathname:'/mycenter/RequirementList/requitem',
+			  state:data,
+			}
 			return (
-			  <div key={rowID} style={{ padding: '0 15px' }} onClick={() => this.props.history.push("/mycenter/RequirementList/addAddress")}>{/*addressList*/}
+			  <div key={rowID} style={{ padding: '0 15px' }} onClick={() => this.props.history.push(path)}>{/*addressList*/}
 			 
 				<Card full = {true}>
 					<Card.Body>
@@ -151,7 +157,7 @@ class RequirementRouter extends React.Component {
 				<Switch location={this.props.location}>
 					<Route exact path='/mycenter/requirementlist' component={RequirementList} />
 					<PrivateRoute path='/mycenter/requirementlist/requitem' component={RequItem} />
-					<PrivateRoute path='/mycenter/requirementlist/addAddress' component={AddAddress} />
+					{/* <PrivateRoute path='/mycenter/requirementlist/addAddress' component={AddAddress} /> */}
 					<Route component={NoMatch} />
 				</Switch>
 			</CSSTransition>
