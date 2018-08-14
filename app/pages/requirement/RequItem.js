@@ -8,14 +8,11 @@ import overscroll from '@common/overscroll'
 class RequItem extends React.Component{
 	constructor(props){
 		super(props);
-		let ds =new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+		
 		this.state={
-			pageNo:0,
-			pageSize:5,
-			dataSource:ds,
-			isLoading: true,
-			monData:[],
-			reqId:0,
+			applies:'',//月嫂应聘信息
+			monData:[],//妈妈信息
+			reqId:0,//妈妈发布需求信息id
 			demandStatus:1,//3结束 2暂停 1应聘中
 		}
 	}
@@ -29,7 +26,7 @@ class RequItem extends React.Component{
 		redata.demandId=id;
 		fetchPost("/api/tk/demand/queryDemandApplyByMother", redata, false).then((content) => {
 			this.setState({
-				dataSource: this.state.dataSource.cloneWithRows(content.applies),
+				applies: content.applies,
 				monData: content,
 				demandStatus:content.status,
 			})
@@ -58,15 +55,11 @@ class RequItem extends React.Component{
 	}
 	
 	render(){
-		  const row = (rowData, sectionID, rowID) => {
-			return (
-			  <div key={rowID} style={{ padding: '0 15px' }} onClick={() => this.props.history.push("/mycenter/RequirementList/requitem")}>
-			   <WhiteSpace size="lg" />
-				
-			  </div>
-			);
-		  };
-
+		var MoonList=[];
+		for (var i = 0, j = this.state.applies.length; i < j; i++) {
+			let moon=this.state.applies[i].moon;
+			MoonList.push(<MoonItem key={i} headur={moon.headUrl} name={moon.name} cityName={moon.cityName} takecareBabies={moon.takecareBabies} phone={moon.phone}></MoonItem>);
+		};
 		  return (
 			<section className="page with-navbar" >
 				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{position:"absolute", width:"100%", zIndex:100, boxShadow: "0 1px 5px #999"}}>护理详情</NavBar>
@@ -97,22 +90,7 @@ class RequItem extends React.Component{
 
 				}
 				<div className="apply-bar">全部应聘</div>
-				{/* <ListView 
-					ref={el => this.lv = el}
-					dataSource={this.state.dataSource}
-					renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
-					{this.state.isLoading ? 'Loading...' : 'Loaded'}
-					</div>)}
-					renderRow={row}
-					// renderSeparator={separator}
-					className="am-list"
-					pageSize={this.state.pageSize}
-					useBodyScroll
-					onScroll={() => { console.log('scroll'); }}
-					scrollRenderAheadDistance={500}
-					// onEndReached={this.onEndReached}
-					onEndReachedThreshold={10}
-				/> */}
+					{MoonList}
 				</div>
 			</section>
 		  )}
@@ -121,3 +99,24 @@ class RequItem extends React.Component{
 }
 
 export default RequItem;
+
+class MoonItem extends React.Component{
+	constructor(props){
+		super(props);
+		this.state={
+		}
+	}
+	render(){
+		return (
+			<div>
+				<img className="avatar" style={{ width: '1.28rem', height: '1.28rem', borderRadius: "50%", margin: '0 .3rem' }} src={this.props.headurl} alt="" />
+				<div style={{ lineHeight: 1, padding: ".3rem 0" }}>
+					<div className="name" style={{  fontSize: 18 }}>{this.props.name}</div>
+					<div className="info" style={{ color: '#888', fontSize: 14, marginTop: ".1rem" }}>{this.props.takecareBabies} {this.props.cityName}</div>
+				</div>
+				<Button  type="primary" size="small" style={{position: "absolute", right: ".3rem", top: ".9rem", backgroundColor: "#fff"}}>邀请面试</Button>
+				<Button  type="primary" size="small" style={{position: "absolute", right: ".3rem", top: ".9rem", backgroundColor: "#fff"}}>马上联系</Button>
+			</div>
+		)
+	}
+}

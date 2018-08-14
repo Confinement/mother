@@ -8,7 +8,6 @@ import { ListView, Card, WhiteSpace, SwipeAction, List, Button, NavBar, Icon, Pu
 import Cookies from 'js-cookie';
 import {fetchPost} from "@common/Fetch";
 import RequItem from '@pages/requirement/RequItem'
-// import AddAddress from '@pages/requirement/AddAddress'
 import overscroll from '@common/overscroll'
 
 class RequirementList extends React.Component{
@@ -17,7 +16,7 @@ class RequirementList extends React.Component{
 		let ds =new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 		this.state={
 			pageNo:0,
-			pageSize:5,
+			pageSize:10,
 			dataSource:ds,
 			isLoading: true,
 			refreshing: true,

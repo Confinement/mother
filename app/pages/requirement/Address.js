@@ -1,35 +1,113 @@
 import React from "react"
 import overscroll from '@common/overscroll'
+import { Switch, Route, withRouter } from 'react-router-dom'
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import PrivateRoute from '@common/PrivateRoute'
+import NoMatch from '@pages/NoMatch'
+import AddAddress from '@pages/requirement/AddAddress'
+import { ListView, Card, WhiteSpace, SwipeAction, List, Button, NavBar, Icon, PullToRefresh } from 'antd-mobile';
+import Cookies from 'js-cookie';
+import { fetchPost } from "@common/Fetch";
 
-
-class Address extends React.Component{
-	constructor(){
+class Address extends React.Component {
+	constructor() {
 		super(props)
 		this.state({
-			addressList:[],
+			addressList: [],
 		})
 	}
 
 	componentDidMount() {
 		overscroll(document.querySelector('.page-container'));
+		var data = {}
+		data.Token = Cookies.get("token");
+		fetchPost("/api/tk/goodsOrder/getUserAddrList", data, false).then((content) => {
+			this.setState({
+				addressList: content.list,
+			})
+		})
 	}
 
-	render(){
-		return(
-			<div></div>
+	render() {
+		return (
+
+			<Button className="" onClick={() => this.props.history.push("/psotre/addaddre")}>新增地址</Button>
 		)
 	}
 }
-export default Address;
+// export default Address;
 
-class AddressItem extends React.Component(){
-	render(){
-		<div>
-			<input className='address-name' value={this.props.name}/>
-			<ipuut className='address-phon' value={this.props.phone}/>
-			<ipuut className='address-addr' value={this.props.addr}/>
-			<input type="rideo"/>
-			
-		</div>
+
+class Addresser extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+
+	render() {
+		let enterClassName = this.props.history.action == "POP" ? "slide-out" : "slide-in";
+		return (
+			<TransitionGroup component={null}>
+				<CSSTransition key={this.props.location.key} classNames={{
+					appear: enterClassName + '-appear',
+					appearActive: enterClassName + '-appear-active',
+					enter: enterClassName + '-enter',
+					enterActive: enterClassName + '-enter-active',
+					enterDone: enterClassName + '-enter-done',
+					exit: 'page-exit',
+					exitActive: 'page-exit-active',
+					exitDone: 'page-exit-done',
+				}} timeout={300}>
+					<Switch location={this.props.location}>
+						<Route exact path='/postre/address' component={Address} />
+						<PrivateRoute path='/postre/address/addAddress' component={AddAddress} />
+						<Route component={NoMatch} />
+					</Switch>
+				</CSSTransition>
+			</TransitionGroup>
+		)
+	}
+}
+
+export default withRouter(RequirementRouter)
+
+
+class AddressItem extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+	render() {
+		return (
+			<div>
+				<SwipeAction
+					style={{ backgroundColor: 'gray' }}
+					autoClose
+					left={[
+						{
+							text: 'Reply',
+							onPress: () => console.log('reply'),
+							style: { backgroundColor: '#108ee9', color: 'white' },
+						},
+						{
+							text: 'Cancel',
+							onPress: () => console.log('cancel'),
+							style: { backgroundColor: '#ddd', color: 'white' },
+						},
+					]}
+					onOpen={() => console.log('global open')}
+					onClose={() => console.log('global close')}
+				>
+					<Card full>
+						<Card.Header
+							title={this.props.name}
+							extra={this.props.phone}
+						/>
+						<Card.Body>
+							<div>{this.props.address}</div>
+						</Card.Body>
+						<Card.Footer content={this.props.address} />
+					</Card>
+				</SwipeAction>
+			</div>
+		)
 	}
 }

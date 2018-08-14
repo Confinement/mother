@@ -164,11 +164,11 @@ class PostRe extends React.Component {
 							<span>服务地址</span>
 							<WhiteSpace />
 							<InputItem
-								// onClick={() => this.props.history.push("/mycenter/RequirementList/requitem")}
-								// {...getFieldProps('input3')}
-								// placeholder="请输入地址"
-								// extra={<Button type="ghost" size="small" inline>+</Button>}
-								// onChange={(e)=>this.setState({addressValue:e.target.value})}
+								onClick={() => this.props.history.push("/mycenter/RequirementList/address")}
+								{...getFieldProps('input3')}
+								placeholder="请输入地址"
+								extra={<Button type="ghost" size="small" inline>+</Button>}
+								onChange={(e)=>this.setState({addressValue:e.target.value})}
 							/>
 						</section>
 						<WhiteSpace />
