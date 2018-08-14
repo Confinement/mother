@@ -1,23 +1,23 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import { Switch, Route, withRouter } from 'react-router-dom'
+import { Switch, Route, Link } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import PrivateRoute from '@common/PrivateRoute'
 import NoMatch from '@pages/NoMatch'
-import { ListView, Card, WhiteSpace, SwipeAction, List, Button, NavBar, Icon, PullToRefresh} from 'antd-mobile';
+import { ListView, Card, NavBar, Icon, PullToRefresh} from 'antd-mobile';
 import Cookies from 'js-cookie';
 import {fetchPost} from "@common/Fetch";
 import RequItem from '@pages/requirement/RequItem'
 import overscroll from '@common/overscroll'
 
 class RequirementList extends React.Component{
-	constructor(props){
+	constructor(props) {
 		super(props);
-		let ds =new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-		this.state={
-			pageNo:0,
-			pageSize:10,
-			dataSource:ds,
+		let ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+		this.state = {
+			pageNo: 0,
+			pageSize: 5,
+			dataSource: ds,
 			isLoading: true,
 			refreshing: true,
 			height: document.documentElement.clientHeight,
@@ -30,14 +30,19 @@ class RequirementList extends React.Component{
 		data.pageNo=page;
 		data.pageSize=this.state.pageSize;
 		fetchPost("api/tk/demand/queryDemandByMother", data, false).then((content) => {
-			if(content.total<=(page+1)*this.state.pageSize){
+			if(page+this.state.pageSize >= content.total){
 				this.setState({
 					hasMore: false,
 					refreshing: false,
 					isLoading: false,})
 			}
+			if (page) {
+				this.rData = [...this.rData, ...content.list]
+			} else {
+				this.rData = content.list
+			}
 			this.setState({
-				dataSource:this.state.dataSource.cloneWithRows(content.list),
+				dataSource:this.state.dataSource.cloneWithRows(this.rData),
 			})
 		})
 	}
@@ -47,22 +52,21 @@ class RequirementList extends React.Component{
 	}
 	componentDidMount() {
 		overscroll(document.querySelector('.page-container'));
-		console.log(this.state)
 	}
 
 	onRefresh = () => {
-		var page = this.state.pageNo + 1;
-		this.setState({ pageNo: page });
-		this.getData(page);
+		this.getData(0);
 	};
 
 	onEndReached = (event) => {
-		if (this.state.hasMore) {
+		if (!this.state.hasMore) {
 			return;
 		}
-		console.log('reach end', event);
-		this.setState({ isLoading: false, pageNo: 0, });
+		this.setState({ isLoading: false });
 
+		var page = this.state.pageNo + this.state.pageSize;
+		this.setState({ pageNo: page });
+		this.getData(page);
 	};
 
 	render() {
@@ -87,23 +91,23 @@ class RequirementList extends React.Component{
 
 		  return (
 			<div className="page with-navbar" >
-				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{position:"absolute", width:"100%", zIndex:100, boxShadow: "0 1px 5px #999"}}>护理需求</NavBar>
-				<WhiteSpace size="lg" />
+				<NavBar mode="light" icon={<Icon type="left" />} rightContent={<Link to="/home/requirement">发布需求</Link>} onLeftClick={() => this.props.history.goBack()} style={{position:"absolute", width:"100%", zIndex:100, boxShadow: "0 1px 5px #ccc"}}>护理需求</NavBar>
 				<ListView 
 					ref={el => this.lv = el}
 					dataSource={this.state.dataSource}
-					renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
-					{this.state.isLoading ? 'Loading...' : 'Loaded'}
+					renderFooter={() => (<div style={{ padding: 20, textAlign: 'center' }}>
+					{this.state.isLoading ? 'Loading...' : (!this.state.hasMore&&'没有更多了~')}
 					</div>)}
 					renderRow={row}
-					// renderSeparator={separator}
 					className="page-container"
 					pullToRefresh={<PullToRefresh
 						refreshing={this.state.refreshing}
 						onRefresh={this.onRefresh}
 					/>}
 					onEndReached={this.onEndReached}
+					onEndReachedThreshold={100}
 					pageSize={this.state.pageSize}
+					style={{ paddingTop: 60	}}
 				/>
 			</div>
 			)

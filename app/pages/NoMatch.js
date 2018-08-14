@@ -10,7 +10,7 @@ export default ({history}) => {
         icon={<Icon type="left" />}
         onLeftClick={() => history.goBack()}
       >功能未上线</NavBar>
-      <div style={{marginTop: 200, textAlign: "center", fontSize: 24, color: "#999"}}>敬请期待</div>
+      <div style={{marginTop: 200, textAlign: "center", fontSize: 24, color: "#ccc"}}>敬请期待</div>
     </section>
   )
 }

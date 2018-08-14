@@ -5,7 +5,7 @@ import PrivateRoute from '@common/PrivateRoute'
 import overscroll from '@common/overscroll'
 import NoMatch from '@pages/NoMatch'
 import Tabbar from '@common/TabBar'
-import PostRe from '@pages/requirement/PostRe'
+import RequirementList from '@pages/requirement/RequirementList'
 import "@css/common.css"
 import "@css/home.css"
 
@@ -70,7 +70,7 @@ class HomeRouter extends React.Component {
 				<Switch location={this.props.location}>
 					<Route exact path='/' component={Home} />
 					<Route exact path='/home' component={Home} />
-					<PrivateRoute path='/home/requirement' component={PostRe} />
+					<PrivateRoute path='/home/requirement' component={RequirementList} />
 					<Route component={NoMatch} />
 				</Switch>
 			</CSSTransition>

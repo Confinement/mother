@@ -61,7 +61,7 @@ class AddAddress extends React.Component {
 		const { getFieldProps } = this.props.form;
 		return (
 			<div>
-				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{ position: "absolute", width: "100%", zIndex: 100, boxShadow: "0 1px 5px #999" }}>添加地址</NavBar>
+				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{ position: "absolute", width: "100%", zIndex: 100, boxShadow: "0 1px 5px #ccc" }}>添加地址</NavBar>
 				<WhiteSpace size="lg" />
 				<form className="addAddress">
 					<InputItem

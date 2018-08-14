@@ -115,7 +115,7 @@ class PostRe extends React.Component {
 		const { getFieldProps } = this.props.form;
 		return (
 			<section className="page with-navbar postre" >
-				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{position:"absolute", width:"100%", zIndex:100, boxShadow: "0 1px 5px #999"}}>发布需求</NavBar>
+				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{position:"absolute", width:"100%", zIndex:100, boxShadow: "0 1px 5px #ccc"}}>发布需求</NavBar>
 				<div className="page-container">
 					<form className="mom-requirement">
 					<WingBlank size="md">
@@ -164,11 +164,11 @@ class PostRe extends React.Component {
 							<span>服务地址</span>
 							<WhiteSpace />
 							<InputItem
-								onClick={() => this.props.history.push("/mycenter/RequirementList/address")}
 								{...getFieldProps('input3')}
 								placeholder="请输入地址"
-								extra={<Button type="ghost" size="small" inline>+</Button>}
-								onChange={(e)=>this.setState({addressValue:e.target.value})}
+								value={this.state.addressValue}
+								extra={<Button type="ghost" size="small" inline onClick={() => this.props.history.push("/mycenter/RequirementList/address")}>+</Button>}
+								onChange={v=>this.setState({addressValue:v})}
 							/>
 						</section>
 						<WhiteSpace />

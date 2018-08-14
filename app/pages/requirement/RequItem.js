@@ -59,7 +59,7 @@ class RequItem extends React.Component{
 		};
 		  return (
 			<section className="page with-navbar" >
-				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{position:"absolute", width:"100%", zIndex:100, boxShadow: "0 1px 5px #999"}}>护理详情</NavBar>
+				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{position:"absolute", width:"100%", zIndex:100, boxShadow: "0 1px 5px #ccc"}}>护理详情</NavBar>
 				<div className="page-container">
 				<Card full = {true}>
 					<Card.Body>
