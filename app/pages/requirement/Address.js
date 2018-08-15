@@ -22,8 +22,11 @@ class Address extends React.Component {
 		var data = {}
 		data.Token = Cookies.get("token");
 		fetchPost("/api/tk/goodsOrder/getUserAddrList", data, false).then((content) => {
+			if(content=""){
+				this.props.history.replace("/mycenter/requirementlist/post/address/addaddress")
+			}
 			this.setState({
-				addressList: content.list,
+				addressList: content,
 			})
 		})
 	}
@@ -31,10 +34,11 @@ class Address extends React.Component {
 	render() {
 		return (
 			<section className="page with-navbar" >
-				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{position:"absolute", width:"100%", zIndex:100, boxShadow: "0 1px 5px #999"}}>护理详情</NavBar>
+				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{position:"absolute", width:"100%", zIndex:100, boxShadow: "0 1px 5px #999"}}>地址列表</NavBar>
 				<div className="page-container">
+				<AddressItem/>
 				</div>
-				<Button size="large" type="primary" onClick={() => this.props.history.push("/mycenter/requirementlist/post/address/addAddress")}>新增地址</Button>
+				<Button size="large" type="primary" onClick={() => this.props.history.push("/mycenter/requirementlist/post/address/addaddress")} style={{position:"absolute", bottom:"0",width:"100%", zIndex:100,}}>新增地址</Button>
 			</section>
 		)
 	}
@@ -63,7 +67,8 @@ class AddresserRoute extends React.Component {
 				}} timeout={300}>
 					<Switch location={this.props.location}>
 						<Route exact path='/mycenter/requirementlist/post/address' component={Address} />
-						<PrivateRoute path='/mycenter/requirementlist/post/address/addAddress' component={AddAddress} />
+						<PrivateRoute exact path='/mycenter/requirementlist/post/address/addaddress' component={AddAddress} />
+						<PrivateRoute  path='/mycenter/requirementlist/post/address/addaddress' component={AddAddress} />
 						<Route component={NoMatch} />
 					</Switch>
 				</CSSTransition>
