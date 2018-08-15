@@ -14,9 +14,11 @@ class Interview extends React.Component {
 
 	handleSumbit() {
 		let data = {};
-		data.Token = Cookies.get("token");;
-
+		data.Token = Cookies.get("token");
+		var urlData = this.props.location.state;
+		var {...urlData} = urlData;
 		data.demandId = this.state.babyTypeValue;
+
 		data.moonId = this.state.addressValue;
 		data.auditionTime = this.state.daysValue;
 

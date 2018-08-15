@@ -60,7 +60,7 @@ class RequItem extends React.Component{
 		var MoonList=[];
 		for (var i = 0, j = this.state.applies.length; i < j; i++) {
 			let moon=this.state.applies[i].moon;
-			MoonList.push(<MoonItem key={i}  applies ={this.state.applies[i]} moon={this.state.applies[i].moon} headurl={moon.headUrl} name={moon.name} cityName={moon.cityName} takecareBabies={moon.takecareBabies} phone={moon.phone}></MoonItem>);
+			MoonList.push(<MoonItem key={i} demandStatus={this.state.demandStatus} applies ={this.state.applies[i]} moon={this.state.applies[i].moon} headurl={moon.headUrl} name={moon.name} cityName={moon.cityName} takecareBabies={moon.takecareBabies} phone={moon.phone}></MoonItem>);
 		};
 		  return (
 			<section className="page with-navbar" >
@@ -78,17 +78,17 @@ class RequItem extends React.Component{
 				{this.state.demandStatus==="3" &&
 					<div className="status-mana">
 						<span className="status-btn"></span>
-						<Button size="small" type="primary" disabled className="status-btn over">已结束</Button>
+						<Button size="small" type="primary" disabled className="status-btn">已结束</Button>
 					</div>}
 				{this.state.demandStatus==="1" &&
 					<div className="status-mana">
-						<Button size="small" type="primary" className="status-btn start" onClick={()=>this.stopReq("2")}>暂停</Button>
-						<Button size="small" type="primary" className="status-btn over" onClick={()=>this.stopReq("3")} >结束</Button> 
+						<Button size="small" type="primary" className="status-btn" onClick={()=>this.stopReq("2")}>暂停</Button>
+						<Button size="small" type="primary" className="status-btn" onClick={()=>this.stopReq("3")} >结束</Button> 
 					</div>}
 				{this.state.demandStatus==="2" &&
 					<div className="status-mana">
-						<Button size="small" type="primary" className="status-btn start" onClick={()=>this.stopReq("1")}>恢复</Button>
-						<Button size="small" type="primary" className="status-btn over" onClick={()=>this.stopReq("3")}>结束</Button> 
+						<Button size="small" type="primary" className="status-btn" onClick={()=>this.stopReq("1")}>恢复</Button>
+						<Button size="small" type="primary" className="status-btn" onClick={()=>this.stopReq("3")}>结束</Button> 
 					</div>}
 
 				<div className="apply-bar">全部应聘</div>
@@ -112,7 +112,7 @@ class MoonItem extends React.Component{
 
 		let data={demandId: this.props.applies, moonId: this.props.moonId}
 		const path={
-			path : "/mycenter/RequirementList/requitem/interview",
+			pathname : "/mycenter/RequirementList/requitem/interview",
 			state: data,
 		}
 		return (
@@ -122,8 +122,18 @@ class MoonItem extends React.Component{
 					<div className="name" style={{ fontSize: 18 }}>{this.props.name}</div>
 					<div className="info" style={{ color: '#888', fontSize: 14, marginTop: ".1rem" }}>{this.props.cityName}人 带过{this.props.takecareBabies}个宝宝</div>
 				</div>
-				<Button  onClick={() => this.props.history.push(path)} type="primary" size="small" style={{position: "absolute", right: ".3rem", top: ".2rem", backgroundColor: "#ffda44",borderRadius: "20px"}}>邀请面试</Button>
-				<a href={`tel:${this.props.telphone}`}  style={{display: "block", position: "absolute", right: ".3rem", top: "1rem", backgroundColor: "#ffda44",borderRadius: "20px", fontSize: "13px", height: "30px",lineHeight: "30px",padding: "0 15px"}}>马上联系</a>
+				{this.props.demandStatus==="1" || this.props.demandStatus==="2" || this.props.demandStatus==="3" &&
+					<div>
+						<Button  onClick={() => this.props.history.push(path)} type="primary" size="small" style={{position: "absolute", right: ".3rem", top: ".2rem", backgroundColor: "#ffda44",borderRadius: "20px"}}>邀请面试</Button>
+						<a href={`tel:${this.props.telphone}`}  style={{display: "block", position: "absolute", right: ".3rem", top: "1rem", backgroundColor: "#ffda44",borderRadius: "20px", fontSize: "13px", height: "30px",lineHeight: "30px",padding: "0 15px"}}>马上联系</a>
+					</div>
+				}
+				{/* {this.props.demandStatus==="2" || this.props.demandStatus==="3" &&
+					<div>
+						<Button size="small" type="primary" disabled style={{position: "absolute", right: ".3rem", top: ".2rem", backgroundColor: "#ffda44",borderRadius: "20px"}}>邀请面试</Button>
+						<Button Button size="small" type="primary" disabled style={{position: "absolute", right: ".3rem", top: "1rem", backgroundColor: "#ffda44",borderRadius: "20px"}}>马上联系</Button>
+					</div>
+				} */}
 			</div>
 		)
 	}
@@ -154,7 +164,6 @@ class RequItemRoute extends React.Component {
 				<Switch location={this.props.location}>
 					<PrivateRoute exact path='/mycenter/requirementlist/requitem/:id' component={RequItem} />
 					<PrivateRoute exact path='/mycenter/requirementlist/requitem/interview' component={Interview} />
-					
 					<Route component={NoMatch} />
 				</Switch>
 			</CSSTransition>
