@@ -103,9 +103,10 @@ class Login extends React.Component {
     
     fetchPost("api/sys/sendSms", data, false).then(({content}) => {
       document.querySelector(".sms-btn").innerHTML="已发送";
-      document.querySelector(".sms-btn").disabled = true;
+      document.querySelector(".sms-btn").className="sms-btn wait";
       setTimeout(()=>{
         document.querySelector(".sms-btn").innerHTML="获取验证码";
+        document.querySelector(".sms-btn").className="sms-btn";
       },30000)
     })
   }
