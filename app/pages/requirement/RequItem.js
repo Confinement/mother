@@ -5,10 +5,8 @@ import Cookies from 'js-cookie';
 import {fetchPost} from "@common/Fetch";
 import overscroll from '@common/overscroll'
 import { Switch, Route, Link, withRouter } from 'react-router-dom'
-import { TransitionGroup, CSSTransition } from "react-transition-group";
 import PrivateRoute from '@common/PrivateRoute'
 import NoMatch from '@pages/NoMatch'
-import Interview from '@pages/requirement/Interview'
 
 class RequItem extends React.Component{
 	constructor(props){
@@ -113,7 +111,7 @@ class MoonItem extends React.Component{
 
 		let data={demandId: this.props.applies, moonId: this.props.moonId}
 		const path={
-			pathname : "/mycenter/RequirementList/requitem/interview",
+			pathname : "/mycenter/interview/" + this.props.moonId,
 			state: data,
 		}
 		return (
@@ -160,24 +158,10 @@ class RequItemRoute extends React.Component {
 	render() {
 		let enterClassName = this.props.history.action=="POP"?"slide-out":"slide-in";
 		return (
-		<TransitionGroup component={null}>
-			<CSSTransition key={this.props.location.key} classNames={{
-				appear: enterClassName + '-appear',
-				appearActive: enterClassName + '-appear-active',
-				enter: enterClassName + '-enter',
-				enterActive: enterClassName + '-enter-active',
-				enterDone: enterClassName + '-enter-done',
-				exit: 'page-exit',
-				exitActive: 'page-exit-active',
-				exitDone: 'page-exit-done',
-			}} timeout={300}>
-				<Switch location={this.props.location}>
-					<PrivateRoute exact path='/mycenter/requirementlist/requitem/:id' component={RequItem} />
-					<PrivateRoute exact path='/mycenter/requirementlist/requitem/interview' component={Interview} />
-					<Route component={NoMatch} />
-				</Switch>
-			</CSSTransition>
-		</TransitionGroup>
+			<Switch location={this.props.location}>
+				<PrivateRoute exact path='/mycenter/requirementlist/requitem/:id' component={RequItem} />
+				<Route component={NoMatch} />
+			</Switch>
 		)
 	}
 }

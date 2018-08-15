@@ -11,6 +11,7 @@ import Tabbar from '@common/TabBar'
 import {fetchGet} from "@common/Fetch";
 import Cookies from 'js-cookie';
 import RequirementList from '@pages/requirement/RequirementList'
+import Interview from '@pages/requirement/Interview'
 
 
 class MyCenter extends React.Component {
@@ -208,6 +209,7 @@ class MyRouter extends React.Component {
 				<Switch location={this.props.location}>
 					<Route exact path='/mycenter' component={MyCenter} />
 					<PrivateRoute path='/mycenter/requirementlist' component={RequirementList} />
+					<PrivateRoute path='/mycenter/interview' component={Interview} />
 					<Route path='/mycenter/setting' component={Setting} />
 					<Route component={NoMatch} />
 				</Switch>
