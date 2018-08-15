@@ -3,7 +3,7 @@ import React from "react";
 import { fetchPost } from "@common/Fetch";
 import { withRouter } from 'react-router-dom'
 import Cookies from 'js-cookie';
-import { Tabs, NavBar, Icon } from 'antd-mobile';
+import { Tabs, NavBar, Icon, Button } from 'antd-mobile';
 
 class Login extends React.Component {
   constructor(props) {
@@ -103,6 +103,7 @@ class Login extends React.Component {
     
     fetchPost("api/sys/sendSms", data, false).then(({content}) => {
       document.querySelector(".sms-btn").innerHTML="已发送";
+      document.querySelector(".sms-btn").disabled = true;
       setTimeout(()=>{
         document.querySelector(".sms-btn").innerHTML="获取验证码";
       },30000)
@@ -181,7 +182,6 @@ class Login extends React.Component {
             <hr style={{width:'90%'}}/>
             <div className="login-item login-pawd">
               <input type="password" className="pawd" placeholder="密码" onChange={this.pawChange.bind(this)} value={this.state.pawValue} />
-              <button className="islook" onClick={this.isLookpwd.bind(this)}>kk</button>
             </div>
             <hr style={{width:'90%'}}/>
           </div>
@@ -193,7 +193,7 @@ class Login extends React.Component {
             <hr style={{width:'90%'}}/>
             <div className="login-item login-pawd">
               <input type="text" className="pawd" placeholder="验证码" onChange={this.smsChange.bind(this)} value={this.state.smsValue} />
-              <button className="sms-btn" onClick={(event) => this.handleSendSms(event, 2)}>获取验证码</button>
+              <Button size="small"  style={{position: "absolute", right: ".3rem", top: ".2rem",borderRadius: "20px"}} className="sms-btn" onClick={(event) => this.handleSendSms(event, 2)}>获取验证码</Button>
             </div>
             <hr style={{width:'90%'}}/>
           </div>

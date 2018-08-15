@@ -52,13 +52,13 @@
 .sms-btn{
 	font-size: 12px;
     position: absolute;
-    right: 0;
+    /* right: 0;
     bottom: 0;
     width: 1.6rem;
     height: 0.6rem;
     text-align: center;
     border: 1px solid #d0cfce;
-    border-radius: 5px;
+    border-radius: 5px; */
 }
 
 .ph-tips{
