@@ -10,6 +10,7 @@ import Jaundice from '@pages/Jaundice'
 import BBS from '@pages/BBS'
 import Learning from '@pages/Learning'
 import MyCenter from '@pages/MyCenter'
+import BabySitter from '@pages/requirement/BabySitter'
 import Login from '@pages/Login'
 import NoMatch from '@pages/NoMatch'
 
@@ -46,6 +47,7 @@ class AppRouter extends React.Component {
 					<Route path='/bbs' component={BBS} />
 					<Route path='/learning' component={Learning} />
 					<Route path='/mycenter' component={MyCenter} />
+					<Route path='/babysitter' component={BabySitter} />
 					<Route exact path='/login' component={Login} />
 					<Route exact path='/' component={Home} />
 					<Route component={NoMatch} />

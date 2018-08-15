@@ -1,4 +1,4 @@
-
+import Cookies from 'js-cookie';
 import { platform, version, preUrl } from '@common/config';
 import Store from '@common/Store';
 import createBrowserHistory from "history/createBrowserHistory"
@@ -13,6 +13,7 @@ let _fetch = (uri, data, cache, type) => new Promise((resolve, reject) => {
 	data = data || {};
 	data.Platform = data.Platform || platform;
 	data.Version_Code = data.Version_Code || version;
+	data.Token = data.Token || Cookies.get('token');
 	let url = preUrl + uri;
 	let options = {
 		method: type,
