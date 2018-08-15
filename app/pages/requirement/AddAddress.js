@@ -4,8 +4,6 @@ import { createForm } from 'rc-form';
 import Cookies from 'js-cookie';
 import { fetchPost } from '@common/Fetch'
 
-
-
 class AddAddress extends React.Component {
 	constructor(props) {
 		super(props);
@@ -60,53 +58,55 @@ class AddAddress extends React.Component {
 	render() {
 		const { getFieldProps } = this.props.form;
 		return (
-			<div>
+			<section className="page with-navbar" >
 				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{ position: "absolute", width: "100%", zIndex: 100, boxShadow: "0 1px 5px #ccc" }}>添加地址</NavBar>
 				<WhiteSpace size="lg" />
-				<form className="addAddress">
-					<InputItem
-						{...getFieldProps('autofocus')}
-						clear
-						placeholder="请输入您的姓名"
-						value={this.state.nameValue}
-					>收货人</InputItem>
-					<InputItem
-						type="phone"
-						placeholder="请输入联系电话"
-						error={this.state.hasError}
-						onErrorClick={this.onErrorClick.bind(this)}
-						onChange={this.onChange.bind(this)}
-						value={this.state.phoneValue}
-					>联系电话</InputItem>
-					{/* <Picker
-						data={this.city}
-						title="地区"
-						cascade={false}
-						extra="请选择"
-						value={this.state.sValue}
-						onChange={v => this.setState({ sValue: v })}
-						onOk={v => this.setState({ sValue: v })}
-					>
-						<List.Item arrow="horizontal">所在地区</List.Item>
-					</Picker> */}
-					<InputItem
-						{...getFieldProps('autofocus')}
-						clear
-						placeholder="请输入详细地址信息"
-						value={this.state.addrValue}
-					>详细地址</InputItem>
-					<List.Item
-						extra={<Switch
-							{...getFieldProps('Switch', {
-								initialValue: false,
-								valuePropName: 'checked',
-							})}
-							onClick={(checked) => { checked ? this.setState({ isDefault: 1 }) : this.setState({ isDefault: 0 }) }}
-						/>}
-					>默认地址</List.Item>
-					<Button type="primary" onClick={this.handleSumbit.bind(this)}>保存</Button>
-				</form>
-			</div>
+				<div className="page-container">
+					<form className="addAddress">
+						<InputItem
+							{...getFieldProps('autofocus')}
+							clear
+							placeholder="请输入您的姓名"
+							value={this.state.nameValue}
+						>收货人</InputItem>
+						<InputItem
+							type="phone"
+							placeholder="请输入联系电话"
+							error={this.state.hasError}
+							onErrorClick={this.onErrorClick.bind(this)}
+							onChange={this.onChange.bind(this)}
+							value={this.state.phoneValue}
+						>联系电话</InputItem>
+						{/* <Picker
+							data={this.city}
+							title="地区"
+							cascade={false}
+							extra="请选择"
+							value={this.state.sValue}
+							onChange={v => this.setState({ sValue: v })}
+							onOk={v => this.setState({ sValue: v })}
+						>
+							<List.Item arrow="horizontal">所在地区</List.Item>
+						</Picker> */}
+						<InputItem
+							{...getFieldProps('autofocus')}
+							clear
+							placeholder="请输入详细地址信息"
+							value={this.state.addrValue}
+						>详细地址</InputItem>
+						<List.Item
+							extra={<Switch
+								{...getFieldProps('Switch', {
+									initialValue: false,
+									valuePropName: 'checked',
+								})}
+								onClick={(checked) => { checked ? this.setState({ isDefault: 1 }) : this.setState({ isDefault: 0 }) }}
+							/>}
+						>默认地址</List.Item>
+						<Button type="primary" onClick={this.handleSumbit.bind(this)}>保存</Button>
+					</form>
+				</div>
+			</section>
 		)
 	}
 }
