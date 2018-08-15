@@ -26,7 +26,6 @@ class MyCenter extends React.Component {
 			this.setState({
 				...data
 			})
-			console.log(this.state)
 		})
 	}
 
@@ -147,7 +146,7 @@ class MyCenter extends React.Component {
 							arrow="horizontal"
 							thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
 							multipleLine
-							extra={Cookies.get('token') && <span>今日 <i>0</i> | 明日 <i>1</i></span>}
+							extra={Cookies.get('token') && <span>今日 <i>0</i> | 明日 <i>0</i></span>}
 							onClick={() => this.props.history.push("/mycenter/re")}
 						>我的面试<List.Item.Brief>月嫂面试管理</List.Item.Brief>
 						</List.Item>

@@ -42,11 +42,12 @@ class RequirementList extends React.Component{
 				this.rData = [...this.rData, ...content.list]
 			} else {
 				this.rData = content.list
-				// !content.list.length && this.props.history.push("/home/requirement")
 			}
 			this.setState({
 				dataSource:this.state.dataSource.cloneWithRows(this.rData),
 			})
+		}).catch((code) => {
+			code == "17013" && this.props.history.replace("/mycenter/requirementlist/post")
 		})
 	}
 

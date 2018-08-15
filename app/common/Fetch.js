@@ -1,11 +1,11 @@
 
 import { platform, version, preUrl } from '@common/config';
+import Store from '@common/Store';
 import createBrowserHistory from "history/createBrowserHistory"
 const history = createBrowserHistory()
 
-let Store = {}
 
-let _fetch = (uri, data, cache, type) => new Promise(resolve => {
+let _fetch = (uri, data, cache, type) => new Promise((resolve, reject) => {
 	if(Store[uri]){
 		resolve(Store[uri]);
 		return;
@@ -32,7 +32,7 @@ let _fetch = (uri, data, cache, type) => new Promise(resolve => {
 		} else if (res.code == "100001") {
 			history.push('/login')
 		} else {
-			alert(res.desc);
+			reject(res.code, res.desc);
 		}
 	}))
 })
