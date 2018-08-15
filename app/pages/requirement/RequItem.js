@@ -162,8 +162,7 @@ class RequItemRoute extends React.Component {
 				exitDone: 'page-exit-done',
 			}} timeout={300}>
 				<Switch location={this.props.location}>
-					<Route exact path='/mycenter/requirementlist/requitem' component={RequItem} />
-					<PrivateRoute path='/mycenter/requirementlist/requitem/:id' component={RequItem} />
+					<PrivateRoute exact path='/mycenter/requirementlist/requitem/:id' component={RequItem} />
 					<PrivateRoute exact path='/mycenter/requirementlist/requitem/interview' component={Interview} />
 					<Route component={NoMatch} />
 				</Switch>
