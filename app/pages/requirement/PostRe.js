@@ -206,7 +206,7 @@ class PostRe extends React.Component {
 								<span>服务宝宝数</span>
 								<WhiteSpace />
 								<Flex>
-									<Flex.Item><div className={this.state.babysValue=="-"?'flex-item selected':'flex-item'}  onClick={()=>this.setState({babysValue:"0-1000"})}>不限</div></Flex.Item>
+									<Flex.Item><div className={this.state.babysValue=="-"?'flex-item selected':'flex-item'}  onClick={()=>this.setState({babysValue:"-"})}>不限</div></Flex.Item>
 									<Flex.Item><div className={this.state.babysValue=="0-10"?'flex-item selected':'flex-item'} onClick={()=>this.setState({babysValue:"0-10"})}>10个以下</div></Flex.Item>
 									<Flex.Item><div className={this.state.babysValue=="11-30"?'flex-item selected':'flex-item'} onClick={()=>this.setState({babysValue:"11-30"})}>11-30个</div></Flex.Item>
 									<Flex.Item><div className={this.state.babysValue=="31-1000"?'flex-item selected':'flex-item'} onClick={()=>this.setState({babysValue:"31-1000"})}>31个以上</div></Flex.Item>

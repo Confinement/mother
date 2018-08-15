@@ -61,6 +61,11 @@
     border-radius: 5px; */
 }
 
+.wait {
+    cursor:wait;
+    pointer-events: none;
+} 
+
 .ph-tips{
 	display: block;
 	position: absolute;
