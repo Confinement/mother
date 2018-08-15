@@ -167,7 +167,7 @@ class PostRe extends React.Component {
 								{...getFieldProps('input3')}
 								placeholder="请输入地址"
 								value={this.state.addressValue}
-								extra={<Button type="ghost" size="small" inline onClick={() => this.props.history.push("/mycenter/RequirementList/address")}>+</Button>}
+								extra={<Button type="ghost" size="small" inline onClick={() => this.props.history.push("/mycenter/requirementlist/post/address")}>+</Button>}
 								onChange={v=>this.setState({addressValue:v})}
 							/>
 						</section>

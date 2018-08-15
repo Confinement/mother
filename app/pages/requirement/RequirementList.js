@@ -10,6 +10,7 @@ import Cookies from 'js-cookie';
 import {fetchPost} from "@common/Fetch";
 import RequItem from '@pages/requirement/RequItem'
 import PostRe from '@pages/requirement/PostRe'
+import Address from '@pages/requirement/Address'
 
 class RequirementList extends React.Component{
 	constructor(props) {
@@ -141,6 +142,7 @@ class RequirementRouter extends React.Component {
 					<Route exact path='/home/requirement' component={RequirementList} />
 					<Route exact path='/mycenter/requirementlist' component={RequirementList} />
 					<Route exact path='/mycenter/requirementlist/post' component={PostRe} />
+					<Route exact path='/mycenter/requirementlist/post/address' component={Address} />
 					<PrivateRoute path='/mycenter/requirementlist/requitem' component={RequItem} />
 					{/* <PrivateRoute path='/mycenter/requirementlist/addAddress' component={AddAddress} /> */}
 					<Route component={NoMatch} />

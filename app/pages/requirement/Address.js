@@ -5,16 +5,16 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import PrivateRoute from '@common/PrivateRoute'
 import NoMatch from '@pages/NoMatch'
 import AddAddress from '@pages/requirement/AddAddress'
-import { ListView, Card, WhiteSpace, SwipeAction, List, Button, NavBar, Icon, PullToRefresh } from 'antd-mobile';
-import Cookies from 'js-cookie';
-import { fetchPost } from "@common/Fetch";
+import { ListView, Card, WhiteSpace, SwipeAction, List, Button, NavBar, Icon, PullToRefresh } from 'antd-mobile'
+import Cookies from 'js-cookie'
+import { fetchPost } from "@common/Fetch"
+
+
 
 class Address extends React.Component {
-	constructor() {
-		super(props)
-		this.state({
-			addressList: [],
-		})
+	constructor(props) {
+		super(props);
+		
 	}
 
 	componentDidMount() {
@@ -30,15 +30,19 @@ class Address extends React.Component {
 
 	render() {
 		return (
-
-			<Button className="" onClick={() => this.props.history.push("/psotre/addaddre")}>新增地址</Button>
+			<section className="page with-navbar" >
+				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{position:"absolute", width:"100%", zIndex:100, boxShadow: "0 1px 5px #999"}}>护理详情</NavBar>
+				<div className="page-container">
+				</div>
+				<Button size="large" type="primary" onClick={() => this.props.history.push("/mycenter/requirementlist/post/address/addAddress")}>新增地址</Button>
+			</section>
 		)
 	}
 }
 // export default Address;
 
 
-class Addresser extends React.Component {
+class AddresserRoute extends React.Component {
 	constructor(props) {
 		super(props);
 	}
@@ -58,8 +62,8 @@ class Addresser extends React.Component {
 					exitDone: 'page-exit-done',
 				}} timeout={300}>
 					<Switch location={this.props.location}>
-						<Route exact path='/postre/address' component={Address} />
-						<PrivateRoute path='/postre/address/addAddress' component={AddAddress} />
+						<Route exact path='/mycenter/requirementlist/post/address' component={Address} />
+						<PrivateRoute path='/mycenter/requirementlist/post/address/addAddress' component={AddAddress} />
 						<Route component={NoMatch} />
 					</Switch>
 				</CSSTransition>
@@ -68,7 +72,7 @@ class Addresser extends React.Component {
 	}
 }
 
-export default withRouter(RequirementRouter)
+export default AddresserRoute
 
 
 class AddressItem extends React.Component {
