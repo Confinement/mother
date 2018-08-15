@@ -94,3 +94,8 @@
     font-size: 15px;
     padding: 0 0.2rem;
 }
+
+/* interview */
+.mom-interview .am-tabs-content-wrap .am-list-body div:not(:last-child) .am-list-line::after {
+	height: 2px;
+}
