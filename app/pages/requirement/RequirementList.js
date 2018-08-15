@@ -36,6 +36,7 @@ class RequirementList extends React.Component{
 					hasMore: false,
 					refreshing: false,
 					isLoading: false,})
+				// Todo: 加载所有后 下拉刷新，无法重新加载第二页
 			}
 			if (page) {
 				this.rData = [...this.rData, ...content.list]
