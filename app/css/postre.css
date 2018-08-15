@@ -90,4 +90,7 @@
 	margin: 0 auto;
 	margin-top: .5rem;
 	background-color:#ffda44;
+	line-height: 0.8rem;
+    font-size: 15px;
+    padding: 0 0.2rem;
 }
