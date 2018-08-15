@@ -42,7 +42,8 @@ const webpackCommon = {
 							// "minify"
 						],
 						plugins: [
-							["transform-runtime", {helpers: false, polyfill: false, regenerator: true, moduleName: "babel-runtime"}]
+							["transform-runtime", {helpers: false, polyfill: false, regenerator: true, moduleName: "babel-runtime"}],
+							["transform-decorators-legacy"]
 						]
                     }
 				},

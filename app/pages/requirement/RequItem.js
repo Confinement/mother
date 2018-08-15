@@ -4,7 +4,7 @@ import { ListView, Card, WhiteSpace, SwipeAction, List, Button, NavBar, Icon} fr
 import Cookies from 'js-cookie';
 import {fetchPost} from "@common/Fetch";
 import overscroll from '@common/overscroll'
-import { Switch, Route, Link } from 'react-router-dom'
+import { Switch, Route, Link, withRouter } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import PrivateRoute from '@common/PrivateRoute'
 import NoMatch from '@pages/NoMatch'
@@ -102,6 +102,7 @@ class RequItem extends React.Component{
 
 // export default RequItem;
 
+@withRouter
 class MoonItem extends React.Component{
 	constructor(props){
 		super(props);
@@ -148,7 +149,6 @@ class MoonItem extends React.Component{
 		)
 	}
 }
-
 
 
 
