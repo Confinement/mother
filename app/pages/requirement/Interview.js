@@ -21,9 +21,6 @@ class Interview extends React.Component {
 		data.auditionTime = this.state.daysValue;
 
 		data.auditionType = this.state.arearValue,
-			data.auditionAddr = "112",
-
-			data.auditionContact = this.state.costMin;
 
 		fetchPost("/api/tk/demand/inviteMoon2View", data, true).then(res => {
 
