@@ -122,18 +122,28 @@ class MoonItem extends React.Component{
 					<div className="name" style={{ fontSize: 18 }}>{this.props.name}</div>
 					<div className="info" style={{ color: '#888', fontSize: 14, marginTop: ".1rem" }}>{this.props.cityName}人 带过{this.props.takecareBabies}个宝宝</div>
 				</div>
-				{this.props.demandStatus==="1" || this.props.demandStatus==="2" || this.props.demandStatus==="3" &&
+				{/* production:start */}
+				{this.props.demandStatus==="1" &&
 					<div>
 						<Button  onClick={() => this.props.history.push(path)} type="primary" size="small" style={{position: "absolute", right: ".3rem", top: ".2rem", backgroundColor: "#ffda44",borderRadius: "20px"}}>邀请面试</Button>
 						<a href={`tel:${this.props.telphone}`}  style={{display: "block", position: "absolute", right: ".3rem", top: "1rem", backgroundColor: "#ffda44",borderRadius: "20px", fontSize: "13px", height: "30px",lineHeight: "30px",padding: "0 15px"}}>马上联系</a>
 					</div>
 				}
-				{/* {this.props.demandStatus==="2" || this.props.demandStatus==="3" &&
+				{(this.props.demandStatus==="2" || this.props.demandStatus==="3") &&
 					<div>
 						<Button size="small" type="primary" disabled style={{position: "absolute", right: ".3rem", top: ".2rem", backgroundColor: "#ffda44",borderRadius: "20px"}}>邀请面试</Button>
 						<Button Button size="small" type="primary" disabled style={{position: "absolute", right: ".3rem", top: "1rem", backgroundColor: "#ffda44",borderRadius: "20px"}}>马上联系</Button>
 					</div>
-				} */}
+				}
+				{/* production:end */}
+				{/* debug:start */}
+				{(this.props.demandStatus==="1" || this.props.demandStatus==="2" || this.props.demandStatus==="3") &&
+					<div>
+						<Button  onClick={() => this.props.history.push(path)} type="primary" size="small" style={{position: "absolute", right: ".3rem", top: ".2rem", backgroundColor: "#ffda44",borderRadius: "20px"}}>邀请面试</Button>
+						<a href={`tel:${this.props.telphone}`}  style={{display: "block", position: "absolute", right: ".3rem", top: "1rem", backgroundColor: "#ffda44",borderRadius: "20px", fontSize: "13px", height: "30px",lineHeight: "30px",padding: "0 15px"}}>马上联系</a>
+					</div>
+				}
+				{/* debug:end */}
 			</div>
 		)
 	}
