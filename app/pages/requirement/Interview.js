@@ -1,14 +1,18 @@
 import "@css/postre.css"
 import React from "react"
-import { ListView, Card, WhiteSpace, SwipeAction, List, Button, NavBar, Icon } from 'antd-mobile';
+import { Switch, Route } from 'react-router-dom'
+import PrivateRoute from '@common/PrivateRoute'
+import { CheckboxItem, Card, WhiteSpace, WingBlank, DatePicker, List, Button, NavBar, Icon } from 'antd-mobile';
 import Cookies from 'js-cookie';
 import { fetchPost } from "@common/Fetch";
 import overscroll from '@common/overscroll'
+import NoMatch from '@pages/NoMatch'
 
 class Interview extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			id:this.props.match.params.id,//月嫂id
 		}
 	}
 
@@ -33,7 +37,7 @@ class Interview extends React.Component {
 		const data = [
 			{ value: '康法漫厦大店', label: '康法漫厦大店' },
 			{ value: '康法漫前铺店', label: '康法漫前铺店' },
-			{ value: '康法漫厦大店', label: '康法漫厦大店' },
+			{ value: '康法漫厦大店2', label: '康法漫厦大店2' },
 			{ value: '其他', label: '其他' },
 
 		];
@@ -67,4 +71,22 @@ class Interview extends React.Component {
 		)
 	}
 }
-export default Interview;
+
+class InterviewRouter extends React.Component {
+	constructor (props) {
+		super(props);
+	}
+
+	render() {
+		let enterClassName = this.props.history.action=="POP"?"slide-out":"slide-in";
+		return (
+			<Switch location={this.props.location}>
+				<PrivateRoute path='/mycenter/interview' component={Interview} />
+				<PrivateRoute exact path='/mycenter/interview/:id' component={Interview} />
+				<Route component={NoMatch} />
+			</Switch>
+		)
+	}
+}
+
+export default InterviewRouter
