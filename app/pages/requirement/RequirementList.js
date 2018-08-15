@@ -3,12 +3,13 @@ import ReactDOM from "react-dom"
 import { Switch, Route, Link } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import PrivateRoute from '@common/PrivateRoute'
+import overscroll from '@common/overscroll'
 import NoMatch from '@pages/NoMatch'
 import { ListView, Card, NavBar, Icon, PullToRefresh} from 'antd-mobile';
 import Cookies from 'js-cookie';
 import {fetchPost} from "@common/Fetch";
 import RequItem from '@pages/requirement/RequItem'
-import overscroll from '@common/overscroll'
+import PostRe from '@pages/requirement/PostRe'
 
 class RequirementList extends React.Component{
 	constructor(props) {
@@ -40,6 +41,7 @@ class RequirementList extends React.Component{
 				this.rData = [...this.rData, ...content.list]
 			} else {
 				this.rData = content.list
+				// !content.list.length && this.props.history.push("/home/requirement")
 			}
 			this.setState({
 				dataSource:this.state.dataSource.cloneWithRows(this.rData),
@@ -73,7 +75,7 @@ class RequirementList extends React.Component{
 
 		  const row = (rowData, sectionID, rowID) => {
 			return (
-			<div key={rowID} onClick={() => this.props.history.push('/mycenter/RequirementList/requitem/' + rowData.id)}>{/*addressList*/}
+			<div key={rowID} onClick={() => this.props.history.push('/mycenter/requirementlist/requitem/' + rowData.id)}>{/*addressList*/}
 			
 				<Card full = {true}>
 					<Card.Body>
@@ -91,7 +93,7 @@ class RequirementList extends React.Component{
 
 		  return (
 			<div className="page with-navbar" >
-				<NavBar mode="light" icon={<Icon type="left" />} rightContent={<Link to="/home/requirement">发布需求</Link>} onLeftClick={() => this.props.history.goBack()} style={{position:"absolute", width:"100%", zIndex:100, boxShadow: "0 1px 5px #ccc"}}>护理需求</NavBar>
+				<NavBar mode="light" icon={<Icon type="left" />} rightContent={<Link to="/mycenter/requirementlist/post">发布需求</Link>} onLeftClick={() => this.props.history.goBack()} style={{position:"absolute", width:"100%", zIndex:100, boxShadow: "0 1px 5px #ccc"}}>护理需求</NavBar>
 				<ListView 
 					ref={el => this.lv = el}
 					dataSource={this.state.dataSource}
@@ -136,9 +138,10 @@ class RequirementRouter extends React.Component {
 				exitDone: 'page-exit-done',
 			}} timeout={300}>
 				<Switch location={this.props.location}>
+					<Route exact path='/home/requirement' component={RequirementList} />
 					<Route exact path='/mycenter/requirementlist' component={RequirementList} />
-					<PrivateRoute exact path='/mycenter/requirementlist/requitem' component={RequItem} />
-					<PrivateRoute path='/mycenter/requirementlist/requitem/:id' component={RequItem} />
+					<Route exact path='/mycenter/requirementlist/post' component={PostRe} />
+					<PrivateRoute path='/mycenter/requirementlist/requitem' component={RequItem} />
 					{/* <PrivateRoute path='/mycenter/requirementlist/addAddress' component={AddAddress} /> */}
 					<Route component={NoMatch} />
 				</Switch>
