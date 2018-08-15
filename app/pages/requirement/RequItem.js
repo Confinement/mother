@@ -109,7 +109,7 @@ class MoonItem extends React.Component{
 				<img className="avatar" style={{ width: '1.28rem', height: '1.28rem', borderRadius: "50%", margin: '0 .3rem' }} src={this.props.headurl} alt="" />
 				<div style={{ lineHeight: 1, padding: ".3rem 0" }}>
 					<div className="name" style={{ fontSize: 18 }}>{this.props.name}</div>
-					<div className="info" style={{ color: '#888', fontSize: 14, marginTop: ".1rem" }}>{this.props.takecareBabies} {this.props.cityName}</div>
+					<div className="info" style={{ color: '#888', fontSize: 14, marginTop: ".1rem" }}>{this.props.cityName}人 带过{this.props.takecareBabies}个宝宝</div>
 				</div>
 				<Button  type="primary" size="small" style={{position: "absolute", right: ".3rem", top: ".2rem", backgroundColor: "#ffda44",borderRadius: "20px"}}>邀请面试</Button>
 				<a href={`tel:${this.props.telphone}`}  style={{display: "block", position: "absolute", right: ".3rem", top: "1rem", backgroundColor: "#ffda44",borderRadius: "20px", fontSize: "13px", height: "30px",lineHeight: "30px",padding: "0 15px"}}>马上联系</a>
