@@ -109,10 +109,10 @@ class MoonItem extends React.Component{
 	}
 	render(){
 
-		let data={demandId: this.props.applies, moonId: this.props.moonId}
+		let rDate = {applies :this.props.applies};
 		const path={
-			pathname : "/mycenter/interview/" + this.props.moonId,
-			state: data,
+			pathname : "/mycenter/interview/",
+			state: rDate,
 		}
 		return (
 			<div style={{display: "flex",position: "relative", backgroundColor: "#fff", with:" 100%", height: "1.5rem", padding: "0.2rem 0px"}}>
