@@ -4,7 +4,7 @@ import { ListView, Card, WhiteSpace, SwipeAction, List, Button, NavBar, Icon} fr
 import Cookies from 'js-cookie';
 import {fetchPost} from "@common/Fetch";
 import overscroll from '@common/overscroll'
-import { Switch, Route, Link } from 'react-router-dom'
+import { Switch, Route, Link, withRouter } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import PrivateRoute from '@common/PrivateRoute'
 import NoMatch from '@pages/NoMatch'
@@ -102,6 +102,7 @@ class RequItem extends React.Component{
 
 // export default RequItem;
 
+@withRouter
 class MoonItem extends React.Component{
 	constructor(props){
 		super(props);
@@ -122,23 +123,32 @@ class MoonItem extends React.Component{
 					<div className="name" style={{ fontSize: 18 }}>{this.props.name}</div>
 					<div className="info" style={{ color: '#888', fontSize: 14, marginTop: ".1rem" }}>{this.props.cityName}人 带过{this.props.takecareBabies}个宝宝</div>
 				</div>
-				{this.props.demandStatus==="1" || this.props.demandStatus==="2" || this.props.demandStatus==="3" &&
+				{/* production:start */}
+				{this.props.demandStatus==="1" &&
 					<div>
 						<Button  onClick={() => this.props.history.push(path)} type="primary" size="small" style={{position: "absolute", right: ".3rem", top: ".2rem", backgroundColor: "#ffda44",borderRadius: "20px"}}>邀请面试</Button>
 						<a href={`tel:${this.props.telphone}`}  style={{display: "block", position: "absolute", right: ".3rem", top: "1rem", backgroundColor: "#ffda44",borderRadius: "20px", fontSize: "13px", height: "30px",lineHeight: "30px",padding: "0 15px"}}>马上联系</a>
 					</div>
 				}
-				{/* {this.props.demandStatus==="2" || this.props.demandStatus==="3" &&
+				{(this.props.demandStatus==="2" || this.props.demandStatus==="3") &&
 					<div>
 						<Button size="small" type="primary" disabled style={{position: "absolute", right: ".3rem", top: ".2rem", backgroundColor: "#ffda44",borderRadius: "20px"}}>邀请面试</Button>
 						<Button Button size="small" type="primary" disabled style={{position: "absolute", right: ".3rem", top: "1rem", backgroundColor: "#ffda44",borderRadius: "20px"}}>马上联系</Button>
 					</div>
-				} */}
+				}
+				{/* production:end */}
+				{/* debug:start */}
+				{(this.props.demandStatus==="1" || this.props.demandStatus==="2" || this.props.demandStatus==="3") &&
+					<div>
+						<Button  onClick={() => this.props.history.push(path)} type="primary" size="small" style={{position: "absolute", right: ".3rem", top: ".2rem", backgroundColor: "#ffda44",borderRadius: "20px"}}>邀请面试</Button>
+						<a href={`tel:${this.props.telphone}`}  style={{display: "block", position: "absolute", right: ".3rem", top: "1rem", backgroundColor: "#ffda44",borderRadius: "20px", fontSize: "13px", height: "30px",lineHeight: "30px",padding: "0 15px"}}>马上联系</a>
+					</div>
+				}
+				{/* debug:end */}
 			</div>
 		)
 	}
 }
-
 
 
 

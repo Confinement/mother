@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/Cellar/node/8.9.1/bin/node /usr/local/Cellar/yarn/1.3.2/libexec/bin/yarn.js
+  /usr/local/Cellar/node/8.9.1/bin/node /usr/local/Cellar/yarn/1.3.2/libexec/bin/yarn.js add transform-decorators-legacy
 
 PATH: 
   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -503,6 +503,12 @@ Lockfile:
   async-each@^1.0.0:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/async-each/-/async-each-1.0.1.tgz#19d386a1d9edc6e7c1c85d388aedbcc56d33602d"
+  
+  async-validator@1.x:
+    version "1.8.5"
+    resolved "https://registry.yarnpkg.com/async-validator/-/async-validator-1.8.5.tgz#dc3e08ec1fd0dddb67e60842f02c0cd1cec6d7f0"
+    dependencies:
+      babel-runtime "6.x"
   
   async@^1.5.0, async@^1.5.2:
     version "1.5.2"
@@ -2029,7 +2035,7 @@ Lockfile:
       safe-buffer "^5.0.1"
       sha.js "^2.4.8"
   
-  create-react-class@^15.6.0:
+  create-react-class@^15.5.3, create-react-class@^15.6.0:
     version "15.6.3"
     resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.6.3.tgz#2d73237fb3f970ae6ebe011a9e66f46dbca80036"
     dependencies:
@@ -2377,6 +2383,10 @@ Lockfile:
   dom-helpers@^3.3.1:
     version "3.3.1"
     resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-3.3.1.tgz#fc1a4e15ffdf60ddde03a480a9c0fece821dd4a6"
+  
+  dom-scroll-into-view@1.x:
+    version "1.2.1"
+    resolved "https://registry.yarnpkg.com/dom-scroll-into-view/-/dom-scroll-into-view-1.2.1.tgz#e8f36732dd089b0201a88d7815dc3f88e6d66c7e"
   
   dom-serializer@0:
     version "0.1.0"
@@ -3319,7 +3329,7 @@ Lockfile:
       minimalistic-assert "^1.0.0"
       minimalistic-crypto-utils "^1.0.1"
   
-  hoist-non-react-statics@^2.5.0:
+  hoist-non-react-statics@^2.3.1, hoist-non-react-statics@^2.5.0:
     version "2.5.5"
     resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
   
@@ -5650,6 +5660,18 @@ Lockfile:
       prop-types "^15.5.6"
       rc-animate "2.x"
   
+  rc-form@^2.2.1:
+    version "2.2.1"
+    resolved "https://registry.yarnpkg.com/rc-form/-/rc-form-2.2.1.tgz#9c6d968f1460fd3872d2e9371324d717775af260"
+    dependencies:
+      async-validator "1.x"
+      babel-runtime "6.x"
+      create-react-class "^15.5.3"
+      dom-scroll-into-view "1.x"
+      hoist-non-react-statics "^2.3.1"
+      lodash "^4.17.4"
+      warning "^3.0.0"
+  
   rc-gesture@~0.0.18, rc-gesture@~0.0.22:
     version "0.0.22"
     resolved "https://registry.yarnpkg.com/rc-gesture/-/rc-gesture-0.0.22.tgz#fbcbdd5b46387a978b3ede48b42748e8ff77dddd"
@@ -7527,8 +7549,14 @@ Lockfile:
       babel-runtime "6.x"
 
 Trace: 
-  Error: https://registry.yarnpkg.com/rc-form: ETIMEDOUT
-      at Timeout._onTimeout (/usr/local/Cellar/yarn/1.3.2/libexec/lib/cli.js:123749:19)
-      at ontimeout (timers.js:475:11)
-      at tryOnTimeout (timers.js:310:5)
-      at Timer.listOnTimeout (timers.js:270:5)
+  Error: https://registry.yarnpkg.com/transform-decorators-legacy: Not found
+      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.3.2/libexec/lib/cli.js:62098:18)
+      at Request.self.callback (/usr/local/Cellar/yarn/1.3.2/libexec/lib/cli.js:123085:22)
+      at emitTwo (events.js:126:13)
+      at Request.emit (events.js:214:7)
+      at Request.<anonymous> (/usr/local/Cellar/yarn/1.3.2/libexec/lib/cli.js:124068:10)
+      at emitOne (events.js:116:13)
+      at Request.emit (events.js:211:7)
+      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.3.2/libexec/lib/cli.js:123988:12)
+      at Object.onceWrapper (events.js:313:30)
+      at emitNone (events.js:111:20)
