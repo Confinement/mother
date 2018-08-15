@@ -1,7 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import { Switch, Route, Link } from 'react-router-dom'
-import { TransitionGroup, CSSTransition } from "react-transition-group";
 import PrivateRoute from '@common/PrivateRoute'
 import overscroll from '@common/overscroll'
 import NoMatch from '@pages/NoMatch'
@@ -120,38 +119,17 @@ class RequirementList extends React.Component{
 
 // export default RequirementList;
 
-class RequirementRouter extends React.Component {
-	constructor (props) {
-		super(props);
-	}
 
-	render() {
-		let enterClassName = this.props.history.action=="POP"?"slide-out":"slide-in";
-		return (
-		<TransitionGroup component={null}>
-			<CSSTransition key={this.props.location.key} classNames={{
-				appear: enterClassName + '-appear',
-				appearActive: enterClassName + '-appear-active',
-				enter: enterClassName + '-enter',
-				enterActive: enterClassName + '-enter-active',
-				enterDone: enterClassName + '-enter-done',
-				exit: 'page-exit',
-				exitActive: 'page-exit-active',
-				exitDone: 'page-exit-done',
-			}} timeout={300}>
-				<Switch location={this.props.location}>
-					<Route exact path='/home/requirement' component={RequirementList} />
-					<Route exact path='/mycenter/requirementlist' component={RequirementList} />
-					<Route exact path='/mycenter/requirementlist/post' component={PostRe} />
-					<Route exact path='/mycenter/requirementlist/post/address' component={Address} />
-					<PrivateRoute path='/mycenter/requirementlist/requitem' component={RequItem} />
-					{/* <PrivateRoute path='/mycenter/requirementlist/addAddress' component={AddAddress} /> */}
-					<Route component={NoMatch} />
-				</Switch>
-			</CSSTransition>
-		</TransitionGroup>
-		)
-	}
-}
+const RequirementRouter = () => (
+	<Switch>
+		<Route exact path='/home/requirement' component={RequirementList} />
+		<Route exact path='/mycenter/requirementlist' component={RequirementList} />
+		<Route exact path='/mycenter/requirementlist/post' component={PostRe} />
+		<Route exact path='/mycenter/requirementlist/post/address' component={Address} />
+		<PrivateRoute path='/mycenter/requirementlist/requitem' component={RequItem} />
+		{/* <PrivateRoute path='/mycenter/requirementlist/addAddress' component={AddAddress} /> */}
+		<Route component={NoMatch} />
+	</Switch>
+)
 
 export default RequirementRouter

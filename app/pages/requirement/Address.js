@@ -1,7 +1,6 @@
 import React from "react"
 import overscroll from '@common/overscroll'
 import { Switch, Route, withRouter } from 'react-router-dom'
-import { TransitionGroup, CSSTransition } from "react-transition-group";
 import PrivateRoute from '@common/PrivateRoute'
 import NoMatch from '@pages/NoMatch'
 import AddAddress from '@pages/requirement/AddAddress'
@@ -46,36 +45,14 @@ class Address extends React.Component {
 // export default Address;
 
 
-class AddresserRoute extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
-	render() {
-		let enterClassName = this.props.history.action == "POP" ? "slide-out" : "slide-in";
-		return (
-			<TransitionGroup component={null}>
-				<CSSTransition key={this.props.location.key} classNames={{
-					appear: enterClassName + '-appear',
-					appearActive: enterClassName + '-appear-active',
-					enter: enterClassName + '-enter',
-					enterActive: enterClassName + '-enter-active',
-					enterDone: enterClassName + '-enter-done',
-					exit: 'page-exit',
-					exitActive: 'page-exit-active',
-					exitDone: 'page-exit-done',
-				}} timeout={300}>
-					<Switch location={this.props.location}>
-						<Route exact path='/mycenter/requirementlist/post/address' component={Address} />
-						<PrivateRoute exact path='/mycenter/requirementlist/post/address/addaddress' component={AddAddress} />
-						<PrivateRoute  path='/mycenter/requirementlist/post/address/addaddress' component={AddAddress} />
-						<Route component={NoMatch} />
-					</Switch>
-				</CSSTransition>
-			</TransitionGroup>
-		)
-	}
-}
+const AddresserRoute = () => (
+	<Switch>
+		<Route exact path='/mycenter/requirementlist/post/address' component={Address} />
+		<PrivateRoute exact path='/mycenter/requirementlist/post/address/addaddress' component={AddAddress} />
+		<PrivateRoute path='/mycenter/requirementlist/post/address/addaddress' component={AddAddress} />
+		<Route component={NoMatch} />
+	</Switch>
+)
 
 export default AddresserRoute
 

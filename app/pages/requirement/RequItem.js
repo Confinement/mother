@@ -149,21 +149,11 @@ class MoonItem extends React.Component{
 }
 
 
-
-class RequItemRoute extends React.Component {
-	constructor (props) {
-		super(props);
-	}
-
-	render() {
-		let enterClassName = this.props.history.action=="POP"?"slide-out":"slide-in";
-		return (
-			<Switch location={this.props.location}>
-				<PrivateRoute exact path='/mycenter/requirementlist/requitem/:id' component={RequItem} />
-				<Route component={NoMatch} />
-			</Switch>
-		)
-	}
-}
+const RequItemRoute = () => (
+	<Switch>
+		<PrivateRoute exact path='/mycenter/requirementlist/requitem/:id' component={RequItem} />
+		<Route component={NoMatch} />
+	</Switch>
+)
 
 export default RequItemRoute

@@ -72,21 +72,12 @@ class Interview extends React.Component {
 	}
 }
 
-class InterviewRouter extends React.Component {
-	constructor (props) {
-		super(props);
-	}
-
-	render() {
-		let enterClassName = this.props.history.action=="POP"?"slide-out":"slide-in";
-		return (
-			<Switch location={this.props.location}>
-				<PrivateRoute path='/mycenter/interview' component={Interview} />
-				<PrivateRoute exact path='/mycenter/interview/:id' component={Interview} />
-				<Route component={NoMatch} />
-			</Switch>
-		)
-	}
-}
+const InterviewRouter = () => (
+	<Switch>
+		<PrivateRoute path='/mycenter/interview' component={Interview} />
+		<PrivateRoute exact path='/mycenter/interview/:id' component={Interview} />
+		<Route component={NoMatch} />
+	</Switch>
+)
 
 export default InterviewRouter

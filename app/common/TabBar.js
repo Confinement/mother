@@ -45,7 +45,7 @@ class Tabbar extends React.Component{
 				  this.setState({
 					selectedTab: '/',
 				  });
-				  this.props.history.push("/")
+				  this.props.history.push("/", {transition: "none"})
 				}}
 				data-seed="logId"
 			  ></TabBar.Item>
@@ -71,7 +71,7 @@ class Tabbar extends React.Component{
 				  this.setState({
 					selectedTab: '/jaundice',
 				  });
-				  this.props.history.push("/jaundice")
+				  this.props.history.push("/jaundice", {transition: "none"})
 				}}
 				data-seed="logId1"
 			  ></TabBar.Item>
@@ -97,7 +97,7 @@ class Tabbar extends React.Component{
 				  this.setState({
 					selectedTab: '/bbs',
 				  });
-				  this.props.history.push("/bbs")
+				  this.props.history.push("/bbs", {transition: "none"})
 				}}
 			  ></TabBar.Item>
 			  <TabBar.Item
@@ -122,7 +122,7 @@ class Tabbar extends React.Component{
 				  this.setState({
 					selectedTab: '/learning',
 				  });
-				  this.props.history.push("/learning")
+				  this.props.history.push("/learning", {transition: "none"})
 				}}
 			  ></TabBar.Item>
 			  <TabBar.Item
@@ -144,7 +144,7 @@ class Tabbar extends React.Component{
 				  this.setState({
 					selectedTab: '/mycenter',
 				  });
-				  this.props.history.push("mycenter");
+				  this.props.history.push("mycenter", {transition: "none"});
 				}}
 			  ></TabBar.Item>
 			</TabBar>
