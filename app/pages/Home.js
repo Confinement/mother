@@ -43,11 +43,6 @@ const Home = () => (
 	</section>
 )
 
-let popState = false;
-window.onpopstate=function(event){ 
-	popState = true;
-}
-
 class HomeRouter extends React.Component {
 	constructor (props) {
 		super(props);

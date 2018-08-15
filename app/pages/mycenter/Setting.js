@@ -2,7 +2,16 @@ import React from "react";
 import { List, Radio, Flex, WhiteSpace, WingBlank, DatePicker, NavBar, Icon, InputItem, Button } from 'antd-mobile';
 import Cookies from 'js-cookie';
 import overscroll from '@common/overscroll'
+import Store, {resetStore} from '@common/Store';
 
+
+const Logout = (history) => {
+	Cookies.remove('token')
+	Cookies.remove('phone')
+	Cookies.remove('userId')
+	resetStore()
+	history.push("/mycenter")
+}
 
 class Setting extends React.Component {
 	constructor(props) {
@@ -31,12 +40,7 @@ class Setting extends React.Component {
 					<WhiteSpace size="xl" />
 					<WingBlank size="lg">
 						{Cookies.get('token') &&
-							<Button onClick={() => {
-								Cookies.remove('token')
-								Cookies.remove('phone')
-								Cookies.remove('userId')
-								this.props.history.push("/mycenter")
-							}} type="primary">退出登录</Button>
+							<Button onClick={() => Logout(this.props.history)} type="primary">退出登录</Button>
 						}
 					</WingBlank>
 				</div>
