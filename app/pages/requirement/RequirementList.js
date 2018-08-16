@@ -46,7 +46,7 @@ class RequirementList extends React.Component{
 			this.setState({
 				dataSource:this.state.dataSource.cloneWithRows(this.rData),
 			})
-		}).catch((code) => {
+		}).catch(({code}) => {
 			code == "17013" && this.props.history.replace("/mycenter/requirementlist/post")
 		})
 	}

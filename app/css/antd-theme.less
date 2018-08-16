@@ -9,7 +9,7 @@
 // ---
 // 文字色
 @color-text-base: #000;                  // 基本
-@color-text-base-inverse: #333;          // 基本 - 反色
+@color-text-base-inverse: #fff;          // 基本 - 反色
 @color-text-secondary: #a4a9b0;          // 辅助色
 @color-text-placeholder: #bbb;           // 文本框提示
 @color-text-disabled: #bbb;              // 失效
@@ -108,6 +108,7 @@
 @button-height-sm: 30 * @hd;
 @button-font-size-sm: 13 * @hd;
 
+@primary-button-color: @color-text-base;
 @primary-button-fill: @brand-primary;
 @primary-button-fill-tap: @brand-primary-tap;
 
@@ -194,3 +195,11 @@
 @popup-zindex: 999;
 @modal-zindex: 999; // modal.alert 应该最大，其他应该较小
 @tabs-pagination-zindex: 999;
+
+
+
+// 自定义样式
+
+.@{buttonPrefixCls}-primary {
+    color: @color-text-base;
+}

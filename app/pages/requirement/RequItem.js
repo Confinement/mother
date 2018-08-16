@@ -121,8 +121,8 @@ class MoonItem extends React.Component{
 
 		fetchPost("/api/tk/demand/passInterview",data,false).then(res => {
 			this.props.history.push("/mycenter/requirementlist/requitem");
-		}).catch((code,desc) => {
-			Toast.info("'Toast without mask !!!'", 1000);
+		}).catch(({desc}) => {
+			Toast.info(desc, 1000);
 		})
 	}
 	render(){
