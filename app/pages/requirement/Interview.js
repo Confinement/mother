@@ -24,24 +24,38 @@ class Interview extends React.Component {
 	handleSumbit() {
 		let data = {};
 		data.Token = Cookies.get("token");
-		var urlData = this.props.location.state;
-		var {...applies} = urlData;
-		data.demandId = applies.demandId;
-		data.moonId = applies.moonId;
-		data.auditionTime = "";
-		data.auditionType = "";// "/api/tk/demand/inviteMoon2View"
+		data.demandId = this.state.data.applies.demandId;
+		data.moonId = this.state.data.applies.moonId;
+		let auditionTime = new Date(this.state.date);
+		var m = "0" + (auditionTime.getMonth() + 1);
+		var d = "0" + auditionTime.getDate();
+		data.auditionTime = auditionTime.getFullYear() + '/' + m.substring(m.length - 2, m.length) + "/" + d.substring(d.length - 2, d.length);
+		
+		data.auditionType = this.state.auditionType;// 10：现场面试；20：视频面试
+		if(data.auditionType==10){
+			data.auditionAddr=this.state.areaValue;
+		}else{
+			data.auditionContact=this.state.qqValue;
+		}
+		fetchPost("/api/tk/demand/inviteMoon2View",data,false).then({
+
+		})
+
 	}
 
 	render() {
 		const CheckboxItem = Checkbox.CheckboxItem;
-		const {...moondate}=this.state.data;
 		return (
 			<section className="page with-navbar" >
 				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{ position: "absolute", width: "100%", zIndex: 100, boxShadow: "0 1px 5px #ccc" }}>面试</NavBar>
 				<div className="page-container">
-				<WhiteSpace size="lg" />
-					<div className="headUrl">moondate.moon.</div>
-					<div className="username"></div>
+					<WhiteSpace size="lg" />
+					<div style={{ width: '1.28rem', height: '1.28rem', position:"relative", margin:"0 auto" }} >
+						<img className="avatar" style={{ width: '1.28rem', height: '1.28rem', borderRadius: "50%", }}  src={this.state.data.applies.moon.headUrl} alt=""/>
+					</div>
+					<div style={{ width: '3rem', height: '1rem', position:"relative", margin:"0 auto",fontSize:'15px',textAlign:'center',lineHeight:'1rem'}} className="username">{this.state.data.applies.moon.name || this.state.data.applies.moon.nickName}</div>
+					
+					<WhiteSpace size="lg" />
 					<form className="mom-interview">
 						<WingBlank size="md">
 							<DatePicker
@@ -60,7 +74,7 @@ class Interview extends React.Component {
 									{ title: "视频面试"}
 									]}
 								initialPage={0}
-								onChange={(tab, index) => { console.log('onChange', index, tab); }}
+								onChange={(tab, index) => { this.setState({auditionType:(index+1)*10}) }}
 								onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
 							>
 								<List>
@@ -82,8 +96,8 @@ class Interview extends React.Component {
 							
 							<WhiteSpace size="xl" />
 							<div style={{display: "flex"}}>
-								<Button type="secondary" style={{flex:1, margin:"0 20px"}}>取消</Button>
-								<Button type="primary" style={{flex:1, margin:"0 20px"}}>邀请面试</Button>
+								<Button type="secondary" style={{flex:1, margin:"0 20px"}} onClick={() => this.props.history.goBack()}>取消</Button>
+								<Button type="primary" style={{flex:1, margin:"0 20px"}} onClick={this.handleSumbit.bind(this)}>邀请面试</Button>
 							</div>
 						</WingBlank>
 					</form>

@@ -1,7 +1,7 @@
 import "@css/common.css"
 import "@css/postre.css"
 import React from "react";
-import { List, Radio, Flex, WhiteSpace, WingBlank, DatePicker, NavBar, Icon, InputItem, Button } from 'antd-mobile';
+import { Toast, List, Radio, Flex, WhiteSpace, WingBlank, DatePicker, NavBar, Icon, InputItem, Button } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import Cookies from 'js-cookie';
 import {fetchPost} from '@common/Fetch'
@@ -106,7 +106,10 @@ class PostRe extends React.Component {
 
 		fetchPost("api/tk/demand/saveOrUpdateDemand", data, true).then(res => {
 			console.log(res)
+			this.props.history.replace("/mycenter/requirementlist")
 			// jump to requirements management page
+		}).catch((code,desc) => {
+			Toast.info("'Toast without mask !!!'", 1000);
 		})
 	}
 
@@ -123,6 +126,8 @@ class PostRe extends React.Component {
 							mode="date"
 							title="预产期："
 							extra=""
+							minDate={new Date()}
+							maxDate={new Date(new Date().getTime()+ 1000*3600*24*365)}
 							value={this.state.date}
 							onChange={date => this.setState({ date })}
 						>
