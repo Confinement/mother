@@ -101,7 +101,7 @@ class MyCenter extends React.Component {
 					<List className="my-list">
 						<List.Item
 							arrow="horizontal"
-							thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
+							thumb="http://img.qihuiwang.com/f6999ed57ed9b7caf12ce357f51d646d_345_0_fill_jpg.jpg"
 							extra="更多"
 							onClick={() => this.props.history.push("/mycenter/orders")}
 						>服务订单
