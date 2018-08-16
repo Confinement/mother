@@ -54,19 +54,19 @@ class MyCenter extends React.Component {
 						}
 					</div>
 					<Grid data={[{
-							icon: "https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png",
+							icon: require("../images/mycenter/payment_icon.png"),
 							text: "待付款"
 						}, {
-							icon: "https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png",
+							icon: require("../images/mycenter/received_icon.png"),
 							text: "待发货"
 						}, {
-							icon: "https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png",
+							icon: require("../images/mycenter/tobereceived_icon.png"),
 							text: "待收货"
 						}, {
-							icon: "https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png",
+							icon: require("../images/mycenter/completed_icon.png"),
 							text: "已完成"
 						}, {
-							icon: "https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png",
+							icon: require("../images/mycenter/allorder_icon.png"),
 							text: "全部订单"
 						}]}
 						square={false}
@@ -130,21 +130,21 @@ class MyCenter extends React.Component {
 					<List className="my-list">
 						<List.Item
 							arrow="horizontal"
-							thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
+							thumb={require("../images/mycenter/wallet_icon.png")}
 							multipleLine
 							onClick={() => this.props.history.push("/mycenter/re")}
 						>我的钱包<List.Item.Brief>提供余额、银行卡、微信、支付宝绑定等金融服务</List.Item.Brief>
 						</List.Item>
 						<List.Item
 							arrow="horizontal"
-							thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
+							thumb={require("../images/home/sister_icon.png")}
 							multipleLine
 							onClick={() => this.props.history.push("/mycenter/requirementlist")}
 						>找月嫂<List.Item.Brief>我发布的护理需求</List.Item.Brief>
 						</List.Item>
 						<List.Item
 							arrow="horizontal"
-							thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
+							thumb={require("../images/mycenter/interview_icon.png")}
 							multipleLine
 							extra={Cookies.get('token') && <span>今日 <i>0</i> | 明日 <i>0</i></span>}
 							onClick={() => this.props.history.push("/mycenter/re")}
@@ -152,28 +152,28 @@ class MyCenter extends React.Component {
 						</List.Item>
 						<List.Item
 							arrow="horizontal"
-							thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
+							thumb={require("../images/mycenter/nurse_icon.png")}
 							multipleLine
 							onClick={() => this.props.history.push("/mycenter/re")}
 						>收藏月嫂<List.Item.Brief>提供收藏的月嫂</List.Item.Brief>
 						</List.Item>
 						<List.Item
 							arrow="horizontal"
-							thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
+							thumb={require("../images/mycenter/school_icon.png")}
 							multipleLine
 							onClick={() => this.props.history.push("/mycenter/re")}
 						>我的课堂<List.Item.Brief>提供报名过的课堂</List.Item.Brief>
 						</List.Item>
 						<List.Item
 							arrow="horizontal"
-							thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
+							thumb={require("../images/mycenter/coupon_icon.png")}
 							multipleLine
 							onClick={() => this.props.history.push("/mycenter/re")}
 						>我的优惠券<List.Item.Brief>提供平台发放的优惠券信息</List.Item.Brief>
 						</List.Item>
 						<List.Item
 							arrow="horizontal"
-							thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
+							thumb={require("../images/mycenter/setup_icon.png")}
 							multipleLine
 							onClick={() => this.props.history.push("/mycenter/setting")}
 						>设置<List.Item.Brief>提供登录密码设置、支付密码设置等功能</List.Item.Brief>
