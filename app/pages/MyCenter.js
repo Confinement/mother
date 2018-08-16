@@ -1,11 +1,11 @@
 import "@css/myCenter.css"
 import React from 'react'
-import { Switch, Route, withRouter } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import PrivateRoute from '@common/PrivateRoute'
-import { List, Button, WhiteSpace, WingBlank, Icon, Grid } from 'antd-mobile';
+import { List, Button, WhiteSpace, Grid } from 'antd-mobile';
 import overscroll from '@common/overscroll'
-import Setting from '@pages/mycenter/Setting'
 import NoMatch from '@pages/NoMatch'
+import Setting from '@pages/mycenter/Setting'
 import Tabbar from '@common/TabBar'
 import {fetchGet} from "@common/Fetch";
 import Cookies from 'js-cookie';
@@ -26,6 +26,7 @@ class MyCenter extends React.Component {
 			this.setState({
 				...data
 			})
+			!data.password && this.props.history.push("/mycenter/setting/setpwd")
 		})
 	}
 

@@ -1,5 +1,5 @@
 import "@css/antd-theme.less"
-import "@css/common.css"
+import "@assets/iconfont.js"
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import{ Router, Switch, Route} from 'react-router-dom'

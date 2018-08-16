@@ -33,7 +33,7 @@ let _fetch = (uri, data, cache, type) => new Promise((resolve, reject) => {
 		} else if (res.code == "100001") {
 			history.push('/login')
 		} else {
-			reject(res.code, res.desc);
+			reject(res);
 		}
 	}))
 })

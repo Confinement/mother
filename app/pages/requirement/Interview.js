@@ -39,8 +39,8 @@ class Interview extends React.Component {
 		}
 		fetchPost("/api/tk/demand/inviteMoon2View",data,false).then(res => {
 			this.props.history.goBack();
-		}).catch((code,desc) => {
-			Toast.info("'Toast without mask !!!'", 1000);
+		}).catch(({desc}) => {
+			Toast.info(desc, 1000);
 		})
 
 	}
