@@ -27,60 +27,11 @@ class PostRe extends React.Component {
 			costMax: 0,
 			babyTypeValue: 1,
 		}
-		this.onChange = this.onChange.bind(this);
-		this.ageOnChange = this.ageOnChange.bind(this);
-		this.arearOnChange = this.arearOnChange.bind(this);
-		this.babysOnChange = this.babysOnChange.bind(this);
-		this.costMinOnChange = this.costMinOnChange.bind(this);
-		this.costMaxOnChange = this.costMaxOnChange.bind(this);
 	}
 
 	componentDidMount() {
 		overscroll(document.querySelector('.page-container'));
 	}
-
-	babyTypeonChange = (event) => {
-		this.setState({
-			babyTypeValue: event.target.value,
-		});
-
-	}
-	onChange = (event) => {
-		this.setState({
-			addressValue: event.target.value,
-		});
-	}
-	costMinOnChange = (event) => {
-		this.setState({
-			costMin: event.target.value,
-		});
-	}
-	costMaxOnChange = (event) => {
-		this.setState({
-			costMax: event.target.value,
-		});
-	}
-	ageOnChange = (event) => {
-		this.setState({
-			ageValue: event.target.value,
-		});
-	}
-	arearOnChange = (event) => {
-		this.setState({
-			arearValue: event.target.value,
-		});
-	}
-	babysOnChange = (event) => {
-		this.setState({
-			babysValue: event.target.value,
-		});
-	}
-	daysOnChange = (event) => {
-		this.setState({
-			daysValue: event.target.value,
-		});
-	}
-
 
 	handleSumbit() {
 		let data = {} ;
@@ -89,7 +40,9 @@ class PostRe extends React.Component {
 		var m = "0" + (dueDate.getMonth() + 1);
 		var d = "0" + dueDate.getDate();
 		data.dueDate = dueDate.getFullYear() + '-' + m.substring(m.length - 2, m.length) + "-" + d.substring(d.length - 2, d.length);
-		data.babyType = this.state.babyTypeValue;
+		
+		data.babyType = this.state.babyN;
+		if(this.state.babyN>=3) {data.babyType =3}; 
 		data.addr = this.state.addressValue;
 		data.serviceDay = this.state.daysValue;
 
@@ -149,7 +102,7 @@ class PostRe extends React.Component {
 								<Flex.Item><div className={this.state.daysValue==26?'flex-item selected':'flex-item'} onClick={()=>this.setState({daysValue:26})}>26天</div></Flex.Item>
 								<Flex.Item><div className={this.state.daysValue==42?'flex-item selected':'flex-item'} onClick={()=>this.setState({daysValue:42})}>42天</div></Flex.Item>
 								<Flex.Item><div className={this.state.daysValue==52?'flex-item selected':'flex-item'} onClick={()=>this.setState({daysValue:52})}>52天</div></Flex.Item>
-								<Flex.Item><div className={this.state.daysValue==this.state.daysValueCustom?'flex-item selected':'flex-item'}><input placeholder="其他天数" onChange={(e)=>this.setState({daysValue:e.target.value, daysValueCustom:e.target.value})}onClick={(e)=>this.setState({daysValue:e.target.value, daysValueCustom:e.target.value})}/></div></Flex.Item>
+								<Flex.Item><div className={this.state.daysValue==this.state.daysValueCustom?'flex-item selected':'flex-item'}><input type='number' placeholder="其他天数" onChange={(e)=>this.setState({daysValue:e.target.value, daysValueCustom:e.target.value})} onClick={(e)=>this.setState({daysValue:e.target.value, daysValueCustom:e.target.value})}/></div></Flex.Item>
 							</Flex>
 							{/* </select> */}
 						</div>
@@ -160,7 +113,7 @@ class PostRe extends React.Component {
 							<Flex>
 								<Flex.Item><div className={this.state.babyN==1?'flex-item selected':'flex-item'} onClick={()=>this.setState({babyN:1})}>单胞胎</div></Flex.Item>
 								<Flex.Item><div className={this.state.babyN==2?'flex-item selected':'flex-item'} onClick={()=>this.setState({babyN:2})}>双胞胎</div></Flex.Item>
-								<Flex.Item><div className={this.state.babyN==this.state.babyNCustom?'flex-item selected':'flex-item'}><input placeholder="其他数量" onChange={(e)=>this.setState({babyN:e.target.value, babyNCustom:e.target.value})}onClick={(e)=>this.setState({babyN:e.target.value, babyNCustom:e.target.value})}/></div></Flex.Item>
+								<Flex.Item><div className={this.state.babyN==this.state.babyNCustom?'flex-item selected':'flex-item'}><input placeholder="其他数量" type='number' onChange={(e)=>this.setState({babyN:e.target.value, babyNCustom:e.target.value})} onClick={(e)=>this.setState({babyN:e.target.value, babyNCustom:e.target.value})}/></div></Flex.Item>
 								<Flex.Item></Flex.Item>
 							</Flex>
 						</div>
@@ -222,9 +175,9 @@ class PostRe extends React.Component {
 								<WhiteSpace />
 								<Flex>
 									<Flex.Item><div className={this.state.costMin==""&&this.state.costMax==""?'flex-item selected':'flex-item'} onClick={()=>this.setState({costMin:"", costMax:""})}>不限</div></Flex.Item>
-									<Flex.Item><div className={this.state.costMin!=""||this.state.costMax!=""?'flex-item selected':'flex-item'}><input placeholder="请填写" ref="costMin" onChange={(e)=>this.setState({costMin:e.target.value})} onClick={(e)=>this.setState({costMin:e.target.value, costMax:this.refs.costMax.value})}/></div></Flex.Item>
+									<Flex.Item><div className={this.state.costMin!=""||this.state.costMax!=""?'flex-item selected':'flex-item'}><input placeholder="请填写" type='number' ref="costMin" onChange={(e)=>this.setState({costMin:e.target.value})} onClick={(e)=>this.setState({costMin:e.target.value, costMax:this.refs.costMax.value})}/></div></Flex.Item>
 									&nbsp; - &nbsp;
-									<Flex.Item><div className={this.state.costMin!=""||this.state.costMax!=""?'flex-item selected':'flex-item'}><input placeholder="请填写" ref="costMax" onChange={(e)=>this.setState({costMax:e.target.value})} onClick={(e)=>this.setState({costMax:e.target.value, costMin:this.refs.costMin.value})}/></div></Flex.Item>
+									<Flex.Item><div className={this.state.costMin!=""||this.state.costMax!=""?'flex-item selected':'flex-item'}><input placeholder="请填写" type='number' ref="costMax" onChange={(e)=>this.setState({costMax:e.target.value})} onClick={(e)=>this.setState({costMax:e.target.value, costMin:this.refs.costMin.value})}/></div></Flex.Item>
 									<Flex.Item></Flex.Item>
 								</Flex>
 							</div>
