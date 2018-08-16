@@ -46,7 +46,10 @@ class MyCenter extends React.Component {
 									<div className="name" style={{  fontSize: 18 }}>{this.state.nickName || this.state.username}</div>
 									<div className="info" style={{ color: '#888', fontSize: 14, marginTop: ".1rem" }}>人生阶段：{this.state.stage}</div>
 								</div>
-								<Button onClick={() => this.props.history.push("/mycenter/re")} type="primary" size="small" style={{position: "absolute", right: ".3rem", top: ".9rem", backgroundColor: "#fff"}}>个人信息</Button>
+								{this.state.identity ?
+								<Button onClick={() => this.props.history.push("/mycenter/userinfo")} type="primary" size="small" style={{position: "absolute", right: ".3rem", top: ".9rem", backgroundColor: "#fff"}}>个人信息</Button> :
+								<Button onClick={() => this.props.history.push("/mycenter/identity")} type="primary" size="small" style={{position: "absolute", right: ".3rem", top: ".9rem", backgroundColor: "#fff"}}>未认证</Button>
+								}
 							</div>
 						:
 							<div className="nologin" style={{width: "2rem", margin: "0 auto", paddingTop: ".8rem"}}>
@@ -77,19 +80,19 @@ class MyCenter extends React.Component {
 						onClick={(_el, index) => {
 							switch (index) {
 								case 0:
-								this.props.history.push("/mycenter/re")
+								this.props.history.push("/mycenter/orders/topay")
 									break;
 								case 1:
-								this.props.history.push("/mycenter/re")
+								this.props.history.push("/mycenter/orders/todepart")
 									break;
 								case 2:
-								this.props.history.push("/mycenter/re")
+								this.props.history.push("/mycenter/orders/toarrive")
 									break;
 								case 3:
-								this.props.history.push("/mycenter/re")
+								this.props.history.push("/mycenter/orders/done")
 									break;
 								case 4:
-								this.props.history.push("/mycenter/re")
+								this.props.history.push("/mycenter/orders")
 									break;
 							}
 						}}
@@ -100,7 +103,7 @@ class MyCenter extends React.Component {
 							arrow="horizontal"
 							thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
 							extra="更多"
-							onClick={() => this.props.history.push("/mycenter/re")}
+							onClick={() => this.props.history.push("/mycenter/orders")}
 						>服务订单
 						</List.Item>
 						{Cookies.get('token') &&
@@ -121,8 +124,8 @@ class MyCenter extends React.Component {
 										textAlign: 'right'
 									}}
 								>
-									<Button onClick={() => this.props.history.push("/mycenter/re")} type="ghost" size="small" inline style={{ marginLeft: '10px' }}>取消订单</Button>
-									<Button onClick={() => this.props.history.push("/mycenter/re")} type="primary" size="small" inline style={{ marginLeft: '10px' }}>立即支付</Button>
+									<Button onClick={() => this.props.history.push("/mycenter/orders/order/0/cancel")} type="ghost" size="small" inline style={{ marginLeft: '10px' }}>取消订单</Button>
+									<Button onClick={() => this.props.history.push("/mycenter/orders/order/0/pay")} type="primary" size="small" inline style={{ marginLeft: '10px' }}>立即支付</Button>
 								</div>
 							</div>
 						}
@@ -133,7 +136,7 @@ class MyCenter extends React.Component {
 							arrow="horizontal"
 							thumb={require("../images/mycenter/wallet_icon.png")}
 							multipleLine
-							onClick={() => this.props.history.push("/mycenter/re")}
+							onClick={() => this.props.history.push("/mycenter/wallet")}
 						>我的钱包<List.Item.Brief>提供余额、银行卡、微信、支付宝绑定等金融服务</List.Item.Brief>
 						</List.Item>
 						<List.Item
@@ -148,28 +151,28 @@ class MyCenter extends React.Component {
 							thumb={require("../images/mycenter/interview_icon.png")}
 							multipleLine
 							extra={Cookies.get('token') && <span>今日 <i>0</i> | 明日 <i>0</i></span>}
-							onClick={() => this.props.history.push("/mycenter/re")}
+							onClick={() => this.props.history.push("/mycenter/interviews")}
 						>我的面试<List.Item.Brief>月嫂面试管理</List.Item.Brief>
 						</List.Item>
 						<List.Item
 							arrow="horizontal"
 							thumb={require("../images/mycenter/nurse_icon.png")}
 							multipleLine
-							onClick={() => this.props.history.push("/mycenter/re")}
+							onClick={() => this.props.history.push("/mycenter/favorates")}
 						>收藏月嫂<List.Item.Brief>提供收藏的月嫂</List.Item.Brief>
 						</List.Item>
 						<List.Item
 							arrow="horizontal"
 							thumb={require("../images/mycenter/school_icon.png")}
 							multipleLine
-							onClick={() => this.props.history.push("/mycenter/re")}
+							onClick={() => this.props.history.push("/mycenter/mycoures")}
 						>我的课堂<List.Item.Brief>提供报名过的课堂</List.Item.Brief>
 						</List.Item>
 						<List.Item
 							arrow="horizontal"
 							thumb={require("../images/mycenter/coupon_icon.png")}
 							multipleLine
-							onClick={() => this.props.history.push("/mycenter/re")}
+							onClick={() => this.props.history.push("/mycenter/discounts")}
 						>我的优惠券<List.Item.Brief>提供平台发放的优惠券信息</List.Item.Brief>
 						</List.Item>
 						<List.Item
