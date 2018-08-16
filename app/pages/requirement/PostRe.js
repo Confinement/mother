@@ -106,7 +106,7 @@ class PostRe extends React.Component {
 
 		fetchPost("api/tk/demand/saveOrUpdateDemand", data, true).then(res => {
 			console.log(res)
-			this.props.history.replace("/mycenter/requirementlist")
+			this.props.history.replace("/mycenter/requirementlist");
 			// jump to requirements management page
 		}).catch((code,desc) => {
 			Toast.info("'Toast without mask !!!'", 1000);

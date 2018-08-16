@@ -67,7 +67,7 @@ class RequItem extends React.Component{
 			MoonList.push(<MoonItem key={i} demandStatus={this.state.demandStatus} applies ={this.state.applies[i]} moon={this.state.applies[i].moon} headurl={moon.headUrl} name={moon.name} cityName={moon.cityName} takecareBabies={moon.takecareBabies} phone={moon.phone}></MoonItem>);
 		};
 		  return (
-			<section className="page with-navbar" >
+			<section className="page with-navbar requitem" >
 				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{position:"absolute", width:"100%", zIndex:100, boxShadow: "0 1px 5px #999"}}>护理详情</NavBar>
 				<div className="page-container">
 				<Card full = {true}>
@@ -113,6 +113,18 @@ class MoonItem extends React.Component{
 		this.state={
 		}
 	}
+	postInterview() {
+		let data = {};
+		data.Token = Cookies.get("token");
+		data.demandId = this.props.applies.demandId;
+		data.moonId = this.props.applies.moonId;
+
+		fetchPost("/api/tk/demand/passInterview",data,false).then(res => {
+			this.props.history.push("/mycenter/requirementlist/requitem");
+		}).catch((code,desc) => {
+			Toast.info("'Toast without mask !!!'", 1000);
+		})
+	}
 	render(){
 
 		let rDate = {applies :this.props.applies};
@@ -120,6 +132,7 @@ class MoonItem extends React.Component{
 			pathname : "/mycenter/interview/",
 			state: rDate,
 		}
+
 		return (
 			<div style={{display: "flex",position: "relative", backgroundColor: "#fff", with:" 100%", height: "1.5rem", padding: "0.2rem 0px"}}>
 				<Link to={"/babysitter/"+this.props.moon.userId}><img className="avatar" style={{ width: '1.28rem', height: '1.28rem', borderRadius: "50%", margin: '0 .3rem' }} src={this.props.headurl} alt="" /></Link>
@@ -127,28 +140,48 @@ class MoonItem extends React.Component{
 					<div className="name" style={{ fontSize: 18 }}>{this.props.name}</div>
 					<div className="info" style={{ color: '#888', fontSize: 14, marginTop: ".1rem" }}>{this.props.cityName}人 带过{this.props.takecareBabies}个宝宝</div>
 				</div>
-				{/* production:start */}
-				{this.props.demandStatus==="1" &&
+				{this.props.demandStatus==="1"  &&
 					<div>
-						<Button  onClick={() => this.props.history.push(path)} type="primary" size="small" style={{position: "absolute", right: ".3rem", top: ".2rem", backgroundColor: "#ffda44",borderRadius: "20px"}}>邀请面试</Button>
-						<a href={`tel:${this.props.telphone}`}  style={{display: "block", position: "absolute", right: ".3rem", top: "1rem", backgroundColor: "#ffda44",borderRadius: "20px", fontSize: "13px", height: "30px",lineHeight: "30px",padding: "0 15px"}}>马上联系</a>
+						{ this.props.applies.status==12 &&
+							<Button  onClick={() => this.props.history.push(path)} type="primary" size="small"  style={{position:'absolute' }} className='moon-btn'>邀请面试</Button>
+						}
+						{ this.props.applies.status==20 &&
+							<Button  onClick={this.postInterview.bind(this)} type="primary" size="small"  style={{position:'absolute' }} className='moon-btn'>通过面试</Button>
+						}
+						{ this.props.applies.status==30 &&
+							<Button  onClick={() => this.props.history.push("/mycenter/requirementlist/contract")} type="primary" size="small"  style={{position:'absolute' }} className='moon-btn'>签约</Button>
+						}
+						<a href={`tel:${this.props.telphone}`} style={{position:'absolute' }} className='tele-btn'>马上联系</a>
 					</div>
 				}
-				{(this.props.demandStatus==="2" || this.props.demandStatus==="3") &&
+				{this.props.demandStatus==="2"  &&
 					<div>
-						<Button size="small" type="primary" disabled style={{position: "absolute", right: ".3rem", top: ".2rem", backgroundColor: "#ffda44",borderRadius: "20px"}}>邀请面试</Button>
-						<Button Button size="small" type="primary" disabled style={{position: "absolute", right: ".3rem", top: "1rem", backgroundColor: "#ffda44",borderRadius: "20px"}}>马上联系</Button>
+						{this.props.applies.status==12 &&
+							<Button size="small"  style={{position:'absolute' }} type="primary" disabled className='moon-btn'>邀请面试</Button>
+						}
+						{this.props.applies.status==20 &&
+							<Button size="small"  style={{position:'absolute' }} type="primary" disabled className='moon-btn'>通过面试</Button>
+						}
+						{this.props.applies.status==30 &&
+							<Button size="small"  style={{position:'absolute' }} type="primary" disabled className='moon-btn'>签约</Button>
+						}
+						<Button  size="small"  style={{position:'absolute' }} type="primary" disabled className='phone-btn'>马上联系</Button>
 					</div>
 				}
-				{/* production:end */}
-				{/* debug:start */}
-				{(this.props.demandStatus==="1" || this.props.demandStatus==="2" || this.props.demandStatus==="3") &&
+				{this.props.demandStatus==="3"  &&
 					<div>
-						<Button  onClick={() => this.props.history.push(path)} type="primary" size="small" style={{position: "absolute", right: ".3rem", top: ".2rem", backgroundColor: "#ffda44",borderRadius: "20px"}}>邀请面试</Button>
-						<a href={`tel:${this.props.telphone}`}  style={{display: "block", position: "absolute", right: ".3rem", top: "1rem", backgroundColor: "#ffda44",borderRadius: "20px", fontSize: "13px", height: "30px",lineHeight: "30px",padding: "0 15px"}}>马上联系</a>
+						{this.props.applies.status==12 &&
+							<Button size="small"  style={{position:'absolute' }} type="primary" disabled className='moon-btn'>邀请面试</Button>
+						}
+						{this.props.applies.status==20 &&
+							<Button size="small"  style={{position:'absolute' }} type="primary" disabled className='moon-btn'>通过面试</Button>
+						}
+						{this.props.applies.status==30 &&
+							<Button size="small"  style={{position:'absolute' }} type="primary" onClick={() => this.props.history.push("/mycenter/requirementlist/contract")} className='moon-btn'>签约</Button>
+						}
+						<Button  size="small"  style={{position:'absolute' }} type="primary" disabled className='phone-btn'>马上联系</Button>
 					</div>
 				}
-				{/* debug:end */}
 			</div>
 		)
 	}
