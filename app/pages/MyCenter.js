@@ -106,7 +106,7 @@ class MyCenter extends React.Component {
 							onClick={() => this.props.history.push("/mycenter/orders")}
 						>服务订单
 						</List.Item>
-						{Cookies.get('token') &&
+						{!Cookies.get('token') &&
 							<div style={{ padding: '0 15px' }}>
 								<div style={{ display: '-webkit-box', display: 'flex', padding: '15px 0' }}>
 									<img style={{ height: '64px', marginRight: '15px' }} src="http://pic97.huitu.com/res/20170629/799232_20170629034947597040_1.jpg" alt="" />
