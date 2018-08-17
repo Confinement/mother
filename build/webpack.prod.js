@@ -41,7 +41,7 @@ module.exports = merge(common.webpackCommon, {
 					}
 				}]
 			},
-			...common.cssLoader(false)
+			...common.cssLoader(true)
 		]
 	},
 	plugins: [
