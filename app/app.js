@@ -26,7 +26,7 @@ class AppRouter extends React.Component {
 
 	render() {
 		let enterClassName = this.props.history.action=="POP"?"slide-out":"slide-in";
-		if (this.props.location.state && this.props.location.state.transition && this.props.history.action=="PUSH") {
+		if (this.props.location.state && this.props.location.state.transition && this.props.history.action!="POP") {
 			enterClassName = this.props.location.state.transition;
 		}
 		return (

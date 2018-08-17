@@ -170,6 +170,7 @@ class PostRe extends React.Component {
 									<Flex.Item><div className={this.state.babysValue=="31-1000"?'flex-item selected':'flex-item'} onClick={()=>this.setState({babysValue:"31-1000"})}>31个以上</div></Flex.Item>
 								</Flex>
 							</div>
+							<WhiteSpace />
 							<div className="money">
 								<span>薪资</span>
 								<WhiteSpace />
@@ -182,7 +183,7 @@ class PostRe extends React.Component {
 								</Flex>
 							</div>
 						</section>
-						<WhiteSpace />
+						<WhiteSpace size="xl" />
 						<Button type="primary" onClick={this.handleSumbit.bind(this)}>发布</Button>
 					</WingBlank>
 					</form>

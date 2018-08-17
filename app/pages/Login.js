@@ -14,8 +14,8 @@ class Login extends React.Component {
       hasError:false,
       smsValue: '',
       method: 0,
-      dealCkeck: true,
-      isGoing: true,
+      dealCkeck:true,
+      fromURL: this.props.location.state && this.props.location.state.from ? this.props.location.state.from.pathname : "/mycenter"
     }
   }
  
@@ -137,12 +137,8 @@ class Login extends React.Component {
   render() {
     return (
       <section className="page login">
-        {this.state.method === 0 ?
-          <NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()}>密码登录</NavBar>
-          :
-          <NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()}>注册登录</NavBar>
-        }
-        <div className="logo"><img src={require('../images/login/logo.png')} alt="" /></div>
+        <NavBar mode="light" icon={<Icon type="cross" />} onLeftClick={() => this.props.history.goBack()}>{this.state.method === 0 ? "密码登录" : "注册登录"}</NavBar>
+        <div className="logo"><img src={require('../images/login/logo.png')} alt=""/></div>
         <Tabs tabs={[
           { title: 1 },
           { title: 2 }
