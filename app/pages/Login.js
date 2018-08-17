@@ -18,6 +18,7 @@ class Login extends React.Component {
       dealCkeck:true,
       isLook:true,
       isGoing:true,
+      fromURL: this.props.location.state && this.props.location.state.from ? this.props.location.state.from.pathname : "/mycenter"
     }
   }
   phChange = (event) => {
@@ -126,8 +127,7 @@ class Login extends React.Component {
       Cookies.set("phone", content.phone, {expires});
       Cookies.set("token", content.token, {expires});
       Cookies.set("userId", content.userId, {expires});
-      let jumpURL = this.props.location.state && this.props.location.state.from ? this.props.location.state.from.pathname : "/mycenter";
-      this.props.history.replace(jumpURL);
+      this.props.history.replace(this.state.fromURL, {transition: "slide-down"});
     }).catch(({desc}) => {
       Toast.fail(desc, 2)
     })
@@ -163,11 +163,7 @@ class Login extends React.Component {
   render() {
     return (
       <section className="page login">
-      	{this.state.method === 0 ?
-             <NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()}>密码登录</NavBar>
-            :
-            <NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()}>注册登录</NavBar>
-          }
+        <NavBar mode="light" icon={<Icon type="cross" />} onLeftClick={() => this.props.history.goBack()}>{this.state.method === 0 ? "密码登录" : "注册登录"}</NavBar>
         <div className="logo"><img src={require('../images/login/logo.png')} alt=""/></div>
         <Tabs tabs={[
           { title: 1 },

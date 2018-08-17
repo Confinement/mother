@@ -53,7 +53,7 @@ class MyCenter extends React.Component {
 							</div>
 						:
 							<div className="nologin" style={{width: "2rem", margin: "0 auto", paddingTop: ".8rem"}}>
-								<Button onClick={() => this.props.history.push("/login")} type="primary" style={{backgroundColor: "#fff"}}>登录</Button>
+								<Button onClick={() => this.props.history.push("/login", {transition: "slide-up"})} type="primary" style={{backgroundColor: "#fff"}}>登录</Button>
 							</div>
 						}
 					</div>
