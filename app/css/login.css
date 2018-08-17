@@ -3,7 +3,7 @@
 	width: 1.94rem;
 	height: 0.65rem;
 	margin: 0 auto;
-	margin-top: 2rem;
+	margin-top: 0.8rem;
 }
 .logo>img{
 	width:100%;
@@ -108,3 +108,14 @@
 	height: 3rem;
 	margin-top: 1rem;
 }
+
+.login-input{
+	position: relative;
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 0rem;
+	background-color: #f5f5f5;
+	border: none;
+	border-bottom: 1px solid #f5f5f5;
+}
+.sms{position: relative;}
