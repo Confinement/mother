@@ -1,6 +1,6 @@
 import "@css/postre.css"
 import React from "react"
-import { ListView, Card, WhiteSpace, SwipeAction, List, Button, NavBar, Icon} from 'antd-mobile';
+import { ListView, Card, WhiteSpace, SwipeAction, List, Button, NavBar, Icon, Modal} from 'antd-mobile';
 import Cookies from 'js-cookie';
 import {fetchPost} from "@common/Fetch";
 import overscroll from '@common/overscroll'
@@ -8,6 +8,9 @@ import { Switch, Route, Link, withRouter } from 'react-router-dom'
 import PrivateRoute from '@common/PrivateRoute'
 import NoMatch from '@pages/NoMatch'
 import Store from '@common/Store';
+
+
+const alert = Modal.alert;
 
 class RequItem extends React.Component{
 	constructor(props){
@@ -60,6 +63,9 @@ class RequItem extends React.Component{
 		})
 	}
 	
+
+
+	
 	render(){
 		var MoonList=[];
 		for (var i = 0, j = this.state.applies.length; i < j; i++) {
@@ -87,12 +93,20 @@ class RequItem extends React.Component{
 				{this.state.demandStatus==="1" &&
 					<div className="status-mana">
 						<Button size="small" type="primary" className="status-btn" onClick={()=>this.stopReq("2")}>暂停</Button>
-						<Button size="small" type="primary" className="status-btn" onClick={()=>this.stopReq("3")} >结束</Button> 
+						<Button size="small" type="primary" className="status-btn" onClick={() =>
+																								alert('结束', '您确定要结束这护理需求吗？', [
+																								{ text: '取消', onPress: () => console.log('cancel') },
+																								{ text: '确定', onPress: () => this.stopReq("3") },
+																								])}>结束</Button> 
 					</div>}
 				{this.state.demandStatus==="2" &&
 					<div className="status-mana">
 						<Button size="small" type="primary" className="status-btn" onClick={()=>this.stopReq("1")}>恢复</Button>
-						<Button size="small" type="primary" className="status-btn" onClick={()=>this.stopReq("3")}>结束</Button> 
+						<Button size="small" type="primary" className="status-btn" onClick={() =>
+																								alert('结束', '您确定要结束这护理需求吗？', [
+																								{ text: '取消', onPress: () => console.log('cancel') },
+																								{ text: '确定', onPress: () => this.stopReq("3") },
+																								])}>结束</Button> 
 					</div>}
 
 				<div className="apply-bar">全部应聘</div>
@@ -120,7 +134,7 @@ class MoonItem extends React.Component{
 		data.moonId = this.props.applies.moonId;
 
 		fetchPost("/api/tk/demand/passInterview",data,false).then(res => {
-			this.props.history.push("/mycenter/requirementlist/requitem");
+			this.props.history.replace(this.props.location.pathname);
 		}).catch(({desc}) => {
 			Toast.info(desc, 1000);
 		})

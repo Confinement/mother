@@ -62,7 +62,7 @@ class PostRe extends React.Component {
 			this.props.history.replace("/mycenter/requirementlist");
 			// jump to requirements management page
 		}).catch(({desc}) => {
-			Toast.info(desc, 1000);
+			Toast.info(desc, 2);
 		})
 	}
 
