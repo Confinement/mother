@@ -150,10 +150,10 @@ class MoonItem extends React.Component{
 		return (
 			<div style={{display: "flex",position: "relative", backgroundColor: "#fff", with:" 100%", height: "1.5rem", padding: "0.2rem 0px"}}>
 				<Link to={"/babysitter/"+this.props.moon.userId}><img className="avatar" style={{ width: '1.28rem', height: '1.28rem', borderRadius: "50%", margin: '0 .3rem' }} src={this.props.headurl} alt="" /></Link>
-				<div style={{ lineHeight: 1, padding: ".3rem 0" }}>
+				<Link to={"/babysitter/"+this.props.moon.userId}><div style={{ lineHeight: 1, padding: ".3rem 0" }}>
 					<div className="name" style={{ fontSize: 18 }}>{this.props.name}</div>
 					<div className="info" style={{ color: '#888', fontSize: 14, marginTop: ".1rem" }}>{this.props.cityName}人 带过{this.props.takecareBabies}个宝宝</div>
-				</div>
+				</div></Link>
 				{this.props.demandStatus==="1"  &&
 					<div>
 						{ this.props.applies.status==12 &&

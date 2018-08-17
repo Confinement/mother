@@ -11,7 +11,8 @@ export default ({history}) => {
         onLeftClick={() => history.goBack()}
       >功能未上线</NavBar>
       <div style={{marginTop: 200, textAlign: "center", fontSize: 24, color: "#ccc"}}>敬请期待</div>
-      <div style={{marginTop: 20, textAlign: "center", fontSize: 18, color: "#ccc"}}>（提示下载APP页面）</div>
+      <div style={{marginTop: 100, textAlign: "center", fontSize: 18, color: "#ccc"}}>下载APP获得更多功能</div>
+      <iframe src="http://a.app.qq.com/o/simple.jsp?pkgname=com.kw.ddys" width={0} height={0} frameborder={0}></iframe>
     </section>
   )
 }
