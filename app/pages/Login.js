@@ -15,6 +15,7 @@ class Login extends React.Component {
       smsValue: '',
       method: 0,
       dealCkeck:true,
+      isGoing:true,
       fromURL: this.props.location.state && this.props.location.state.from ? this.props.location.state.from.pathname : "/mycenter"
     }
   }
