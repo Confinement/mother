@@ -41,7 +41,7 @@ class MyCenter extends React.Component {
 					<div className="infor">
 						{Cookies.get('token') ?
 							<div className="logined" style={{ display: '-webkit-box', display: 'flex', padding: '.5rem 0' }}>
-								<img className="avatar" style={{ width: '1.28rem', height: '1.28rem', borderRadius: "50%", margin: '0 .3rem' }} src={require('@images/mycenter/no_avatar.jpeg')} alt="" />
+								<img className="avatar" style={{ width: '1.28rem', height: '1.28rem', borderRadius: "50%", margin: '0 .3rem' }} src={this.state.headUrl || require('@images/mycenter/no_avatar.jpeg')} alt="" />
 								<div style={{ lineHeight: 1, padding: ".3rem 0" }}>
 									<div className="name" style={{  fontSize: 18 }}>{this.state.nickName || this.state.username}</div>
 									<div className="info" style={{ color: '#888', fontSize: 14, marginTop: ".1rem" }}>人生阶段：{this.state.stage}</div>
