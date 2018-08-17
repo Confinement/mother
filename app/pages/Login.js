@@ -3,7 +3,7 @@ import React from "react";
 import { fetchPost } from "@common/Fetch";
 import { withRouter } from 'react-router-dom'
 import Cookies from 'js-cookie';
-import { Tabs, NavBar, Icon, Button } from 'antd-mobile';
+import { Tabs, NavBar, Icon, Button, Toast } from 'antd-mobile';
 
 class Login extends React.Component {
   constructor(props) {
@@ -128,6 +128,8 @@ class Login extends React.Component {
       Cookies.set("userId", content.userId, {expires});
       let jumpURL = this.props.location.state && this.props.location.state.from ? this.props.location.state.from.pathname : "/mycenter";
       this.props.history.replace(jumpURL);
+    }).catch(({desc}) => {
+      Toast.fail(desc, 2)
     })
   }
   /**
