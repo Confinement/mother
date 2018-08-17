@@ -12,7 +12,7 @@ export default ({history}) => {
       >功能未上线</NavBar>
       <div style={{marginTop: 200, textAlign: "center", fontSize: 24, color: "#ccc"}}>敬请期待</div>
       <div style={{marginTop: 100, textAlign: "center", fontSize: 18, color: "#ccc"}}>下载APP获得更多功能</div>
-      <iframe src="http://a.app.qq.com/o/simple.jsp?pkgname=com.kw.ddys" width={0} height={0} frameBorder={0}></iframe>
+      <iframe src="http://a.app.qq.com/o/simple.jsp?pkgname=com.pretty.mom" width={0} height={0} frameBorder={0}></iframe>
     </section>
   )
 }
