@@ -165,7 +165,7 @@ class MoonItem extends React.Component{
 						{ this.props.applies.status==30 &&
 							<Button  onClick={() => this.props.history.push("/mycenter/requirementlist/contract")} type="primary" size="small"  style={{position:'absolute' }} className='moon-btn'>签约</Button>
 						}
-						<a href={`tel:${this.props.telphone}`} style={{position:'absolute' }} className='tele-btn'>马上联系</a>
+						<a href={`tel:${this.props.phone}`} style={{position:'absolute' }} className='tele-btn'>马上联系</a>
 					</div>
 				}
 				{this.props.demandStatus==="2"  &&
