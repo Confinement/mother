@@ -2,7 +2,7 @@ import "@css/postre.css"
 import React from "react"
 import { Switch, Route } from 'react-router-dom'
 import PrivateRoute from '@common/PrivateRoute'
-import { Checkbox,  WhiteSpace, WingBlank, DatePicker, List, Button, NavBar, Icon, Tabs, InputItem } from 'antd-mobile';
+import { Checkbox,  WhiteSpace, WingBlank, DatePicker, List, Button, NavBar, Icon, Tabs, InputItem, Toast} from 'antd-mobile';
 import Cookies from 'js-cookie';
 import { fetchPost } from "@common/Fetch";
 import overscroll from '@common/overscroll'
@@ -17,7 +17,7 @@ class Interview extends React.Component {
 			otherAreaValue:'',
 			qqValue:'',
 			data:this.props.location.state,
-
+			auditionType:10,
 		}
 	}
 
@@ -33,6 +33,10 @@ class Interview extends React.Component {
 		
 		data.auditionType = this.state.auditionType;// 10：现场面试；20：视频面试
 		if(data.auditionType==10){
+			if(this.state.areaValue==""){
+				Toast.info("请输入面试地点", 2);
+				return false;
+			}
 			data.auditionAddr=this.state.areaValue;
 		}else{
 			data.auditionContact=this.state.qqValue;
@@ -40,7 +44,7 @@ class Interview extends React.Component {
 		fetchPost("/api/tk/demand/inviteMoon2View",data,false).then(res => {
 			this.props.history.goBack();
 		}).catch(({desc}) => {
-			Toast.info(desc, 1000);
+			Toast.fail(desc, 2);
 		})
 
 	}

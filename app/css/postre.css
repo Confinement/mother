@@ -114,17 +114,17 @@
 	position: absolute;
 	right: .3rem;
 	top: 1rem;
-	backgroundColor: #ffda44;
-	borderRadius: 20px;
+	background-color: #ffda44;
+	border-radius: 6px;
 }
 .requitem .tele-btn{display: block;
 	 position: absolute;
 	 right: .3rem;
 	 top: 1rem;
-	 backgroundColor: #ffda44;
-	borderRadius: 20px;
-	 fontSize: 13px;
+	 background-color: #ffda44;
+	 border-radius: 6px;
+	 font-size: 13px;
 	 height: 30px;
-	lineHeight: 30px;
-	padding: 0 15px;
+	 line-height: 30px;
+	 padding: 0 15px;
 }
