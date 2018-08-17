@@ -38,8 +38,9 @@ class BabySitter extends React.Component {
 		return (
 			<section className="page with-navbar" >
 				{!this.state.independent &&
-				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{position:"absolute", width:"100%", zIndex:100, boxShadow: "0 1px 5px #999"}}>月嫂名片</NavBar>}
-				<div className="page-container" style={this.state.independent ? {paddingTop:0} : ""}>
+				<NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.goBack()} style={{position:"absolute", width:"100%", zIndex:100, boxShadow: "0 1px 5px #999"}}>月嫂名片</NavBar>
+				}
+				<div className="page-container" style={this.state.independent ? {paddingTop:0} : {}}>
 					<div className="infor">
 						<div className="logined" style={{ display: '-webkit-box', display: 'flex', padding: '.5rem 0' }}>
 							<img className="avatar" style={{ width: '1.28rem', height: '1.28rem', borderRadius: "50%", margin: '0 .3rem' }} src={this.state.moon.headUrl || require('@images/mycenter/no_avatar.jpeg')} alt="" />
