@@ -10,6 +10,7 @@ import {fetchPost} from "@common/Fetch";
 import RequItem from '@pages/requirement/RequItem'
 import PostRe from '@pages/requirement/PostRe'
 import Address from '@pages/requirement/Address'
+import AddAddress from '@pages/requirement/AddAddress'
 
 class RequirementList extends React.Component{
 	constructor(props) {
@@ -128,7 +129,7 @@ const RequirementRouter = () => (
 		<Route exact path='/mycenter/requirementlist/post' component={PostRe} />
 		<Route exact path='/mycenter/requirementlist/post/address' component={Address} />
 		<PrivateRoute path='/mycenter/requirementlist/requitem' component={RequItem} />
-		{/* <PrivateRoute path='/mycenter/requirementlist/addAddress' component={AddAddress} /> */}
+		<PrivateRoute path='/mycenter/requirementlist/post/address/addAddress' component={AddAddress} />
 		<Route component={NoMatch} />
 	</Switch>
 )

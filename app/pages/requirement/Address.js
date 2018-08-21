@@ -41,19 +41,18 @@ class Address extends React.Component {
 		)
 	}
 }
-// export default Address;
+export default Address;
 
 
 const AddresserRoute = () => (
 	<Switch>
-		<Route exact path='/mycenter/requirementlist/post/address' component={Address} />
-		<PrivateRoute exact path='/mycenter/requirementlist/post/address/addaddress' component={AddAddress} />
-		<PrivateRoute exact path='/mycenter/requirementlist/post/address/addaddress:id' component={AddAddress} />
-		<Route component={NoMatch} />
+		{/* <Route  exact path='/mycenter/requirementlist/post/address' component={Address} /> */}
+		{/* <Route  exact path='/mycenter/requirementlist/post/address/addaddress' component={AddAddress} />
+		<Route  path='/mycenter/requirementlist/post/address/addaddress:id' component={AddAddress} /> */}
 	</Switch>
 )
 
-export default AddresserRoute
+// export default AddresserRoute
 
 
 class AddressItem extends React.Component {
