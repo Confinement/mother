@@ -21,6 +21,7 @@ class Home extends React.Component {
 	}
 
 	componentWillMount() {
+		Cookies.get('token') &&
 		fetchGet('/api/home/getAppMotherHome', {Token: Cookies.get('token')}, true).then(data => {
 			console.log(data)
 			this.setState({ ...data })
@@ -37,7 +38,7 @@ class Home extends React.Component {
 				<div className="page-container">
 					<div className="banner">
 						<Carousel
-							autoplay={false}
+							autoplay={true}
 							infinite
 							beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
 							afterChange={index => console.log('slide to', index)}
@@ -53,7 +54,7 @@ class Home extends React.Component {
 										style={{ width: '100%', verticalAlign: 'top' }}
 									/>
 								</a>
-							)) : <img src={require('../images/home/1.png')} alt="" />
+							)) : <img src={require('../images/home/1.png')} style={{ width: '100%', verticalAlign: 'top' }} />
 							}
 						</Carousel>
 					</div>

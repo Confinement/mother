@@ -81,8 +81,7 @@ class Login extends React.Component {
       Cookies.set("phone", content.phone, { expires });
       Cookies.set("token", content.token, { expires });
       Cookies.set("userId", content.userId, { expires });
-      let jumpURL = this.props.location.state && this.props.location.state.from ? this.props.location.state.from.pathname : "/mycenter";
-      this.props.history.replace(jumpURL);
+      this.props.history.replace(this.state.fromURL, {transition: "slide-down"});
     }).catch(({ desc }) => {
       Toast.fail(desc, 2)
     })
