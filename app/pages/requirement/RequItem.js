@@ -79,8 +79,8 @@ class RequItem extends React.Component{
 				<Card full = {true}>
 					<Card.Body>
 						<div>预产期:{this.state.monData.dueDate} | {this.state.monData.serviceDay}天</div>
-						<div>需求:地区:{this.state.monData.moonAddr}    年龄:{this.state.monData.moonAgeMin}岁-{this.state.monData.moonAgeMax}岁{(this.state.monData.costMax==0 || this.state.monData.costMax=="" || this.state.monData.costMax==null)? '' :'$'+this.state.monData.costMin+'-'+this.state.monData.costMax}</div>
-						<div>服务宝宝数:{(this.state.monData.takecareBabyMax==null || this.state.monData.takecareBabyMax==0) ? '不限':(this.state.monData.takecareBabyMax<=10 ? '10个以下' : (this.state.monData.takecareBabyMax<=30 ?'11-30个':'31个以上' )) }    薪资:{(this.state.monData.costMax==null || this.state.monData.costMax==0) ? '不限' : '￥'+ this.state.monData.costMin + ' - ' + this.state.monData.costMax}</div>
+						<div style={{fontSize:'13px',marginTop:'5px',color:'#888'}}>需求:地区:{this.state.monData.moonAddr}    年龄:{this.state.monData.moonAgeMin}岁-{this.state.monData.moonAgeMax}岁{(this.state.monData.costMax==0 || this.state.monData.costMax=="" || this.state.monData.costMax==null)? '' :'$'+this.state.monData.costMin+'-'+this.state.monData.costMax}</div>
+						<div style={{fontSize:'13px',marginTop:'5px',color:'#888'}}>服务宝宝数:{(this.state.monData.takecareBabyMax==null || this.state.monData.takecareBabyMax==0) ? '不限':(this.state.monData.takecareBabyMax<=10 ? '10个以下' : (this.state.monData.takecareBabyMax<=30 ?'11-30个':'31个以上' )) }    薪资:{(this.state.monData.costMax==null || this.state.monData.costMax==0) ? '面议' : '￥'+ this.state.monData.costMin + ' - ' + this.state.monData.costMax}</div>
 						<hr/>
 					</Card.Body>
 					<Card.Footer  extra={<span>{this.state.monData.joinCount}人投递 {this.state.monData.viewCount}人浏览</span>} />
