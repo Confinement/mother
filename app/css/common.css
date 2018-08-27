@@ -1,6 +1,6 @@
 /* reset css */
 body,dd,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,img,li,ol,p,table,td,th,ul{margin:0;padding:0;}
-body,input,select,textarea{font-size:20px;}
+body,input,select,textarea{font-size:14px;}
 input,select{vertical-align:middle;}
 fieldset,img{border:0;}
 ol,ul{list-style:none;}

@@ -114,3 +114,35 @@
 	border: 1px solid #f6ede6;
 	border-radius: 5px;
 }
+
+/* news */
+.news dl {
+	display: flex;
+}
+.news dl dd {
+	flex: 1;
+	padding: .3rem .3rem;
+}
+.news dl dd img {
+	width: 100%;
+}
+.news dl dt {
+	flex: 3;
+}
+.news dl dt h5 {
+	font-size: 16px;
+	padding-top: 0.3rem;
+}
+.news dl dt span {
+	display: block;
+	padding-top: 0.1rem;
+	font-size: 14px;
+	color: #666666;
+	line-height: 18px;
+	max-height: 54px;
+	overflow: hidden;
+}
+
+.news .am-list-header {
+	padding: 0;
+}
