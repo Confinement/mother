@@ -42,7 +42,6 @@ class PostRe extends React.Component {
 		data.dueDate = dueDate.getFullYear() + '-' + m.substring(m.length - 2, m.length) + "-" + d.substring(d.length - 2, d.length);
 		
 		data.babyType = this.state.babyN;
-		if(this.state.babyN>=3) {data.babyType =3}; 
 		data.addr = this.state.addressValue;
 		data.serviceDay = this.state.daysValue;
 
@@ -113,7 +112,8 @@ class PostRe extends React.Component {
 							<Flex>
 								<Flex.Item><div className={this.state.babyN==1?'flex-item selected':'flex-item'} onClick={()=>this.setState({babyN:1})}>单胞胎</div></Flex.Item>
 								<Flex.Item><div className={this.state.babyN==2?'flex-item selected':'flex-item'} onClick={()=>this.setState({babyN:2})}>双胞胎</div></Flex.Item>
-								<Flex.Item><div className={this.state.babyN==this.state.babyNCustom?'flex-item selected':'flex-item'}><input placeholder="其他数量" type='number' onChange={(e)=>this.setState({babyN:e.target.value, babyNCustom:e.target.value})} onClick={(e)=>this.setState({babyN:e.target.value, babyNCustom:e.target.value})}/></div></Flex.Item>
+								<Flex.Item><div className={this.state.babyN==3?'flex-item selected':'flex-item'} onClick={()=>this.setState({babyN:3})}>多胞胎</div></Flex.Item>
+								{/* <Flex.Item><div className={this.state.babyN==this.state.babyNCustom?'flex-item selected':'flex-item'}><input placeholder="其他数量" type='number' onChange={(e)=>this.setState({babyN:e.target.value, babyNCustom:e.target.value})} onClick={(e)=>this.setState({babyN:e.target.value, babyNCustom:e.target.value})}/></div></Flex.Item> */}
 								<Flex.Item></Flex.Item>
 							</Flex>
 						</div>
@@ -175,10 +175,10 @@ class PostRe extends React.Component {
 								<span>薪资</span>
 								<WhiteSpace />
 								<Flex>
-									<Flex.Item><div className={this.state.costMin==""&&this.state.costMax==""?'flex-item selected':'flex-item'} onClick={()=>this.setState({costMin:"", costMax:""})}>不限</div></Flex.Item>
-									<Flex.Item><div className={this.state.costMin!=""||this.state.costMax!=""?'flex-item selected':'flex-item'}><input placeholder="请填写" type='number' ref="costMin" onChange={(e)=>this.setState({costMin:e.target.value})} onClick={(e)=>this.setState({costMin:e.target.value, costMax:this.refs.costMax.value})}/></div></Flex.Item>
+									<Flex.Item><div className={this.state.costMin==""&&this.state.costMax==""?'flex-item selected':'flex-item'} onClick={()=>this.setState({costMin:"", costMax:""})}>面议</div></Flex.Item>
+									<Flex.Item><div className={this.state.costMin!=""||this.state.costMax!=""?'flex-item selected':'flex-item'}><input placeholder="最低价" type='number' ref="costMin" onChange={(e)=>this.setState({costMin:e.target.value})} onClick={(e)=>this.setState({costMin:e.target.value, costMax:this.refs.costMax.value})}/></div></Flex.Item>
 									&nbsp; - &nbsp;
-									<Flex.Item><div className={this.state.costMin!=""||this.state.costMax!=""?'flex-item selected':'flex-item'}><input placeholder="请填写" type='number' ref="costMax" onChange={(e)=>this.setState({costMax:e.target.value})} onClick={(e)=>this.setState({costMax:e.target.value, costMin:this.refs.costMin.value})}/></div></Flex.Item>
+									<Flex.Item><div className={this.state.costMin!=""||this.state.costMax!=""?'flex-item selected':'flex-item'}><input placeholder="最高价" type='number' ref="costMax" onChange={(e)=>this.setState({costMax:e.target.value})} onClick={(e)=>this.setState({costMax:e.target.value, costMin:this.refs.costMin.value})}/></div></Flex.Item>
 									<Flex.Item></Flex.Item>
 								</Flex>
 							</div>

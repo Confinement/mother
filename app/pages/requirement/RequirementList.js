@@ -82,9 +82,9 @@ class RequirementList extends React.Component{
 			
 				<Card full = {true}>
 					<Card.Body>
-						<div>预产期:{rowData.dueDate} | {rowData.serviceDay}天</div>
-						<div>需求:地区:{rowData.moonAddr}    年龄:{rowData.moonAgeMin}岁-{rowData.moonAgeMax}岁{(rowData.costMax==0 || rowData.costMax=="" || rowData.costMax==null)? '' :'$'+rowData.costMin+'-'+rowData.costMax}</div>
-						<div>服务宝宝数:{(rowData.takecareBabyMax==null || rowData.takecareBabyMax==0) ? '不限':(rowData.takecareBabyMax<=10 ? '10个以下' : (rowData.takecareBabyMax<=30 ?'11-30个':'31个以上' )) }    薪资:{(rowData.costMax==null || rowData.costMax==0) ? '不限' : '￥'+ rowData.costMin + ' - ' + rowData.costMax}</div>
+						<div style={{fontSize:'15px'}}>预产期:{rowData.dueDate} | {rowData.serviceDay}天</div>
+						<div style={{fontSize:'13px',marginTop:'5px',color:'#888'}}>需求:地区:{rowData.moonAddr}    年龄:{rowData.moonAgeMin}岁-{rowData.moonAgeMax}岁{(rowData.costMax==0 || rowData.costMax=="" || rowData.costMax==null)? '' :'$'+rowData.costMin+'-'+rowData.costMax}</div>
+						<div style={{fontSize:'13px',marginTop:'2px',color:'#888'}}>服务宝宝数:{(rowData.takecareBabyMax==null || rowData.takecareBabyMax==0) ? '不限':(rowData.takecareBabyMax<=10 ? '10个以下' : (rowData.takecareBabyMax<=30 ?'11-30个':'31个以上' )) }    薪资:{(rowData.costMax==null || rowData.costMax==0) ? '面议' : '￥'+ rowData.costMin + ' - ' + rowData.costMax}</div>
 						<div size="small" style={{position:'absolute',width:'70px',height:'30px',top:'26px',right:'20px',backgroundColor:'#ffda44',textAlign:'center',borderRadius:'20px',lineHeight:'30px'}}>{rowData.status==="1" ? "应聘中":(rowData.status==="2" ? "暂停中":"已结束")}</div>
 						<hr style={{border: "none", borderBottom: "1px solid #ddd"}} />
 					</Card.Body>

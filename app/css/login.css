@@ -116,6 +116,7 @@
 	margin-top: 0rem;
 	background-color: #f5f5f5;
 	border: none;
-	border-bottom: 1px solid #f5f5f5;
+	background: none;
+	/* border-bottom: 1px solid #f5f5f5; */
 }
 .sms{position: relative;}

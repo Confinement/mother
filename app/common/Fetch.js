@@ -38,8 +38,8 @@ let _fetch = (uri, data, cache, type) => new Promise((resolve, reject) => {
 	}))
 })
 
-export let fetchGet = (uri, data, cache) => _fetch(uri, data, cache, "GET")
-export let fetchPost = (uri, data, cache) => _fetch(uri, data, cache, "POST")
+export let fetchGet = (uri, data, cache = false) => _fetch(uri, data, cache, "GET")
+export let fetchPost = (uri, data, cache = false) => _fetch(uri, data, cache, "POST")
 export default {
 	get: fetchGet,
 	post: fetchPost
