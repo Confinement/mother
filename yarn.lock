@@ -7244,18 +7244,18 @@ webpack-merge@^4.1.2:
   dependencies:
     lodash "^4.17.5"
 
+webpack-remove-blocks@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/webpack-remove-blocks/-/webpack-remove-blocks-1.1.0.tgz#5bd446222d82ad7f5d1dc4aa879eed9c29e3779e"
+  dependencies:
+    loader-utils "^1.1.0"
+
 webpack-sources@^1.0.1, webpack-sources@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-1.1.0.tgz#a101ebae59d6507354d71d8013950a3a8b7a5a54"
   dependencies:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
-
-webpack-strip-blocks@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/webpack-strip-blocks/-/webpack-strip-blocks-1.0.0.tgz#0695804788d03ad6673f147a4961266a6823a0ec"
-  dependencies:
-    loader-utils "^1.1.0"
 
 webpack@^4.16.4:
   version "4.16.4"

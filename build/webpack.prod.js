@@ -21,23 +21,30 @@ module.exports = merge(common.webpackCommon, {
 				test: /\.(htm|html)$/,
 				enforce: 'pre',
 				use: [{
-					loader: 'webpack-strip-blocks',
+					loader: 'webpack-remove-blocks',
 					options: {
-						blocks: ['debug'],
-						start: '<!--',
-						end: '-->'
+						blocks: [{
+							block: 'debug',
+							start: '<!--',
+							end: '-->'
+						}, 'debug', {
+                            block: 'debug',
+                            start: '//'
+                        }]
 					}
 				}]
 			},
 			{
 				test: /\.js$/,
 				enforce: 'pre',
+                exclude: /(node_modules|bower_components|\.spec\.js)/,
 				use: [{
-					loader: 'webpack-strip-blocks',
+					loader: 'webpack-remove-blocks',
 					options: {
-						blocks: ['debug'],
-						start: '/*',
-						end: '*/'
+						blocks: ['debug', {
+                            block: 'debug',
+                            start: '//'
+                        }]
 					}
 				}]
 			},

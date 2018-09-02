@@ -47,7 +47,7 @@
     "webpack-cli": "^2.1.4",
     "webpack-dev-server": "^3.1.4",
     "webpack-merge": "^4.1.2",
-    "webpack-strip-blocks": "^1.0.0"
+    "webpack-remove-blocks": "^1.1.0"
   },
   "dependencies": {
     "antd-mobile": "^2.2.2",
