@@ -8,6 +8,7 @@
     "winserver": "webpack-dev-server --config ./build/webpack.dev.js --host 10.205.139.220 --port 80",
     "server": "webpack-dev-server --config ./build/webpack.dev.js",
     "build": "webpack --config ./build/webpack.prod.js --progress",
+    "source": "webpack --config ./build/webpack.source.js --progress",
     "test": "jest"
   },
   "repository": {
